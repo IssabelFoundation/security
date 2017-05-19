@@ -1,0 +1,116 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.0                                             |
+  | http://www.elastix.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: ru.lang v.2.5 2016-02-12 12:17:47 Andrey Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Rules" => "Правила",
+"New" => "Новый",
+"Traffic" => "Трафик",
+"Interface IN" => "Входящий Интерфейс",
+"Interface OUT" => "Исходящий Интерфейс",
+"IP Source" => "Адрес Источника",
+"IP Destiny" => "Адрес Назначения",
+"ALL" => "ВСЕ",
+"Protocol" => "Протокол",
+"Target" => "Действие",
+"Action" => "Действие",
+"Port Source" => "Порт Источника",
+"Port Destine" => "Порт Назначения",
+"Type" => "Тип",
+"ID" => "ID",
+"New Rule" => "Новое Правило",
+"Delete" => "Удалить",
+"Are you sure you wish to delete the Rule?" => "Вы уверены, что хотите удалить Правило?",
+"Orden" => "Orden",
+"Filter Example" => "Пример Фильтра",
+"Rule" => "Правило",
+"Activate" => "Активировать",
+"Desactivate" => "Деактивировать",
+"Rule List" => "Список Правил",
+"Source Port" => "Порт Источника",
+"Destiny Port" => "Порт Назначения",
+"Protocol ICMP Type" => "Protocol ICMP Type",
+"Number Protocol IP" => "Number Protocol IP",
+"Order" => "Порядок",
+"Order/Activated" => "Order/Activated",
+"INPUT" => "INPUT",
+"OUTPUT" => "OUTPUT",
+"FORWARD" => "FORWARD",
+"ACCEPT" => "ACCEPT",
+"DROP" => "DROP",
+"REJECT" => "REJECT",
+"ANY" => "ЛЮБОЙ",
+"The bit masks must be values less than 33" => "Битовая маска должна иметь значение меньше чем 33",
+"Error" => "Ошибка",
+"Validation Error" => "Ошибка Валидации",
+"The following fields contain errors" => "Следующие поля содержат ошибки",
+"Edit Rule" => "Редактировать Правило",
+"Wrong Mask" => "Некорректная Маска",
+"Up" => "Вверх",
+"Down" => "Вниз",
+"Successful Change" => "Successful Change",
+"Invalid Action" => "Invalid Action",
+"Execute Rules" => "Execute Rules",
+"Successful Save" => "Successful Save",
+"Successful Update" => "Successful Update",
+"Error during execution of rules" => "Ошибка во время применения правил",
+"Interface" => "Интерфейс",
+"IN" => "Входящий",
+"OUT" => "Исходящий",
+"The rules have been executed in the system" => "Правила были применены в системе",
+"There have been changes and have not been executed in the system" => "There have been changes and have not been executed in the system",
+"Cancel" => "Отмена",
+"Wrong value for ip" => "Ошибочное значение для ip",
+"Save Changes" => "Сохранить Изменения",
+"FireWall Rules" => "Правила Сетевого Экрана",
+"You have made changes to the definition of firewall rules, for this to take effect in the system press the next button" => "Вы внесли изменения в правила Сетевого Экрана, для того чтобы применить изменения в системе нажмите на кнопку 'Сохранить Изменения'",
+"The firewall is totally desactivated. It is recommended to activate the firewall rules" => "В настоящее время Сетевой Экран деактивирован. Рекомендуется всегда держать его активированным.",
+"Activate FireWall" => "Активировать Сетевой Экран",
+"Desactivate FireWall" => "Деактивировать Сетевой Экран",
+"The firewall has been activated" => "Сетевой Экран был активирован",
+"The firewall has been desactivated" => "Сетевой Экран был деактивирован",
+"The firewall could not be desactivated" => "Сетевой Экран не может быть деактивирован",
+"STATE" => "СОСТОЯНИЕ",
+"Established" => "Established",
+"Related" => "Related",
+"You have to select at least one state" => "Вам нужно выбрать как минимум одно состояние",
+"Details" => "Детали",
+"MESSAGE"=>"СООБЩЕНИЕ",
+"IP DETAILS"=>"ДЕТАЛИ IP",
+"PROTOCOL DETAILS"=>"ДЕТАЛИ ПРОТОКОЛА",
+"ACTION DETAIL"=>"ПОДРОБНОСТИ ДЕЙСТВИЯ",
+"Show Filter" => "Показать Фильтр",
+"Hide Filter" => "Скрыть Фильтр",
+"Filter applied " => "Текущий фильтр: ",
+"Page" => "Страница",
+"records" => "записей",
+"of" => "из",
+"No records match the filter criteria" => "Нет записей, соответствующих критериям фильтра",
+"WARNING" => "ВНИМАНИЕ",
+);
+?>

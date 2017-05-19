@@ -1,0 +1,43 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The option "Firewall" of the menu "Security" in Elastix allows building iptables rules to control the packets that send and receive the Elastix Server.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules1.png" border="0" />
+        <p>Figure 1</p></div>
+        <br />
+	<p>To use this module the firewall must be enabled with the rules that appear by default. It can be done by clicking on "Activate Firewall" button. Once the firewall is enabled, you can create, delete, edit, disable and reorder the iptables rules.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules2.png" border="0" />
+        <p>Figure 2</p></div>
+        <br />
+	<p>Every time you create or edit the rules, you have to save the changes. You can do this by clicking on "Save" button that will appear automatically when you modify something. If you don't save the changes the rules won't take effect in the system.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules_save.png" border="0" />
+        <p>Figure 3</p></div>
+        <br />
+	<h2>Adding a New Rule</h2>
+	<p>To add a new rule click on the "New Rule" button (Refer to Figure 2) and a form will appear with some data to fill out. The form can vary depending on the parameters you select for Traffic and Protocol (See figure 4).</p>      
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules4.png" border="0" />
+        <p>Figure 4</p></div>
+        <br />
+	<p>The ports used when you select the protocol TCP, UDP, ICMP and IP, are obtained from the module "Define Ports" in the same menu. Therefore, make sure the port you want to use is previously defined if you want to create a new rule.</p>
+	<p>In the source and destination address fields you have to enter the IP with the format <i>x.x.x.x/y</i>, where <i>y</i> is the network mask and should be a number between 0 and 32. If you let the default IP address (0.0.0.0) the netmask will be 0. If you let the netmask in blank it will not be taken into account. To enter a specific IP address, just let in blank the netmask value.</p>
+	<p>Once you created the rule, click on "Save" button and the new rule will appear in the list. Make sure you save the changes so they take effect in the system after creating a new rule.</p>
+	<br />       
+	<h2>Editing a Rule</h2>
+	<p>To edit an existing rule, click on the blue notebook icon corresponding to the rule. Here you can modify parameters of the rule.</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules_edit.png" border="0" />
+        <p>Figure 5</p></div>
+	<h2>Deleting a Rule</h2>
+	<p>To delete a rule just select the checkbox corresponding to the rule at the left side and click on "Delete" button. Make sure you save the changes so they take effect in the system after deleting a rule.</p>        
+        <br />
+	<h2>Reordering the Rules</h2>
+	<p>You can modify the order of the rules by clicking on the blue arrows in the column Order. If you click on the up arrow of a rule, this rule will go up one position and the one which was in that position will go down. If you click on the down arrow of a rule, this rule will go down one position and the one which was in that position will go up. Make sure you save the changes so they take effect in the system after modifying the position of the rules.</p>         
+	<br />
+	<h2>Activate / Deactivate a rule</h2>
+	<p>You can activate or deactivate a rule by clicking on the light bulb corresponding to the rule. When it is ON the rule is activated, when it is OFF the rule is deactivated. Make sure you save the changes so they take effect in the system after doing this action.</p>
+<br />
+    </body>
+</html>

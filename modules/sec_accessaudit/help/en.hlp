@@ -1,0 +1,15 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The module "Audit" of the menu "Security" in Elastix shows a list of all the users that have logged in the system with the date, the username, the source IP address and other details. The results can be filtered by date and string. The coincidences with the string will be highlighted in the results.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_audit.png" border="0" />
+        <p>Figure 1</p></div>
+        <br />
+	<p>The results of the search can be downloaded in different formats such as PDF, XML and CSV by clicking on the "Download" button.</p>
+        <br />
+    </body>
+</html>

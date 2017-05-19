@@ -1,0 +1,43 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>La opción "Reglas del Cortafuegos" permite controlar el flujo de tráfico tanto para envío como recepción de paquetes en el servidor Elastix.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules1.png" border="0" />
+        <p>Figura 1</p></div>
+        <br />
+	<p>Para usar este módulo el cortafuegos debe primero activarse mediante el botón "Activar Cortafuegos". Luego de esto usted puede crear, editar, eliminar y reordenar las reglas.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules2.png" border="0" />
+        <p>Figura 2</p></div>
+        <br />
+	<p>Cada vez que cree o modifique una regla usted debe de hacer click en el botón "Guardar" que aparecerá en la parte superior. Si no realiza esta acción los cambios no tendrán efecto en el sistema.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules_save.png" border="0" />
+        <p>Figura 3</p></div>
+        <br />
+	<h2>Añadir nueva regla</h2>
+	<p>Para añadir una regla haga click en el botón "Nueva Regla" (ver figura 2) y llene el formulario que aparecerá en pantalla. El formulario puede variar dependiendo de los parámetros que seleccione en la opción Tráfico y Protocolo (ver figura 4).</p>      
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules4.png" border="0" />
+        <p>Figura 4</p></div>
+        <br />
+	<p>Los puertos usados cuando selecciona los protocolos TCP, UDP, ICMP e IP son obtenidos del módulo "Definir Puertos" ubicado debajo de este. Antes de usar un puerto asegúrese de que está previamente definido.</p>
+	<p>En los campos Dirección Origen y Dirección Destino usted debe ingresar la dirección IP con formato <i>x.x.x.x/y</i>, donde <i>y</i> es la máscara de red y debe ser un número entre 0 y 32. La dirección IP predeterminada (0.0.0.0) representa cualquier red. Para ingresar una dirección IP específica deje la máscara de red en blanco.</p>
+	<p>Una vez creada la nueva regla haga click en el botón "Guardar". Asegúrese de guardar los cambios también en la ventana principal para que surtan efecto.</p>
+	<br />       
+	<h2>Editar una Regla</h2>
+	<p>Para editar una regla existente haga click en el ícono en forma de libreta color azul que corresponde a la regla.</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules_edit.png" border="0" />
+        <p>Figura 5</p></div>
+	<h2>Eliminar una Regla</h2>
+	<p>Para eliminar una regla determinada primero selecciónela y haga click en el botón "Borrar". Asegúrese de guardar los cambios para que surta efecto.</p>        
+        <br />
+	<h2>Reordenar las Reglas</h2>
+	<p>Usted puede modificar el orden de la reglas haciendo click en las flechas azules de la columna Orden correspondientes a cada una de ellas. Si hace click en la flecha hacia arriba de una regla esta subirá un puesto y la que estaba en ese lugar bajará. Si hace click en la flecha hacia abajo de una regla esta bajará un puesto y la que estaba en ese lugar subirá. Esta acción también requiere guardar los cambios para que surta efecto.</p>         
+	<br />
+	<h2>Activar / Desactivar una Regla</h2>
+	<p>Usted puede Activar o Desactivar una regla haciendo click en el ícono en forma de bombillo correspondiente a cada regla. Cuando el bombillo está prendido la regla está activada y cuando el bombillo está apagado la regla esta desactivada. Esta acción también requiere guardar los cambios para que surta efecto.</p>
+<br />
+    </body>
+</html>

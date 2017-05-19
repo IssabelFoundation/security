@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <menulist>
+    <menuitem menuid="security"        desc="Security"       parent=""             module="no"  link="" order="12"></menuitem>
+    <menuitem menuid="sec_firewall"    desc="Firewall"       parent="security"     module="no"  link="" order="1">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_rules"       desc="Firewall Rules" parent="sec_firewall" module="yes" link="" order="11">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_ports"       desc="Define Ports"   parent="sec_firewall" module="yes" link="" order="12">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_portknock_if" desc="Port Knocking Interfaces" parent="sec_firewall" module="yes" link="" order="13">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_portknock_users" desc="Port Knocking Users" parent="sec_firewall" module="yes" link="" order="14">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_accessaudit" desc="Audit"   parent="security"     module="yes" link="" order="2">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_weak_keys"   desc="Weak Keys"      parent="security"     module="yes" link="" order="3">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_advanced_settings"   desc="Advanced Settings"      parent="security"     module="yes" link="" order="4">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+  </menulist>
+</module>

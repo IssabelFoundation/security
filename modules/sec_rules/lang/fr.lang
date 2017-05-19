@@ -1,0 +1,109 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.0                                             |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: paloSantoRules.class.php,v 1.2 2010-12-20 03:09:47 Alberto Santos asantos@palosanto.com Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Rules" => "Règles",
+"New" => "Nouveau",
+"Traffic" => "Traffic",
+"Interface IN" => "Interface entrante",
+"Interface OUT" => "Interface sortante",
+"IP Source" => "Adresse source",
+"IP Destiny" => "Adresse de destination",
+"ALL" => "TOUT",
+"Protocol" => "Protocole",
+"Target" => "Cible",
+"Action" => "Action",
+"Port Source" => "Port source",
+"Port Destine" => "Port de destination",
+"Type" => "Type",
+"ID" => "ID",
+"New Rule" => "Nouvelle règle",
+"Delete" => "Supprimer",
+"Are you sure you wish to delete the Rule" => "Etes-vous sûr de vouloir supprimer cette règle ?",
+"Orden" => "Ordre",
+"Filter Example" => "Exemple de filtre",
+"Rule" => "Règle",
+"Activate" => "Activer",
+"Desactivate" => "Désactivater",
+"Rule List" => "Liste des règles",
+"Source Port" => "Port source",
+"Destiny Port" => "Port de destination",
+"Protocol ICMP Type" => "Type de protocole ICMP",
+"Number Protocol IP" => "Numéro de protocole IP",
+"Order" => "Ordre",
+"Order/Activated" => "Ordre/Activé",
+"INPUT" => "ENTRANT",
+"OUTPUT" => "SORTANT",
+"FORWARD" => "TRANSFERER",
+"ACCEPT" => "ACCEPTER",
+"DROP" => "REJETER",
+"REJECT" => "REJETER",
+"ANY" => "TOUT",
+"The bit masks must be values less than 33" => "Les masques de réseau doivent être inférieurs à 33",
+"Error" => "Erreur",
+"Validation Error" => "Erreur de validation",
+"The following fields contain errors" => "Les champs suivants contiennent une erreur",
+"Edit Rule" => "Editer la règle",
+"Wrong Mask" => "Masque incorrect",
+"Up" => "Monter",
+"Down" => "Descendre",
+"Successful Change" => "Modification effectuée",
+"Invalid Action" => "Action incorrecte",
+"Execute Rules" => "Exécuter les règles",
+"Successful Save" => "Sauvegarde effectuée",
+"Successful Update" => "Mise à jour effectuée",
+"Error during execution of rules" => "Erreur lors de l'exécution des règles",
+"Interface" => "Interface",
+"IN" => "ENTRANT",
+"OUT" => "SORTANT",
+"The rules have been executed in the system" => "Les règles ont été mises en place dans le système",
+"There have been changes and have not been executed in the system" => "Les modifications n'ont pas été mises en place dans le système",
+"Cancel" => "Annuler",
+"Wrong value for ip" => "Valeur d'IP incorrecte",
+"Save Changes" => "Sauver les modifications",
+"FireWall Rules" => "Règles du firewall",
+"You have made changes to the definition of firewall rules, for this to take effect in the system press the next button" => "Vous avez effectué des changements aux règles du firewall. Afin qu'elles soient effectives, vous devez cliquer sur le bouton \"Suivant\"",
+"The firewall is totally desactivated. It is recommended to activate the firewall rules" => "Le firewall est actuellement désactivé. Il est recommandé de toujours l'activer",
+"Activate FireWall" => "Activer le firewall",
+"Desactivate FireWall" => "Désactiver firewall",
+"The firewall has been activated" => "Le firewall a été activé",
+"The firewall has been desactivated" => "Le firewall a été désactivé",
+"The firewall could not be desactivated" => "Le firewall n'a pas pu être désactivé",
+"STATE" => "ETAT",
+"Established" => "Etablie",
+"Related" => "Relatif",
+"You have to select at least one state" => "Vous devez sélectionner au moins un état",
+"Details" => "Détails",
+"MESSAGE"=>"MESSAGE",
+"IP DETAILS"=>"DETAILS IP",
+"PROTOCOL DETAILS"=>"DETAILS PROTOCOLE",
+"ACTION DETAIL"=>"DETAIL ACTION"
+);
+?>
+

@@ -1,0 +1,63 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.0.4-5                                               |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.1 2011-05-13 11:05:31 Estefanía Morán Meza emoran@palosanto.com Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Advanced Security Settings"                       => "Conf. Avanzada",
+"Enable direct access (Non-embedded) to FreePBX®"   => "Habilitar acceso directo (No embebido) a FreePBX®",
+"Change Password"                                  => "Cambiar Contraseña",
+"Enable access"                                    => "Habilitar accesos",
+"Database and Web Administration FreePBX® Password" => "Contraseña Base de Datos y Administración Web FreePBX®",
+"Password Confirmation"                            => "Confirmación de la Contraseña",
+"Password and confirmation do not match!"          => "Contraseña y confirmación no coinciden!",
+"The following fields are required"                => "Los siguientes campos son requeridos",
+"The following field contain errors"               => "El siguiente campo contiene errores",
+"Information"                                      => "Información",
+"Password has been updated."                       => "La contraseña ha sido actualizada.",
+"Password has not been updated."                   => "La contraseña no ha sido actualizada.",
+"Access direct to FreePBX® has been enabled."       => "El acceso directo a FreePBX® ha sido habilitado.",
+"Access direct to FreePBX® has not been enabled."   => "El acceso directo a FreePBX® no ha sido habilitado.",
+"Access direct to FreePBX® has been disabled."      => "El acceso directo a FreePBX® ha sido deshabilitado.",
+"Access direct to FreePBX® has not been disabled."  => "El acceso directo a FreePBX® no ha sido deshabilitado.",
+" But the following files have been modified: "    => " Pero los siguientes archivos han sido modificados: ",
+"Password may only contain alphanumeric characters, spaces, or the following: .&-@=_!<>." => 
+"La contraseña solamente puede contener caracteres alfanuméricos, espacios en blanco o los siguientes símbolos: .&-@=_!<>.",
+"Advice"                                           => "Aviso",
+"Unauthorized"                                     => "No Autorizado",
+"You are not authorized to access this page."      => "Usted no está autorizado para acceder a esta página.",
+"Enable direct access (Non-embedded) to FreePBX in \"Security >> Advanced Security Settings\" menu." 
+						   => "Habilite el acceso directo (No embebido) a <a href='http://www.freepbx.org'>FreePBX®</a> en el menú \"Seguridad >> Configuraciones de Seguridad Avanzada\".  <br /> (<a href='http://www.freepbx.org'>FreePBX®</a> es una marca registrada de <a href='http://www.schmoozecom.com'>Schmooze Com, Inc</a>.)",
+'Enable anonymous SIP calls' => 'Activar llamadas SIP anónimas',
+'Anonymous SIP calls are now enabled.' => 'Las llamadas SIP anónimas han sido activadas',
+'Anonymous SIP calls are now disabled.' => 'Las llamadas SIP anónimas han sido desactivadas',
+'Anonymous SIP calls cannot be enabled.' => 'No se puede activar llamadas SIP anónimas.',
+'Anonymous SIP calls cannot be disabled.' => 'No se puede desactivar llamadas SIP anónimas.',
+"FreePBX® is a Registered Trademark of Schmooze Com, Inc" => "FreePBX® es una marca registrada de Schmooze Com, Inc. Para más detalles visita www.freepbx.org y www.schmoozecom.com.",
+);
+
+?>

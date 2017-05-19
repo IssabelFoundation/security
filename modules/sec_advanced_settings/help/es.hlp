@@ -1,0 +1,22 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+        <!-- Form to add images -->
+        <!--<div><img src="../modules/{$node_id}/images/images.png" border="0"></div> -->
+	<p>El módulo "Configuraciones Avanzadas" del menú "Seguridad" permite cambiar las contraseñas de la base de datos y la web de administración de <a href="http://www.freepbx.org">FreePBX®</a> así como también habilitar el acceso no embebido a esta. Es posible también habilitar las llamadas SIP anónimas.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_advanced_settings.png" border="0" />
+        <p>Figura 1</p></div>
+        <br />
+	<p>Para habilitar estas opciones cámbielas a estado ON y para deshabilitarlas a estado OFF. El acceso no embebido a <a href="http://www.freepbx.org">FreePBX®</a> puede resolver inconvenientes de seguridad.</p>
+	<p>En la sección Cambiar Contraseña se ingresa la nueva clave para estos servicios. La contraseña debe contener sólo caracteres alfanuméricos, espacios y los siguientes caracteres: .&amp;-@=_!&lt;&gt;.</p>
+	<p>Una vez realizado los cambios haga click en el botón "Guardar".</p>
+	<br />
+
+        <p><a href="http://www.freepbx.org">FreePBX®</a> es una marca registrada de <a href="http://www.schmoozecom.com">Schmooze Com, Inc</a>. Para más detalles visita www.freepbx.org y www.schmoozecom.com.</p>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+        <!-- Form to add images -->
+        <!--<div><img src="../modules/{$node_id}/images/images.png" border="0"></div> -->
+	<p>The module "Advanced Settings" of the menu "Security" allows changing the Database and Web Administration <a href="http://www.freepbx.org">FreePBX®</a> Password as well as enabling the non-embedded access to <a href="http://www.freepbx.org">FreePBX®</a> and the anonymous SIP calls.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_advanced_settings.png" border="0" />
+        <p>Figure 1</p></div>
+        <br />
+	<p>In Enable Access set to ON/OFF to enable the non-embedded access to <a href="http://www.freepbx.org">FreePBX®</a>, and the anonymous SIP calls. The direct access to <a href="http://www.freepbx.org">FreePBX®</a> solves some problems of security.</p>
+	<p>In Database and Web Administration <a href="http://www.freepbx.org">FreePBX®</a> Password text field you must enter the new password. In Password Confirmation text field you must enter again the new password. Remember that the new password may only contain alphanumeric characters, spaces, or the following: .&amp;-@=_!&lt;&gt;.</p>
+	<p>Once you finish click on the "Save" button to apply the changes.</p>
+	<br />
+
+        <p><a href="http://www.freepbx.org">FreePBX®</a> is a Registered Trademark of <a href="http://www.schmoozecom.com">Schmooze Com, Inc</a>. For more details visit www.freepbx.org and www.schmoozecom.com.</p>
+    </body>
+</html>

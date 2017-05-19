@@ -1,0 +1,20 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>El módulo "Claves Débiles" del menú "Seguridad" permite identificar las claves de las extensiones configuradas en Elastix (SIP e IAX2) que no son lo suficientemente seguras. Puede filtrar los resultados de la búsqueda por número de extensión.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_weakkeys.png" border="0" />
+        <p>Figura 1</p></div>
+        <br />
+        <p>Puede descargar los resultados en diferentes formatos tales como CSV, XML o PDF. Para esto haga click en el botón "Descargar".</p>
+	<h2>Cambiar Clave</h2>
+	<p>Si la clave de una extensión no es segura usted será notificado mediante la columna Estado. Adicional a esto se mostrará un enlace que lo llevará a cambiar la clave actual por una mas confiable. La clave debe tener como mínimo seis caracteres y debe contener al menos dos números y dos letras (ver figura 2). </p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_weakkeys_change.png" border="0" />
+        <p>Figura 2</p></div>
+        <br />
+    </body>
+</html>
+

@@ -1,0 +1,32 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The module "Define Ports" of the menu "Security" in Elastix allows creating, editing, and deleting ports that are used for the module "Firewall Rules". These ports can be from the protocols TCP, UDP, ICMP and IP. This module shows a list of all the existing ports and the results can be filtered by name and protocol.</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_defineports.png" border="0" />
+        <p>Figure 1</p></div>
+        <br />
+	<h2>Define Port</h2> 
+	<p>To define a new port, click on the "Define Port" button and a form will appear with some parameters to fill out. The form can vary depending on the parameters you select for the field Protocol (See Figure 2). Once the information is filled, click on "Save" button.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_defineports_new.png" border="0" />
+        <p>Figure 2</p></div>
+        <br />
+	<h2>View Port</h2>
+	<p>To view an existing port, click on the "View" link located in the row corresponding to the port. Here you can see the information of the port and edit it if needed. (See figure 3)</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_defineports_view.png" border="0" />
+        <p>Figure 3</p></div>
+        <br />
+	<h2>Edit Port</h2>
+        <p>To edit a port, click on the "View" link corresponding to the port you want to modify and then click on "Edit" button. A form will appear with the parameters of the port ready to be modified. (See Figure 4)</p>
+        <br />
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_defineports_edit.png" border="0" />
+        <p>Figure 4</p></div>
+        <br />
+	<h2>Delete a port</h2>
+	<p>To delete a port just select the checkbox located at the left side corresponding to the port and click on "Delete" button.</p>
+        <br />
+    </body>
+</html>

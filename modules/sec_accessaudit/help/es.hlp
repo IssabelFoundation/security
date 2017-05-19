@@ -1,0 +1,15 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>El módulo "Auditoría" del menú "Seguridad" muestra información de todos los inicios de sesión en el sistema mostrando fecha, nombre de usuario, dirección IP y otros detalles. Los resultados pueden ser filtrados por fecha y por una cadena de texto.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_audit.png" border="0" />
+        <p>Figura 1</p></div>
+        <br />
+	<p>Los resultados pueden ser descargados en diferentes formatos tales como CSV, XLS o PDF. Para esto haga click en el botón "Download".</p>
+        <br />
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.0.2                                               |
+  | http://www.elastix.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: ru.lang,v 2.5. 2016-02-12 14:48:33 Andrey Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Port- Service" => "Port- Service",
+"Ports" => "Порты",
+"Port" => "Порт",
+"Option" => "Опции",
+"Protocol" => "Протокол",
+"Port(s)" => "Порт(ы)",
+"Delete" => "Удалить",
+"View" => "Просмотр",
+"Edit" => "Редактировать",
+"New Port" => "Новый Порт",
+"Comment" => "Коментарий",
+"Save correctly" => "Сохранено успешно",
+"Delete correctly" => "Удалено успешно",
+"Update correctly" => "Обновлено успешно",
+"Details" => "Детали",
+"Message" => "Сообщение",
+"Error" => "Ошибка",
+"Are you sure you wish to delete the port(s).?" => "Вы уверены, что хотите удалить порт(ы)?",
+"Filter by" => "Фильтровать по",
+"Name" => "Название",
+"Define Ports" => "Определение Портов",
+"Define Port" => "Определить Порт",
+"Edit Port" => "Редактировать Порт",
+"View Port" => "Просмотр Порта",
+"Protocol Number" => "Номер Протокола",
+"Type" => "Тип",
+"Code" => "Code",
+"This port had already been defined" => "Этот порт уже был определён",
+"The name and the port can not be empty fields" => "Название и порт не могут быть пустыми полями",
+"The name, type and code can not be empty fields" => "Название, тип и код не могут быть пустыми полями",
+"The name and the protocol number can not be empty fields" => "Название и номер протокола не могут быть пустыми",
+"The following fields contain errors" => "Следующие поля содержат ошибки",
+"Validation Error" => "Ошибка валидации",
+"Port used in a firewall rule" => "Порт используется в правиле Сетевого Экрана",
+"You have to delete the rule related in order to delete this port" => "Вам необходимо сначала удалить связаное правило, для того чтобы удалить этот порт",
+"Some rules could be deactivated due to these changes, please check the firewall rules" => "Некоторые правила могут быть деактивированы из-за этих изменений, пожалуйста, проверьте правила Сетевого Экрана",
+"Show Filter" => "Показать Фильтр",
+"Hide Filter" => "Скрыть Фильтр",
+"Filter applied: " => "Текущий фильтр: ",
+"Page" => "Страница",
+"records" => "записей",
+"of" => "из",
+"No records match the filter criteria" => "Нет записей, соответствующих критериям фильтра",
+);
+?>

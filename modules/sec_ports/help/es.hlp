@@ -1,0 +1,32 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>El módulo "Definir Puertos" permite definir, editar y eliminar puertos que serán utilizados para las reglas del cortafuegos. Estos puertos pueden ser de los protocolos TCP, UDP, ICMP e IP. La figura 1 muestra una lista de los puertos definidos.</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_defineports.png" border="0" />
+        <p>Figura 1</p></div>
+        <br />
+	<h2>Definir Puertos</h2> 
+	<p>Para definir un nuevo puerto haga click en el botón "Definir Puerto" y llene el formulario que aparecerá en pantalla. El formulario puede variar dependiendo de los parámetros seleccionados en el campo Protocolo (ver Figura 2).</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_defineports_new.png" border="0" />
+        <p>Figura 2</p></div>
+        <br />
+	<h2>Ver Puertos</h2>
+	<p>Para consultar información de la definición de un puerto, haga click en el enlace "Ver" de la columna Opción correspondiente a cada puerto (ver figura 3).</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_defineports_view.png" border="0" />
+        <p>Figura 3</p></div>
+        <br />
+	<h2>Modificar Puertos</h2>
+        <p>Para modificar la definición de un puerto, haga click en enlace "Ver" de la columna Opción correspondiente a cada puerto, y luego en el botón "Editar" (ver Figura 4)</p>
+        <br />
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_defineports_edit.png" border="0" />
+        <p>Figura 4</p></div>
+        <br />
+	<h2>Eliminar Puertos</h2>
+	<p>Para eliminar un puerto selecciónelo de la lista y haga click en el botón "Eliminar".</p>
+        <br />
+    </body>
+</html>

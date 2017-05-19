@@ -1,0 +1,20 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The module "Weak Keys" of the menu "Security" lets us identify the keys that are not enough strong for the extensions created in Elastix (SIP and IAX2). This module shows all the extensions but you can filter the results by entering a specific extension number or part of it.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_weakkeys.png" border="0" />
+        <p>Figure 1</p></div>
+        <br />
+        <p> You can download the results in different formats such as PDF, XML and CSV by clicking on the "Download" button.</p>
+	<h2>Change Key</h2>
+	<p>If the key of an extension is not enough strong, you will be notified through the Status column and a link called "Change Secret" will be available to change the key. Once you click on this link, you will see a form where you can set the new secret. The secret must be at minimum six characters in length of which must contain at least two numbers and two letters. When the new secret is set, click on the "Save" button to apply the changes. (See figure 2). </p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_weakkeys_change.png" border="0" />
+        <p>Figure 2</p></div>
+        <br />
+    </body>
+</html>
+
