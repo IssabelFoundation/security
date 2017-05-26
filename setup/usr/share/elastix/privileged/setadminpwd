@@ -72,24 +72,49 @@ foreach ($tablaModificar as $itemModificar) {
  * anteriores, sino un segmento de código PHP. Por lo tanto las rutinas de
  * arriba no sirven para modificar la copia de la clave dentro de este archivo.
  */
-$sRutaArchivo = '/etc/freepbx.conf';
-if ($bExito && file_exists($sRutaArchivo)) {
-    $sContenidoViejo = file_get_contents($sRutaArchivo);
-    $sContenidoNuevo = preg_replace(
-        "/(\\\$amp_conf\\[\\s*'AMPDBPASS'\\s*\\]\\s*=\\s*)(['\"]).*?\\2/",
-        "\$1'{$sNuevoPassword}'",
-        $sContenidoViejo);
-    if (!is_null($sContenidoNuevo)) {
-        if (file_put_contents($sRutaArchivo, $sContenidoNuevo) === FALSE) {
-            print "FAILED $sRutaArchivo\n";
-        	$bExito = FALSE;
+if(is_file('/etc/freepbx.conf')) {
+    $sRutaArchivo = '/etc/freepbx.conf';
+    if ($bExito && file_exists($sRutaArchivo)) {
+        $sContenidoViejo = file_get_contents($sRutaArchivo);
+        $sContenidoNuevo = preg_replace(
+            "/(\\\$amp_conf\\[\\s*'AMPDBPASS'\\s*\\]\\s*=\\s*)(['\"]).*?\\2/",
+            "\$1'{$sNuevoPassword}'",
+            $sContenidoViejo);
+        if (!is_null($sContenidoNuevo)) {
+            if (file_put_contents($sRutaArchivo, $sContenidoNuevo) === FALSE) {
+                print "FAILED $sRutaArchivo\n";
+            	$bExito = FALSE;
+            } else {
+                print "CHANGED $sRutaArchivo\n";
+            }
         } else {
-            print "CHANGED $sRutaArchivo\n";
+            print "FAILED $sRutaArchivo\n";
+            $bExito = FALSE;
         }
-    } else {
-        print "FAILED $sRutaArchivo\n";
-        $bExito = FALSE;
     }
 }
+
+if(is_file('/etc/issabelpbx.conf')) {
+    $sRutaArchivo = '/etc/issabelpbx.conf';
+    if ($bExito && file_exists($sRutaArchivo)) {
+        $sContenidoViejo = file_get_contents($sRutaArchivo);
+        $sContenidoNuevo = preg_replace(
+            "/(\\\$amp_conf\\[\\s*'AMPDBPASS'\\s*\\]\\s*=\\s*)(['\"]).*?\\2/",
+            "\$1'{$sNuevoPassword}'",
+            $sContenidoViejo);
+        if (!is_null($sContenidoNuevo)) {
+            if (file_put_contents($sRutaArchivo, $sContenidoNuevo) === FALSE) {
+                print "FAILED $sRutaArchivo\n";
+            	$bExito = FALSE;
+            } else {
+                print "CHANGED $sRutaArchivo\n";
+            }
+        } else {
+            print "FAILED $sRutaArchivo\n";
+            $bExito = FALSE;
+        }
+    }
+}
+
 exit($bExito ? 0 : 1);
 ?>
