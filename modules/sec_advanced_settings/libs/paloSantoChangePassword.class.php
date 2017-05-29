@@ -55,12 +55,12 @@ class paloSantoAdvancedSecuritySettings{
 	}
     }
     
-    function changeFreePBXPassword($fpbx_password, $arrConf)
+    function changeIssabelPBXPassword($fpbx_password, $arrConf)
     {
       //--------------------------- Begin Transaction --------------------------------
       //Paso #1: Actualizar la clave del usuario Admin.
       $this->_DB->beginTransaction();
-      $resultUpdatePass = $this->updateFreePBXPasswordAdmin($fpbx_password);
+      $resultUpdatePass = $this->updateIssabelPBXPasswordAdmin($fpbx_password);
       if(!$resultUpdatePass){
 	  $this->_DB->rollBack();
           return false;
@@ -82,7 +82,7 @@ class paloSantoAdvancedSecuritySettings{
       return $resultUpdateConfFiles;
     }
 
-    private function updateFreePBXPasswordAdmin($fpbx_password)
+    private function updateIssabelPBXPasswordAdmin($fpbx_password)
     {
       $arrParam[] = $fpbx_password;
       $query = "UPDATE ampusers SET password_sha1=sha1(?) WHERE username = 'admin' ";
@@ -121,17 +121,17 @@ class paloSantoAdvancedSecuritySettings{
         return $arrResult;
    }
 
-   function updateStatusFreePBXFrontend($status_fpbx_frontend)
+   function updateStatusIssabelPBXFrontend($status_fpbx_frontend)
    {
-      //Actualizar la clave ActivatedFreePBX.
+      //Actualizar la clave ActivatedIssabelPBX.
       $pDBSettings = new paloDB($this->arrConf['elastix_dsn']["settings"]);
-      return (set_key_settings($pDBSettings,"activatedFreePBX",$status_fpbx_frontend));
+      return (set_key_settings($pDBSettings,"activatedIssabelPBX",$status_fpbx_frontend));
    }
 
-   function isActivatedFreePBXFrontend()
+   function isActivatedIssabelPBXFrontend()
    {
       $pDBSettings = new paloDB($this->arrConf['elastix_dsn']["settings"]);
-      return (get_key_settings($pDBSettings,"activatedFreePBX"));
+      return (get_key_settings($pDBSettings,"activatedIssabelPBX"));
    }
 
     function isActivatedAnonymousSIP()
