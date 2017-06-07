@@ -5,7 +5,7 @@
     </header>
     <body>
         <h1>{$node_name}</h1>
-	<p>La opción "Reglas del Cortafuegos" permite controlar el flujo de tráfico tanto para envío como recepción de paquetes en el servidor Elastix.</p>
+	<p>La opción "Reglas del Cortafuegos" permite controlar el flujo de tráfico tanto para envío como recepción de paquetes en el servidor Issabel.</p>
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_firewallrules1.png" border="0" />
         <p>Figura 1</p></div>
         <br />

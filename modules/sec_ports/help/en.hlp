@@ -5,7 +5,7 @@
     </header>
     <body>
         <h1>{$node_name}</h1>
-	<p>The module "Define Ports" of the menu "Security" in Elastix allows creating, editing, and deleting ports that are used for the module "Firewall Rules". These ports can be from the protocols TCP, UDP, ICMP and IP. This module shows a list of all the existing ports and the results can be filtered by name and protocol.</p>        
+	<p>The module "Define Ports" of the menu "Security" in Issabel allows creating, editing, and deleting ports that are used for the module "Firewall Rules". These ports can be from the protocols TCP, UDP, ICMP and IP. This module shows a list of all the existing ports and the results can be filtered by name and protocol.</p>        
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_defineports.png" border="0" />
         <p>Figure 1</p></div>
         <br />

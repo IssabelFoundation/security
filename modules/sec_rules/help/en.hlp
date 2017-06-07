@@ -5,7 +5,7 @@
     </header>
     <body>
         <h1>{$node_name}</h1>
-	<p>The option "Firewall" of the menu "Security" in Elastix allows building iptables rules to control the packets that send and receive the Elastix Server.</p>
+	<p>The option "Firewall" of the menu "Security" in Issabel allows building iptables rules to control the packets that send and receive the Issabel Server.</p>
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules1.png" border="0" />
         <p>Figure 1</p></div>
         <br />
