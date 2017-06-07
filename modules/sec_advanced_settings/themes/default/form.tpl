@@ -12,7 +12,7 @@
 	<td  width="50%" valign='top'>
 	    <table>
 		<tr class="letra12">
-		    <td align="left"><b style ="color:#E35332; font-weigth:bold;font-size:13px;font-family:'Lucida Console';">{$subtittle1}</b></td>
+		    <td align="left"><b class='form-label-style'>{$subtittle1}</b></td>
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
@@ -29,7 +29,7 @@
 	<td width="50%" valign='top'>
 	    <table>
 		<tr class="letra12">
-		    <td align="left"><b style ="color:#E35332; font-weigth:bold;font-size:13px;font-family:'Lucida Console';">{$subtittle2}</b></td>
+		    <td align="left"><b class='form-label-style'>{$subtittle2}</b></td>
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
@@ -45,4 +45,3 @@
 	</td>
     </tr>
 </table>
-                
