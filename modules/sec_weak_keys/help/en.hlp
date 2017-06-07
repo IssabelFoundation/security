@@ -5,7 +5,7 @@
     </header>
     <body>
         <h1>{$node_name}</h1>
-	<p>The module "Weak Keys" of the menu "Security" lets us identify the keys that are not enough strong for the extensions created in Elastix (SIP and IAX2). This module shows all the extensions but you can filter the results by entering a specific extension number or part of it.</p>
+	<p>The module "Weak Keys" of the menu "Security" lets us identify the keys that are not enough strong for the extensions created in Issabel (SIP and IAX2). This module shows all the extensions but you can filter the results by entering a specific extension number or part of it.</p>
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_weakkeys.png" border="0" />
         <p>Figure 1</p></div>
         <br />
