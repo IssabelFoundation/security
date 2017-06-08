@@ -18,10 +18,11 @@ Requires: issabel-system
 Requires: php-mcrypt
 Requires: issabel-portknock
 Requires: net-tools
+Requires: fail2ban-server
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
-Requires: issabel-pbx >= 2.4.0-9
+Requires: issabel-pbx >= 4.0.0-0
 
 # commands: cut
 Requires: coreutils

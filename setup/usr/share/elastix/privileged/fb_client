@@ -1,0 +1,121 @@
+#!/usr/bin/php
+<?php
+/*
+  vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 - Issabel Foundation                              |
+  +----------------------------------------------------------------------+
+  +----------------------------------------------------------------------+
+  | Autor: Nicolas Gudino  <asternic@gmail.com>                          |
+  +----------------------------------------------------------------------+
+*/
+
+if(!isset($argv[1]))
+    exit(1);
+
+switch($argv[1]){
+    case "status":
+	if(isset($argv[2])) {
+	    jailstatus($argv[2]);
+        } else {
+            exit(1);
+        }
+	break;
+    case "unban":
+	if(isset($argv[2]) && isset($argv[3])){
+	    unban($argv[2],$argv[3]);
+	}
+	else {
+	    exit(1);
+        }
+	break;
+    case "reload":
+        reload();
+        break;
+    case "isactive":
+        isactive();
+        break;
+    case "start":
+        start();
+        break;
+    case "stop":
+        stop();
+        break;
+    default:
+	exit(1);
+	break;
+}
+
+function jailstatus($jail) {
+
+    exec("/usr/bin/fail2ban-client status ".escapeshellarg($jail),$result,$status);
+    if($status == 0){
+	foreach($result as $value) {
+            if(preg_match("/Banned IP/",$value)) {
+                $partes = preg_split("/:/",$value);
+                $ips = trim($partes[1]);
+            } 
+        }
+	print($ips."\n");
+	exit(0);
+    }
+    else {
+	exit(1);
+    }
+}
+
+function unban($jail,$ip) {
+    exec("/usr/bin/fail2ban-client set ".escapeshellarg($jail)." unbanip ".escapeshellarg($ip),$result,$status);
+    if($status == 0){
+	exit(0);
+    }
+    else {
+	exit(1);
+    }
+}
+
+function reload() {
+    echo "doing reload\n";
+    exec("/usr/bin/systemctl reload fail2ban",$result,$status);
+    if($status == 0){
+        echo "ok\n";
+	exit(0);
+    }
+    else {
+        echo "error\n";
+	exit(1);
+    }
+}
+
+function isactive() {
+    exec("/usr/bin/systemctl status fail2ban",$result,$status);
+    if($status == 0){
+        echo "enabled\n";
+	exit(0);
+    }
+    else {
+        echo "disabled\n";
+	exit(1);
+    }
+}
+
+function start() {
+    exec("/usr/bin/systemctl start fail2ban",$result,$status);
+    if($status == 0){
+	exit(0);
+    }
+    else {
+	exit(1);
+    }
+}
+
+function stop() {
+    exec("/usr/bin/systemctl stop fail2ban",$result,$status);
+    if($status == 0){
+	exit(0);
+    }
+    else {
+	exit(1);
+    }
+}

@@ -1,0 +1,21 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>El módulo "Jaulas Fail2Ban" del menú "Seguridad" es Issabel le permite configurar preerencias de jaulas Fail2ban, como ser tiempo de bloqueo, lista blanca, etc.</p>
+	<h2>Ver Jaula</h2>
+	<p>To view an existing jail, click on the "View" link located in the row corresponding to the jail. Here you can see the information of the jail and edit it if needed. (Ver imagen 1)</p>        
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_definejails_view.png" border="0" />
+        <p>Imagen 1</p></div>
+        <br />
+	<h2>Modificar Jaula</h2>
+        <p>To edit a jail, click on the "View" link corresponding to the jail you want to modify and then click on "Edit" button. A form will appear with the parameters of the jail ready to be modified. (Ver imagen 2)</p>
+        <br />
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_definejail_edit.png" border="0" />
+        <p>Imagen 2</p></div>
+        <br />
+    </body>
+</html>

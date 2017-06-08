@@ -1,0 +1,14 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The module "Fail2Ban Banned IP" lets you see the current banned IP addresses and it will let you unban them if you wish</p>
+        <br />
+	<h2>Unban IP</h2>
+	<p>To unban IPs, just select them by clicking on each checkbox, and finally click the "Unban" button at the top.</p>
+        <br />
+    </body>
+</html>

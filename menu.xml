@@ -17,22 +17,37 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="sec_portknock_if" desc="Port Knocking Interfaces" parent="sec_firewall" module="yes" link="" order="13">
+    <menuitem menuid="fail2ban"         desc="Fail2Ban"         parent="security"             module="no"   link="" order="2">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="sec_portknock_users" desc="Port Knocking Users" parent="sec_firewall" module="yes" link="" order="14">
+    <menuitem menuid="sec_fb_admin"     desc="Admin"             parent="fail2ban"            module="yes"  link="" order="1">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="sec_accessaudit" desc="Audit"   parent="security"     module="yes" link="" order="2">
+    <menuitem menuid="sec_fb_banned"     desc="Banned IPs"       parent="fail2ban"            module="yes"  link="" order="2">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="sec_weak_keys"   desc="Weak Keys"      parent="security"     module="yes" link="" order="3">
+    <menuitem menuid="sec_portknock_if" desc="Port Knocking Interfaces" parent="sec_firewall" module="yes" link="" order="5">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_portknock_users" desc="Port Knocking Users" parent="sec_firewall" module="yes" link="" order="6">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_accessaudit" desc="Audit"   parent="security"     module="yes" link="" order="3">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="sec_weak_keys"   desc="Weak Keys"      parent="security"     module="yes" link="" order="4">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>

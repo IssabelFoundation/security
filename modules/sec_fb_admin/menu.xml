@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <menulist>
+    <menuitem menuid="fail2ban"               desc="Fail2Ban"          parent="security"            module="no"   link="" order=""></menuitem>
+    <menuitem menuid="sec_fb_admin"           desc="Admin"             parent="fail2ban"            module="yes"  link="" order="1"></menuitem>
+    <menuitem menuid="sec_fb_banned"          desc="Banned IPs"        parent="fail2ban"            module="yes"  link="" order="2"></menuitem>
+  </menulist>
+</module>
