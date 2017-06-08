@@ -19,6 +19,7 @@ Requires: php-mcrypt
 Requires: issabel-portknock
 Requires: net-tools
 Requires: fail2ban-server
+Requires: fail2ban-sendmail
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
@@ -114,6 +115,10 @@ rm -rf /tmp/new_module
 # Install elastix-portknock as a service
 chkconfig --add elastix-portknock
 chkconfig --level 2345 elastix-portknock on
+
+systemctl enable fail2ban
+
+chgrp asterisk /etc/fail2ban/jail.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
