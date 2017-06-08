@@ -3,15 +3,11 @@
 /*
   vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   +----------------------------------------------------------------------+
-  | Elastix version 2.0                                                  |
-  | http://www.elastix.com                                               |
+  | Issabel version 4.0.0                                                |
+  | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
-  +----------------------------------------------------------------------+
-  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
-  | Telfs. 2283-268, 2294-440, 2284-356                                  |
-  | Guayaquil - Ecuador                                                  |
-  | http://www.palosanto.com                                             |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -23,17 +19,18 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  | The Original Code is: Elastix Open Source.                           |
-  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  | Original Code developer is PaloSanto Solutions.                      |
   +----------------------------------------------------------------------+
-  $Id: fwconfig.php,v 1.1 2007/01/09 23:49:36 alex Exp $
 */
+
 require_once 'Console/Getopt.php';
 
 // Parse command-line options
 $opt = Console_Getopt::getopt($argv, '', array(
     'flush',  // Remove all firewall rules from iptables
     'load',   // Load all firewall rules from database
+    'geoip',
+    'isactive'
 ));
 if (PEAR::isError($opt)) error_exit($opt->getMessage()."\n");
 //validateOptions($opt);
@@ -42,8 +39,12 @@ case '--flush':
     exit(action_flushFirewall($opt) ? 0 : 1);
 case '--load':
     exit(action_loadFirewall($opt) ? 0 : 1);
+case '--geoip':
+    exit(action_loadGeoip($argv) ? 0 : 1);
+case '--isactive':
+    exit(action_isactive() ? 0 : 1);
 }
-error_exit("No action specified (--flush or --load)\n");
+error_exit("No action specified (--flush, --load, --geoid or --isactive)\n");
 
 function error_exit($sMsg, $errorcode = 1)
 {
@@ -55,7 +56,7 @@ function error_exit($sMsg, $errorcode = 1)
 function action_flushFirewall($opt)
 {
     file_put_contents("/etc/sysconfig/iptables",""); // Se blanque ese archivo para que no se vuelvan a cargar las reglas al reiniciar el servidor
-	$ret = NULL;
+    $ret = NULL;
     foreach (array(
         '/sbin/iptables -F',
         '/sbin/iptables -X',
@@ -65,6 +66,7 @@ function action_flushFirewall($opt)
         system($cmd, $ret);
         if ($ret) return FALSE;
     }
+    manageF2B('same');
     return TRUE;
 }
 
@@ -73,21 +75,21 @@ function action_loadFirewall($opt)
 {
     $bExito = TRUE;
     $bFirewallActivo = FALSE;
-    $elastixChains = array(
-        'INPUT'     =>  'ELASTIX_INPUT',
-        'OUTPUT'    =>  'ELASTIX_OUTPUT',
-        'FORWARD'   =>  'ELASTIX_FORWARD'
+    $issabelChains = array(
+        'INPUT'     =>  'ISSABEL_INPUT',
+        'OUTPUT'    =>  'ISSABEL_OUTPUT',
+        'FORWARD'   =>  'ISSABEL_FORWARD'
     );
     $rules = array();
 
     try {
         $conn = new PDO('sqlite:/var/www/db/iptables.db');
 
-        // Fix missing 'filter.state' field in some Elastix installations
+        // Fix missing 'filter.state' field in some Issabel installations
         $sth = $conn->query('SELECT * FROM filter LIMIT 1');
         $rules = $sth->fetchAll(PDO::FETCH_ASSOC);
         if (count($rules) > 0 && !array_key_exists('state', $rules[0])) {
-        	fputs(STDERR, "DEBUG: arreglando filter.state faltante...\n");
+            fputs(STDERR, "DEBUG: arreglando filter.state faltante...\n");
             $conn->query('ALTER TABLE filter ADD COLUMN state varchar(50)');
         }
 
@@ -175,22 +177,23 @@ PETICION_PK;
                 break;
             }
         }
+    manageF2B('same');
     }
 
-    // Add ELASTIX_XXX chains to iptables configuration if not already present
+    // Add ISSABEL_XXX chains to iptables configuration if not already present
     if ($bExito && $bFirewallActivo) {
-    	$output = $ret = NULL;
-    	exec('/sbin/iptables -L -n', $output, $ret);
+        $output = $ret = NULL;
+        exec('/sbin/iptables -L -n', $output, $ret);
         if ($ret) {
-            $bExito = FALSE;	
+            $bExito = FALSE;    
         } else {
             $currentChains = array();
             foreach ($output as $sLinea) {
-            	$regs = NULL;
+                $regs = NULL;
                 if (preg_match('/^Chain (\S+)/', $sLinea, $regs))
                     $currentChains[] = $regs[1];
             }
-            foreach (array_diff($elastixChains, $currentChains) as $key => $sChain) {
+            foreach (array_diff($issabelChains, $currentChains) as $key => $sChain) {
                 system("/sbin/iptables -N $sChain", $ret);
                 if ($ret) { $bExito = FALSE; break; }
                 system("/sbin/iptables -A $key -j $sChain", $ret);
@@ -199,11 +202,11 @@ PETICION_PK;
         }
     }
 
-    // Add rules to ELASTIX_XXX chains
+    // Add rules to ISSABEL_XXX chains
     if ($bExito && $bFirewallActivo) foreach ($rules as $rule) {
-    	$commandParams = array(
+        $commandParams = array(
             '/sbin/iptables',
-            '-A '.$elastixChains[$rule['traffic']],
+            '-A '.$issabelChains[$rule['traffic']],
         );
         if ($rule['ip_destiny'] != '0.0.0.0/0' && $rule['ip_destiny'] != '')
             $commandParams[] = "-d ".escapeshellarg($rule['ip_destiny']);
@@ -229,9 +232,9 @@ PETICION_PK;
                             $arrResult[] = (array)$row;
                         }
                     } else {
-                    	fputs(STDERR, "ERROR: failed to query firewall rules\n");
-                    	$bExito = false;
-                    	break 2;
+                        fputs(STDERR, "ERROR: failed to query firewall rules\n");
+                        $bExito = false;
+                        break 2;
                     }
                     if(isset($arrResult[0]["details"])) {
                         $port = $arrResult[0]["details"];
@@ -318,5 +321,88 @@ PETICION_PK;
     }
 
     return $bExito;
+}
+
+function manageF2B($opt)
+{
+    switch ($opt) {
+        case 'same':
+            exec("pgrep fail2ban", $output, $return);
+            if ($return == 0) {
+                echo "Ok, process is running, restarting\n";
+                //exec("systemctl restart fail2ban", $output, $return);
+                //uso service ya que systemctl no devuelve error en $return
+                exec("service fail2ban restart", $output, $ret);
+                if ($ret != 0) {
+                    echo "Fail2ban restart FAILED";
+                }
+            } else {
+                echo "Ok, process is not running, do nothing\n";
+            }
+            break;
+        case 'start':
+            exec("pgrep fail2ban", $output, $return);
+            if ($return == 0) {
+                echo "Process already running\n";
+            } else {
+                //exec("systemctl start fail2ban", $output, $return);
+                exec("service fail2ban start", $output, $ret);
+                if ($ret != 0) {
+                    echo "Fail2ban start FAILED";
+                }
+            }
+            break;
+        case 'restart':
+            //exec("systemctl restart fail2ban", $output, $return);
+            exec("service fail2ban restart", $output, $return);
+            if ($return != 0) {
+                echo "Fail2ban restart FAILED";
+            }
+            break;
+        case 'stop':
+            //exec("systemctl stop fail2ban", $output, $return);
+            exec("service fail2ban stop", $output, $return);
+            if ($return != 0) {
+                echo "Fail2ban stop FAILED";
+            }
+            break;
+    }
+}
+
+function action_loadGeoip($opt)
+{
+    exec("/usr/sbin/modprobe xt_geoip", $output, $return);
+    if ($return != 0) {
+        echo "xt_geoip module not installed";
+        return FALSE;
+    }
+    exec("/sbin/iptables -L INPUT 1", $output, $return);
+    if ($return != 0) {
+        echo "Iptables FAILED";
+        return FALSE;
+    } else {
+        if (preg_match("/geoip --source-country/", implode(' ', $output), $out)){
+            system('/sbin/iptables -D INPUT 1', $ret);
+        }
+        $cmd='/sbin/iptables -I INPUT 1 -m geoip --src-cc '.$opt[2].' -m state --state NEW -j DROP';
+        system($cmd, $ret);
+        if ($ret != 0) {
+            echo "FAIL";
+            return FALSE;
+        }
+    }
+}
+
+function action_isactive() {
+
+    exec("/sbin/iptables -nL ISSABEL_INPUT", $output, $return);
+    if ($return != 0) {
+        echo "ISSABEL FIREWALL disabled\n";
+        return FALSE;
+    } else {
+        echo "ISSABEL FIREWALL enabled\n";
+        return TRUE;
+    }
+ 
 }
 ?>
