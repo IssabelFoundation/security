@@ -121,6 +121,7 @@ chkconfig --add elastix-portknock
 chkconfig --level 2345 elastix-portknock on
 
 chgrp asterisk /etc/fail2ban/jail.d
+chmod g+w /etc/fail2ban/jail.d
 chown asterisk.asterisk /etc/fail2ban/jail.d/issabel.conf
 systemctl enable fail2ban
 
