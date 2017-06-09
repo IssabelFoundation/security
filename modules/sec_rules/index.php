@@ -75,9 +75,9 @@ function _moduleContent(&$smarty, $module_name)
         case "change":
             $content = change($pDB);
             break;
-	case "changeOtherPage":
-	    $content = changeOtherPage($pDB, $module_name);
-	    break;
+    case "changeOtherPage":
+        $content = changeOtherPage($pDB, $module_name);
+        break;
         case "exec":
             $content = execRules($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
@@ -589,18 +589,18 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
     $start  = getParameter("start");
     $accion = getParameter("nav");
     if($accion == "end"){
-	if(($total%$limit)==0)
-	  $start = $total - 2*$limit + 1;
-	else
-	  $start = $total - $total%$limit - $limit + 1;
+    if(($total%$limit)==0)
+      $start = $total - 2*$limit + 1;
+    else
+      $start = $total - $total%$limit - $limit + 1;
     }elseif($accion == "previous"){
-	$start = $start - 2*$limit;
+    $start = $start - 2*$limit;
     }
 
     if($first_time)
         $arrColumns = array("",_tr("Order"),_tr("Traffic"),_tr("Target"),_tr("Interface"),_tr("IP Source"),_tr("IP Destiny"),_tr("Protocol"),_tr("Details"));
     else{
-	$oGrid->deleteList("Are you sure you wish to delete the Rule?","delete",_tr("Delete"));
+    $oGrid->deleteList("Are you sure you wish to delete the Rule?","delete",_tr("Delete"));
         $arrColumns = array("",_tr("Order"),_tr("Traffic"),_tr("Target"),_tr("Interface"),_tr("IP Source"),_tr("IP Destiny"),_tr("Protocol"),_tr("Details"),"","");
     }
     $oGrid->setColumns($arrColumns);
@@ -610,11 +610,11 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
                 $arrTmp[0] = "<input type='checkbox' name='id_".$value['id']."' />";
             $arrTmp[1] = "<div id='div_$value[id]' style='width: 22px; font-size: 14pt;color:#E35332;float:left;text-align:right'>$value[rule_order] </div>";}
             if(!$first_time){
-				//if($offset!=0)
-					$arrTmp[1].="<a href='javascript:void(0);' class='up' id='rulerup_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/up.gif' border=0 title='"._tr('Up')."' /></a>"."<a href='javascript:void(0);' class='down' id='rulerdown_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/down.gif' border=0 title='"._tr('Down')."' /></a>";
-				/*else
-					$arrTmp[1].="<a href='?menu=$module_name&action=$changeOrder&id=$value[id]&order=$value[rule_order]&direction=up;' class='up' id='rulerup_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/up.gif' border=0 title='"._tr('Up')."' /></a>"."<a href='javascript:void(0);' class='down' id='rulerdown_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/down.gif' border=0 title='"._tr('Down')."' /></a>";*/
-			}
+                //if($offset!=0)
+                    $arrTmp[1].="<a href='javascript:void(0);' class='up' id='rulerup_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/up.gif' border=0 title='"._tr('Up')."' /></a>"."<a href='javascript:void(0);' class='down' id='rulerdown_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/down.gif' border=0 title='"._tr('Down')."' /></a>";
+                /*else
+                    $arrTmp[1].="<a href='?menu=$module_name&action=$changeOrder&id=$value[id]&order=$value[rule_order]&direction=up;' class='up' id='rulerup_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/up.gif' border=0 title='"._tr('Up')."' /></a>"."<a href='javascript:void(0);' class='down' id='rulerdown_$value[id]_$value[rule_order]'>"."<img src='modules/$module_name/images/down.gif' border=0 title='"._tr('Down')."' /></a>";*/
+            }
             if($value['traffic'] == "INPUT"){
                 $image = "modules/$module_name/images/fw_input.gif";
                 $title = _tr("INPUT");
@@ -628,10 +628,10 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
                 $title = _tr("FORWARD");
                 $arrTmp[4] = _tr("IN").":  $value[eth_in]<br />"._tr("OUT").": $value[eth_out]";
             }
-	    $arrTmp[2] = "<a><img src='$image' border=0 title='"._tr($title)."'</a>";
-	    if($value['target'] == "ACCEPT"){
-	    $image = "modules/$module_name/images/target_accept.gif";
-	    $title = _tr("ACCEPT");
+        $arrTmp[2] = "<a><img src='$image' border=0 title='"._tr($title)."'</a>";
+        if($value['target'] == "ACCEPT"){
+        $image = "modules/$module_name/images/target_accept.gif";
+        $title = _tr("ACCEPT");
             }elseif($value['target'] == "DROP"){
                 $image = "modules/$module_name/images/target_drop.gif";
                 $title = _tr("DROP");
@@ -644,30 +644,30 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
             $arrTmp[6] = $value['ip_destiny'];
             $arrTmp[7] = $value['protocol'];
             if($value['protocol'] == "ICMP"){
-		if($value["icmp_type"] != "" && $value["icmp_type"] != "ANY")
-		    $protocolName = $pRules->getProtocolName($value["icmp_type"]);
-		else
-		    $protocolName = $value["icmp_type"];
+        if($value["icmp_type"] != "" && $value["icmp_type"] != "ANY")
+            $protocolName = $pRules->getProtocolName($value["icmp_type"]);
+        else
+            $protocolName = $value["icmp_type"];
                 $arrTmp[8] = _tr("Type").": $protocolName";
-	    }
+        }
             else if($value['protocol'] == "IP"){
-		if($value["number_ip"] != "" && $value["number_ip"] != "ANY")
-		    $protocolName = $pRules->getProtocolName($value["number_ip"]);
-		else
-		    $protocolName = $value["number_ip"];
+        if($value["number_ip"] != "" && $value["number_ip"] != "ANY")
+            $protocolName = $pRules->getProtocolName($value["number_ip"]);
+        else
+            $protocolName = $value["number_ip"];
                 $arrTmp[8] = _tr("Number Protocol IP").": $protocolName";
-	    }
+        }
             else if($value['protocol'] == "TCP" || $value['protocol'] == "UDP"){
-		if($value["sport"] != "" && $value["sport"] != "ANY")
-		    $sportName = $pRules->getProtocolName($value["sport"]);
-		else
-		    $sportName = $value["sport"];
-		if($value["dport"] != "" && $value["dport"] != "ANY")
-		    $dportName = $pRules->getProtocolName($value["dport"]);
-		else
-		    $dportName = $value["dport"];
+        if($value["sport"] != "" && $value["sport"] != "ANY")
+            $sportName = $pRules->getProtocolName($value["sport"]);
+        else
+            $sportName = $value["sport"];
+        if($value["dport"] != "" && $value["dport"] != "ANY")
+            $dportName = $pRules->getProtocolName($value["dport"]);
+        else
+            $dportName = $value["dport"];
                 $arrTmp[8] = _tr("Source Port").": $sportName"."<br />"._tr("Destiny Port").": $dportName";
-	    }
+        }
             else if($value['protocol'] == "STATE")
                 $arrTmp[8] = $value['state'];
             else
@@ -682,10 +682,10 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
                     $activated = "Activate";
                 }
 
-				if($offset!=0)
-					$arrTmp[9] = "<a href='?menu=$module_name&action=".$activated."&id=".$value['id']."&nav=next&start=$start'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
-				else
-					$arrTmp[9] = "<a href='?menu=$module_name&action=".$activated."&id=".$value['id']."'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
+                if($offset!=0)
+                    $arrTmp[9] = "<a href='?menu=$module_name&action=".$activated."&id=".$value['id']."&nav=next&start=$start'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
+                else
+                    $arrTmp[9] = "<a href='?menu=$module_name&action=".$activated."&id=".$value['id']."'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
                 $arrTmp[10] = "<a href='?menu=$module_name&action=edit&id=".$value['id']."'>"."<img src='modules/$module_name/images/edit.gif' border=0 title='"._tr('Edit')."'</a>";
             }
             $arrData[] = $arrTmp;
@@ -727,9 +727,7 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
 
     $contenidoModulo = $oGrid->fetchGrid();
 
-	if($arrConf["mainTheme"]=="elastixneo"){
-		$contenidoModulo = "<div id='msg_status' class='mensajeStatus'></div>".$contenidoModulo;
-	}
+    $contenidoModulo = "<div id='msg_status' class='mensajeStatus'></div>".$contenidoModulo;
     if (strpos($contenidoModulo, '<form') === FALSE)
         $contenidoModulo = "<form  method='POST' style='margin-bottom:0;' action=$url>$contenidoModulo</form>";
     //end grid parameters
@@ -809,14 +807,14 @@ function change($pDB)
         $Exito1 = $pRules->updateOrder($actual_id,$neighbor_order);
         $Exito2 = $pRules->updateOrder($neighbor_id,$actual_order);
         if($pRules->isFirstTime()){
-			$mensaje = _tr("The firewall is totally desactivated. It is recommended to activate the firewall rules");
+            $mensaje = _tr("The firewall is totally desactivated. It is recommended to activate the firewall rules");
             $smarty->assign("mb_message", "<b>"._tr("The firewall is totally desactivated. It is recommended to activate the firewall rules")."</b>");
             $smarty->assign("mb_title",_tr("WARNING"));
-			$mensaje2 = _tr("Activate FireWall");
+            $mensaje2 = _tr("Activate FireWall");
             $oGrid->customAction("exec",$mensaje2);
         }
         else{
-			$mensaje2 = _tr("Save Changes");
+            $mensaje2 = _tr("Save Changes");
             $mensaje = _tr("You have made changes to the definition of firewall rules, for this to take effect in the system press the next button");
         }
         if($Exito1 && $Exito2)
@@ -839,88 +837,88 @@ function changeOtherPage($pDB, $module_name)
     $actual_order = $tmp[2];
     $correct = false;
     if($direction == "up"){
-		if($actual_order != 1){
-			$correct = true;
-			$rule = $pRules->getPreviousRule($actual_order);
-		}
+        if($actual_order != 1){
+            $correct = true;
+            $rule = $pRules->getPreviousRule($actual_order);
+        }
     }else{
-		$rule = $pRules->getNextRule($actual_order);
-		if(count($rule)!=0)
-			$correct = true;
+        $rule = $pRules->getNextRule($actual_order);
+        if(count($rule)!=0)
+            $correct = true;
     }
     if($correct){
-	if(is_array($rule)){
-	    $Exito1 = $pRules->updateOrder($actual_id,$rule["rule_order"]);
-	    $Exito2 = $pRules->updateOrder($rule["id"],$actual_order);
-	    $mensaje = _tr("You have made changes to the definition of firewall rules, for this to take effect in the system press the next button");
+    if(is_array($rule)){
+        $Exito1 = $pRules->updateOrder($actual_id,$rule["rule_order"]);
+        $Exito2 = $pRules->updateOrder($rule["id"],$actual_order);
+        $mensaje = _tr("You have made changes to the definition of firewall rules, for this to take effect in the system press the next button");
             $mensaje2 = _tr("Save Changes");
-	    if($Exito1 && $Exito2){
-		$jsonObject->set_status(_tr("Successful Change").":$mensaje:$mensaje2:"._tr("Dismiss").":"._tr("MESSAGE"));
-		$arrayResult["id"] = $rule["id"];
-		if($rule['traffic'] == "INPUT"){
-		    $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_input.gif";
-		    $arrayResult["traffic"]["title"] = _tr("INPUT");
-		    $arrayResult["interface"] = _tr("IN").": $rule[eth_in]";
-		}elseif($rule['traffic'] == "OUTPUT"){
-		    $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_output.gif";
-		    $arrayResult["traffic"]["title"] = _tr("OUTPUT");
-		    $arrayResult["interface"] = _tr("OUT").": $rule[eth_out]";
-		}else{
-		    $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_forward.gif";
-		    $arrayResult["traffic"]["title"] = _tr("FORWARD");
-		    $arrayResult["interface"] = _tr("IN").":  $rule[eth_in]<br />"._tr("OUT").": $rule[eth_out]";
-		}
-		if($rule['target'] == "ACCEPT"){
-		    $arrayResult["target"]["image"] = "modules/$module_name/images/target_accept.gif";
-		    $arrayResult["target"]["title"] = _tr("ACCEPT");
-		}elseif($rule['target'] == "DROP"){
-		    $arrayResult["target"]["image"] = "modules/$module_name/images/target_drop.gif";
-		    $arrayResult["target"]["title"] = _tr("DROP");
-		}else{
-		    $arrayResult["target"]["image"] = "modules/$module_name/images/target_drop.gif";
-		    $arrayResult["target"]["title"] = _tr("REJECT");
-		}
-		$arrayResult["ipSource"]  = $rule["ip_source"];
-		$arrayResult["ipDestiny"] = $rule["ip_destiny"];
-		$arrayResult["protocol"]  = $rule["protocol"];
-		if($rule['protocol'] == "ICMP")
-		    $arrayResult["details"] = _tr("Type").": $rule[icmp_type]";
-		else if($rule['protocol'] == "IP")
-		    $arrayResult["details"] = _tr("Number Protocol IP").": $rule[number_ip]";
-		else if($rule['protocol'] == "TCP" || $rule['protocol'] == "UDP"){
-			if($rule['sport'] != "" && $rule["sport"] != "ANY")
-				$sportName = $pRules->getProtocolName($rule["sport"]);
-			else
-				$sportName = $rule["sport"];
-			if($rule["dport"] != "" && $rule["dport"] != "ANY")
-				$dportName = $pRules->getProtocolName($rule["dport"]);
-			else
-				$dportName = $rule["dport"];
-		    $arrayResult["details"] = _tr("Source Port").": $sportName"."<br />"._tr("Destiny Port").": $dportName";
-		}else if($rule['protocol'] == "STATE")
-		    $arrayResult["details"] = $rule['state'];
-		else
-		    $arrayResult["details"] = "";
-		if($rule['activated'] == 1){
-			$image = "modules/$module_name/images/foco_on.gif";
-			$activated = "Desactivate";
-		}
-		else{
-			$image = "modules/$module_name/images/foco_off.gif";
-			$activated = "Activate";
-		}
-		$arrayResult["activate"] =  "<a href='?menu=$module_name&action=".$activated."&id=".$rule['id']."'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
-		$arrayResult["edit"] = "<a href='?menu=$module_name&action=edit&id=".$rule['id']."'>"."<img src='modules/$module_name/images/edit.gif' border=0 title='"._tr('Edit')."'</a>";
-		$jsonObject->set_message($arrayResult);
-	    }
-	    else
-		$jsonObject->set_error($pRules->errMsg);
-	}
-	else
-	    $jsonObject->set_error($pRules->errMsg);
+        if($Exito1 && $Exito2){
+        $jsonObject->set_status(_tr("Successful Change").":$mensaje:$mensaje2:"._tr("Dismiss").":"._tr("MESSAGE"));
+        $arrayResult["id"] = $rule["id"];
+        if($rule['traffic'] == "INPUT"){
+            $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_input.gif";
+            $arrayResult["traffic"]["title"] = _tr("INPUT");
+            $arrayResult["interface"] = _tr("IN").": $rule[eth_in]";
+        }elseif($rule['traffic'] == "OUTPUT"){
+            $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_output.gif";
+            $arrayResult["traffic"]["title"] = _tr("OUTPUT");
+            $arrayResult["interface"] = _tr("OUT").": $rule[eth_out]";
+        }else{
+            $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_forward.gif";
+            $arrayResult["traffic"]["title"] = _tr("FORWARD");
+            $arrayResult["interface"] = _tr("IN").":  $rule[eth_in]<br />"._tr("OUT").": $rule[eth_out]";
+        }
+        if($rule['target'] == "ACCEPT"){
+            $arrayResult["target"]["image"] = "modules/$module_name/images/target_accept.gif";
+            $arrayResult["target"]["title"] = _tr("ACCEPT");
+        }elseif($rule['target'] == "DROP"){
+            $arrayResult["target"]["image"] = "modules/$module_name/images/target_drop.gif";
+            $arrayResult["target"]["title"] = _tr("DROP");
+        }else{
+            $arrayResult["target"]["image"] = "modules/$module_name/images/target_drop.gif";
+            $arrayResult["target"]["title"] = _tr("REJECT");
+        }
+        $arrayResult["ipSource"]  = $rule["ip_source"];
+        $arrayResult["ipDestiny"] = $rule["ip_destiny"];
+        $arrayResult["protocol"]  = $rule["protocol"];
+        if($rule['protocol'] == "ICMP")
+            $arrayResult["details"] = _tr("Type").": $rule[icmp_type]";
+        else if($rule['protocol'] == "IP")
+            $arrayResult["details"] = _tr("Number Protocol IP").": $rule[number_ip]";
+        else if($rule['protocol'] == "TCP" || $rule['protocol'] == "UDP"){
+            if($rule['sport'] != "" && $rule["sport"] != "ANY")
+                $sportName = $pRules->getProtocolName($rule["sport"]);
+            else
+                $sportName = $rule["sport"];
+            if($rule["dport"] != "" && $rule["dport"] != "ANY")
+                $dportName = $pRules->getProtocolName($rule["dport"]);
+            else
+                $dportName = $rule["dport"];
+            $arrayResult["details"] = _tr("Source Port").": $sportName"."<br />"._tr("Destiny Port").": $dportName";
+        }else if($rule['protocol'] == "STATE")
+            $arrayResult["details"] = $rule['state'];
+        else
+            $arrayResult["details"] = "";
+        if($rule['activated'] == 1){
+            $image = "modules/$module_name/images/foco_on.gif";
+            $activated = "Desactivate";
+        }
+        else{
+            $image = "modules/$module_name/images/foco_off.gif";
+            $activated = "Activate";
+        }
+        $arrayResult["activate"] =  "<a href='?menu=$module_name&action=".$activated."&id=".$rule['id']."'>"."<img src='$image' border=0 title='"._tr($activated)."'</a>";
+        $arrayResult["edit"] = "<a href='?menu=$module_name&action=edit&id=".$rule['id']."'>"."<img src='modules/$module_name/images/edit.gif' border=0 title='"._tr('Edit')."'</a>";
+        $jsonObject->set_message($arrayResult);
+        }
+        else
+        $jsonObject->set_error($pRules->errMsg);
     }
     else
-		$jsonObject->set_status(_tr("Invalid Action"));
+        $jsonObject->set_error($pRules->errMsg);
+    }
+    else
+        $jsonObject->set_status(_tr("Invalid Action"));
     return $jsonObject->createJSON();
 }
 
