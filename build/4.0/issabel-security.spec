@@ -56,6 +56,10 @@ mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
 cp setup/etc/cron.d/elastix-portknock.cron $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
 chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/elastix-portknock.cron
 
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/
+cp setup/etc/fail2ban/jail.d/issabel.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d
+chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/issabel.conf
+
 # Startup service for portknock
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
 cp setup/etc/rc.d/init.d/elastix-portknock $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
@@ -116,9 +120,10 @@ rm -rf /tmp/new_module
 chkconfig --add elastix-portknock
 chkconfig --level 2345 elastix-portknock on
 
+chgrp asterisk /etc/fail2ban/jail.d
+chown asterisk.asterisk /etc/fail2ban/jail.d/issabel.conf
 systemctl enable fail2ban
 
-chgrp asterisk /etc/fail2ban/jail.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -143,6 +148,7 @@ fi
 %defattr(0755, root, root)
 %{_datadir}/elastix/privileged/*
 %{_sysconfdir}/rc.d/init.d/elastix-portknock
+%{_sysconfdir}/fail2ban/jail.d/issabel.conf
 %{_bindir}/elastix-portknock-cleanup
 %{_bindir}/elastix-portknock-validate
 
