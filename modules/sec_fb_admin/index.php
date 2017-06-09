@@ -64,7 +64,7 @@ function _moduleContent(&$smarty, $module_name)
             break;
         case 'stop':
             exec('/usr/bin/elastix-helper fb_client stop', $respuesta, $retorno);
-            $smarty->assign("mb_title", "ERROR");
+            $smarty->assign("mb_title", "MESSAGE");
             $smarty->assign("mb_message", _tr("Fail2ban has been deactivated"));
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
