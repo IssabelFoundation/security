@@ -154,9 +154,11 @@ fi
 %defattr(0755, root, root)
 %{_datadir}/elastix/privileged/*
 %{_sysconfdir}/rc.d/init.d/elastix-portknock
-%{_sysconfdir}/fail2ban/jail.d/issabel.conf
 %{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 %{_bindir}/elastix-portknock-cleanup
 %{_bindir}/elastix-portknock-validate
+
+%config
+%{_sysconfdir}/fail2ban/jail.d/issabel.conf
 
 %changelog
