@@ -382,6 +382,12 @@ function F2BUpdateJails(&$pDB) {
             foreach($dojails as $individualjail) {
                 $finaldatos[$individualjail]=$conf;
             }
+        } else if($jail=='asterisk') {
+            $dojails = array('asterisk','asterisk-ami');
+            foreach($dojails as $individualjail) {
+                $finaldatos[$individualjail]=$conf;
+            }
+ 
         } else {
             $finaldatos[$jail]=$conf;
         }
