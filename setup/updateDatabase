@@ -116,7 +116,7 @@ function esmayor($versionRelease,$version)
     return $result;
     preg_match("/^(\d*)([alfa|beta|rc]*)$/",$versionRelease[1],$matchVersionRelease);
     preg_match("/^(\d*)([alfa|beta|rc]*)$/",$version[1],$matchVersion);
-    if(isset($matchVersionRelease[2])){ // Formato tipico para elastix
+    if(isset($matchVersionRelease[2])){ // Formato tipico para issabel
     if(intval($matchVersionRelease[1]) > intval($matchVersion[1]))
         return true;
     if(intval($matchVersionRelease[1]) < intval($matchVersion[1]))

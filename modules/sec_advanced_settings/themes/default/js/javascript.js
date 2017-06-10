@@ -45,7 +45,7 @@ function prepararBoton(s)
 						var message = "<div id='message_error' class='ui-state-highlight ui-corner-all'>" +
 							      "<p>" +
 								  "<span style='float: left; margin-right: 0.3em;' class='ui-icon ui-icon-info'></span>" +
-								  "<span id='elastix-callcenter-info-message-text'>"+ arrData['message_title'] + arrData['message'] +"</span>" +
+								  "<span id='issabel-callcenter-info-message-text'>"+ arrData['message_title'] + arrData['message'] +"</span>" +
 							      "</p>" +
 							  "</div>";
 					    $("#elx-blackmin-content").prepend(message);

@@ -95,7 +95,7 @@ class paloSantoPortKnockInterfaces
         
         // Reiniciar servicio de portknock para actualizar escuchas
         $output = $retval = NULL;
-        exec('sudo /sbin/service generic-cloexec elastix-portknock restart', $output, $retval);
+        exec('sudo /sbin/service generic-cloexec issabel-portknock restart', $output, $retval);
         if ($retval != 0) {
             $this->errMsg = _tr('Failed to restart portknock service');
         	return FALSE;
@@ -134,7 +134,7 @@ class paloSantoPortKnockInterfaces
     	
         // Reiniciar servicio de portknock para actualizar escuchas
         $output = $retval = NULL;
-        exec('sudo /sbin/service generic-cloexec elastix-portknock restart', $output, $retval);
+        exec('sudo /sbin/service generic-cloexec issabel-portknock restart', $output, $retval);
         if ($retval != 0) {
             $this->errMsg = _tr('Failed to restart portknock service');
             return FALSE;

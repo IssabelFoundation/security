@@ -219,7 +219,7 @@ function listPortKnockCurrentAuths(&$smarty, $module_name, $local_templates_dir,
 
     include_once "libs/paloSantoACL.class.php";
 
-    $pACL = new paloACL($arrConf['elastix_dsn']['acl']);
+    $pACL = new paloACL($arrConf['issabel_dsn']['acl']);
     $pk = new paloSantoPortKnockInterfaces($pDB);
     
     $oGrid  = new paloSantoGrid($smarty);

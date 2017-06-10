@@ -28,7 +28,7 @@
   $Id: index.php,v 1.1 2010-12-18 05:12:06 Bruno Macias bmacias@palosanto.com Exp $ */
 function _moduleContent(&$smarty, $module_name)
 {
-    //include elastix framework
+    //include issabel framework
     include_once "libs/paloSantoGrid.class.php";
     include_once "libs/paloSantoForm.class.php";
 

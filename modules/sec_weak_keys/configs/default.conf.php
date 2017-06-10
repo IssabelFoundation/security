@@ -31,7 +31,7 @@
 
     $arrConfModule['module_name']       = 'sec_weak_keys';
     $arrConfModule['templates_dir']     = 'themes';
-    //ex1: $arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[elastix_dbdir]/base_name.db";
+    //ex1: $arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[issabel_dbdir]/base_name.db";
     //$arrConfModule['dsn_conn_database'] = "mysql://root:palosanto@localhost/asterisk";
     $arrConfModule['dsn_conn_database'] = '';
     $arrConfModule['AMI_HOST'] = "127.0.0.1";

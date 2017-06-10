@@ -28,7 +28,7 @@ Requires: issabel-pbx >= 4.0.0-0
 # commands: cut
 Requires: coreutils
 
-# /usr/share/elastix/privileged/anonymoussip recarga asterisk
+# /usr/share/issabel/privileged/anonymoussip recarga asterisk
 Requires: asterisk
 
 Obsoletes: elastix-security
@@ -42,19 +42,19 @@ Issabel Security
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# Files provided by all Elastix modules
+# Files provided by all Issabel modules
 mkdir -p    $RPM_BUILD_ROOT%{_localstatedir}/www/html/
-mkdir -p    $RPM_BUILD_ROOT%{_datadir}/elastix/privileged
+mkdir -p    $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
 mv modules/ $RPM_BUILD_ROOT%{_localstatedir}/www/html/
-mv setup/usr/share/elastix/privileged/*  $RPM_BUILD_ROOT%{_datadir}/elastix/privileged
-rmdir setup/usr/share/elastix/privileged
+mv setup/usr/share/issabel/privileged/*  $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
+rmdir setup/usr/share/issabel/privileged
 
 chmod +x setup/updateDatabase
 
 # Crontab for portknock authorization cleanup
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
-cp setup/etc/cron.d/elastix-portknock.cron $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
-chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/elastix-portknock.cron
+cp setup/etc/cron.d/issabel-portknock.cron $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
+chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/issabel-portknock.cron
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/
 cp setup/etc/fail2ban/jail.d/issabel.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d
@@ -67,35 +67,35 @@ chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 
 # Startup service for portknock
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
-cp setup/etc/rc.d/init.d/elastix-portknock $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
-chmod 755 $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/elastix-portknock
+cp setup/etc/rc.d/init.d/issabel-portknock $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
+chmod 755 $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/issabel-portknock
 
 # Portknock-related utilities
 mkdir -p $RPM_BUILD_ROOT%{_bindir}/
-mv setup/usr/bin/elastix-portknock* $RPM_BUILD_ROOT%{_bindir}/
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/elastix-portknock*
+mv setup/usr/bin/issabel-portknock* $RPM_BUILD_ROOT%{_bindir}/
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/issabel-portknock*
 rmdir setup/usr/bin
 
-rmdir setup/usr/share/elastix setup/usr/share setup/usr
+rmdir setup/usr/share/issabel setup/usr/share setup/usr
 
 # The following folder should contain all the data that is required by the installer,
 # that cannot be handled by RPM.
-mkdir -p    $RPM_BUILD_ROOT%{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/
-mv setup/   $RPM_BUILD_ROOT%{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/
-mv menu.xml $RPM_BUILD_ROOT%{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/
+mkdir -p    $RPM_BUILD_ROOT%{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/
+mv setup/   $RPM_BUILD_ROOT%{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/
+mv menu.xml $RPM_BUILD_ROOT%{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/
 
 %pre
-mkdir -p %{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/
-touch %{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+mkdir -p %{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/
+touch %{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 if [ $1 -eq 2 ]; then
-    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > %{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > %{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 fi
 
 %post
-pathModule="%{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="%{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}"
 
-# Run installer script to fix up ACLs and add module to Elastix menus.
-elastix-menumerge $pathModule/menu.xml
+# Run installer script to fix up ACLs and add module to Issabel menus.
+issabel-menumerge $pathModule/menu.xml
 pathSQLiteDB="%{_localstatedir}/www/db"
 mkdir -p $pathSQLiteDB
 preversion=`cat $pathModule/preversion_%{modname}.info`
@@ -103,11 +103,11 @@ rm $pathModule/preversion_%{modname}.info
 
 if [ $1 -eq 1 ]; then #install
   # The installer database
-    elastix-dbprocess "install" "$pathModule/setup/db"
+    issabel-dbprocess "install" "$pathModule/setup/db"
 elif [ $1 -eq 2 ]; then #update
    # The update database
       $pathModule/setup/checkFields "$preversion" "$pathModule"
-      elastix-dbprocess "update"  "$pathModule/setup/db" "$preversion"
+      issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
       $pathModule/setup/updateDatabase "$preversion"
 fi
 
@@ -119,11 +119,11 @@ chown -R asterisk.asterisk /tmp/new_module/%{modname}
 php /tmp/new_module/%{modname}/setup/installer.php
 rm -rf /tmp/new_module
 
-%{_datadir}/elastix/privileged/anonymoussip --conddisable
+%{_datadir}/issabel/privileged/anonymoussip --conddisable
 
-# Install elastix-portknock as a service
-chkconfig --add elastix-portknock
-chkconfig --level 2345 elastix-portknock on
+# Install issabel-portknock as a service
+chkconfig --add issabel-portknock
+chkconfig --level 2345 issabel-portknock on
 
 chgrp asterisk /etc/fail2ban/jail.d
 chmod g+w /etc/fail2ban/jail.d
@@ -135,28 +135,28 @@ systemctl enable fail2ban
 rm -rf $RPM_BUILD_ROOT
 
 %preun
-pathModule="%{_datadir}/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="%{_datadir}/issabel/module_installer/%{name}-%{version}-%{release}"
 
 if [ $1 -eq 0 ] ; then # Validation for desinstall this rpm
   echo "Delete Security menus"
-  elastix-menuremove "%{modname}"
+  issabel-menuremove "%{modname}"
 
   echo "Dump and delete %{name} databases"
-  elastix-dbprocess "delete" "$pathModule/setup/db"
+  issabel-dbprocess "delete" "$pathModule/setup/db"
 fi
 
 %files
 %defattr(-, root, root)
 %{_localstatedir}/www/html/*
-%{_datadir}/elastix/module_installer/*
+%{_datadir}/issabel/module_installer/*
 %defattr(644, root, root)
-%{_sysconfdir}/cron.d/elastix-portknock.cron
+%{_sysconfdir}/cron.d/issabel-portknock.cron
 %defattr(0755, root, root)
-%{_datadir}/elastix/privileged/*
-%{_sysconfdir}/rc.d/init.d/elastix-portknock
+%{_datadir}/issabel/privileged/*
+%{_sysconfdir}/rc.d/init.d/issabel-portknock
 %{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
-%{_bindir}/elastix-portknock-cleanup
-%{_bindir}/elastix-portknock-validate
+%{_bindir}/issabel-portknock-cleanup
+%{_bindir}/issabel-portknock-validate
 
 %config
 %{_sysconfdir}/fail2ban/jail.d/issabel.conf

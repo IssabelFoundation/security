@@ -107,7 +107,7 @@ class paloSantoAdvancedSecuritySettings{
     
    private function updateConfFiles($fpbx_password,$arrConf){
         $output = $retval = NULL;
-        exec('/usr/bin/elastix-helper setadminpwd '.escapeshellarg($fpbx_password).' 2>&1', 
+        exec('/usr/bin/issabel-helper setadminpwd '.escapeshellarg($fpbx_password).' 2>&1', 
             $output, $retval);
         $arrResult = array(
             'result'            => ($retval == 0),
@@ -124,13 +124,13 @@ class paloSantoAdvancedSecuritySettings{
    function updateStatusIssabelPBXFrontend($status_fpbx_frontend)
    {
       //Actualizar la clave ActivatedIssabelPBX.
-      $pDBSettings = new paloDB($this->arrConf['elastix_dsn']["settings"]);
+      $pDBSettings = new paloDB($this->arrConf['issabel_dsn']["settings"]);
       return (set_key_settings($pDBSettings,"activatedIssabelPBX",$status_fpbx_frontend));
    }
 
    function isActivatedIssabelPBXFrontend()
    {
-      $pDBSettings = new paloDB($this->arrConf['elastix_dsn']["settings"]);
+      $pDBSettings = new paloDB($this->arrConf['issabel_dsn']["settings"]);
       return (get_key_settings($pDBSettings,"activatedIssabelPBX"));
    }
 
@@ -149,7 +149,7 @@ class paloSantoAdvancedSecuritySettings{
     function updateStatusAnonymousSIP($bNuevoEstado)
     {
     	$output = $retval = NULL;
-        exec('/usr/bin/elastix-helper anonymoussip '.($bNuevoEstado ? '--enable' : '--disable'),
+        exec('/usr/bin/issabel-helper anonymoussip '.($bNuevoEstado ? '--enable' : '--disable'),
             $output, $retval);
         return ($retval == 0);
     }

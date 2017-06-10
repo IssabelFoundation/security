@@ -48,7 +48,7 @@ try {
     if ($sth->rowCount() > 0) {
     	// Al menos una regla fue eliminada
         $retval = NULL;
-        system('/usr/share/elastix/privileged/fwconfig --load', $retval);
+        system('/usr/share/issabel/privileged/fwconfig --load', $retval);
         if ($retval) {
             fputs(STDERR, "FATAL: fwconfig --load failed! (retval=$retval)\n");
         }

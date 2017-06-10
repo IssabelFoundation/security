@@ -60,13 +60,13 @@ function fail2ban_rejected()
 {
 
     $respuesta = array();
-    exec('/usr/bin/elastix-helper fb_client status sshd', $respuesta, $retorno);
+    exec('/usr/bin/issabel-helper fb_client status sshd', $respuesta, $retorno);
     $output = implode(" ",$respuesta);
     $sshban      = trim($output);
     //  $sshban = "192.168.1.3 192.168.1.178 192.168.6.28 192.168.216.223 192.168.6.162 192.168.23.41 192.168.9.2";
 
     $respuesta = array();
-    exec('/usr/bin/elastix-helper fb_client status asterisk', $respuesta, $retorno);
+    exec('/usr/bin/issabel-helper fb_client status asterisk', $respuesta, $retorno);
     $output = implode(" ",$respuesta);
     $asteriskban = trim($output);
     //  $asteriskban = "192.168.1.3 192.168.1.178 192.168.6.28 192.168.216.223 192.168.6.162 192.168.23.41 192.168.9.2";
@@ -156,7 +156,7 @@ function deleteBloqueados($smarty, $module_name, $local_templates_dir, &$pDB, $a
             $jail = strtolower($rejected[$key]["jail"]);
             $ip   = $rejected[$key]["ip"];    
 
-            exec("/usr/bin/elastix-helper fb_client unban ".escapeshellarg($jail)." ".escapeshellarg($ip), $respuesta, $retorno);
+            exec("/usr/bin/issabel-helper fb_client unban ".escapeshellarg($jail)." ".escapeshellarg($ip), $respuesta, $retorno);
             if($retorno==1) { $error=1; }
         }
     }

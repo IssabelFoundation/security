@@ -165,7 +165,7 @@ class IssabelF2BService {
     }
 
     function isActive() {
-        exec('/usr/bin/elastix-helper fb_client reload', $output, $returncode);
+        exec('/usr/bin/issabel-helper fb_client reload', $output, $returncode);
         return $returncode;
     }
 

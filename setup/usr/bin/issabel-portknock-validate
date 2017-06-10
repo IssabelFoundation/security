@@ -182,7 +182,7 @@ SQL_PUERTOS;
 
         // Mandar a actualizar las reglas de firewall. Se asume usuario root
         $retval = NULL;
-        system('/usr/share/elastix/privileged/fwconfig --load', $retval);
+        system('/usr/share/issabel/privileged/fwconfig --load', $retval);
         if ($retval) {
             fputs(STDERR, "FATAL: fwconfig --load failed! (retval=$retval)\n");
         }

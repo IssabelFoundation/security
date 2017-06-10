@@ -62,7 +62,7 @@ function _moduleContent(&$smarty, $module_name)
 
 function listPortKnockUsers(&$smarty, $module_name, $local_templates_dir, &$pDB, $arrConf)
 {
-    $pACL = new paloACL($arrConf['elastix_dsn']['acl']);
+    $pACL = new paloACL($arrConf['issabel_dsn']['acl']);
     $pk = new paloSantoPortKnockUsers($pDB);
 
     // Manejar la operación de borrar todas las autorizaciones de un usuario
@@ -120,7 +120,7 @@ function listPortKnockUsers(&$smarty, $module_name, $local_templates_dir, &$pDB,
 function addRemovePortsUser($smarty, $module_name, $local_templates_dir, $pDB, $arrConf)
 {
     // Listar los usuarios y preparar el combo de usuarios disponibles
-    $pACL = new paloACL($arrConf['elastix_dsn']['acl']);
+    $pACL = new paloACL($arrConf['issabel_dsn']['acl']);
     $id_user = getParameter('id_user');
     $userlist = $pACL->getUsers();
     $cbo_users = array();

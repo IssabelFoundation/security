@@ -23,5 +23,5 @@
 
     $arrConfModule['module_name']       = 'fb_blocked';
     $arrConfModule['templates_dir']     = 'themes';
-    $arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[elastix_dbdir]/iptables.db";
+    $arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[issabel_dbdir]/iptables.db";
 ?>

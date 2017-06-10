@@ -224,7 +224,7 @@ function createMsg(tittle,message_data,button_tittle,aviso){
 			var message = "<div class='ui-state-highlight ui-corner-all' id='message_error'>" +
 						"<p>" +
 						"<span style='float: left; margin-right: 0.3em;' class='ui-icon ui-icon-info'></span>" +
-						"<span id='elastix-callcenter-info-message-text'>"+ tittle + ": " + message_data +"</span>" +
+						"<span id='issabel-callcenter-info-message-text'>"+ tittle + ": " + message_data +"</span>" +
 						"</p>" +
 					"</div>";
 			$("#elx-blackmin-content").prepend(message);

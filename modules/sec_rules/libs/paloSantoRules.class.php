@@ -414,7 +414,7 @@ class paloSantoRules {
     function flushRules()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper fwconfig --flush 2>&1';
+        $sComando = '/usr/bin/issabel-helper fwconfig --flush 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {
@@ -432,7 +432,7 @@ class paloSantoRules {
     function activateRules()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper fwconfig --load 2>&1';
+        $sComando = '/usr/bin/issabel-helper fwconfig --load 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {

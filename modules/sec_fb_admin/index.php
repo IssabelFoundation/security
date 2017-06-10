@@ -57,13 +57,13 @@ function _moduleContent(&$smarty, $module_name)
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
         case 'start':
-            exec('/usr/bin/elastix-helper fb_client start', $respuesta, $retorno);
+            exec('/usr/bin/issabel-helper fb_client start', $respuesta, $retorno);
             $smarty->assign("mb_title", "MESSAGE");
             $smarty->assign("mb_message", _tr("Fail2ban has been activated"));
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
         case 'stop':
-            exec('/usr/bin/elastix-helper fb_client stop', $respuesta, $retorno);
+            exec('/usr/bin/issabel-helper fb_client stop', $respuesta, $retorno);
             $smarty->assign("mb_title", "MESSAGE");
             $smarty->assign("mb_message", _tr("Fail2ban has been deactivated"));
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
@@ -403,7 +403,7 @@ function F2BUpdateJails(&$pDB) {
 
     write_php_ini($finalini,$ini_file);
 
-    exec('/usr/bin/elastix-helper fb_client reload', $respuesta, $retorno);
+    exec('/usr/bin/issabel-helper fb_client reload', $respuesta, $retorno);
 
 }
 
