@@ -17,7 +17,6 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  | The Original Code is: Elastix Open Source.                           |
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
   $Id: paloSantoPuertos.class.php,v 1.1 2010-12-13 03:09:33 Alberto Santos asantos@palosanto.com Exp $ */
