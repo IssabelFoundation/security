@@ -44,7 +44,7 @@ case '--geoip':
 case '--isactive':
     exit(action_isactive() ? 0 : 1);
 }
-error_exit("No action specified (--flush, --load, --geoid or --isactive)\n");
+error_exit("No action specified (--flush, --load, --geoip or --isactive)\n");
 
 function error_exit($sMsg, $errorcode = 1)
 {
