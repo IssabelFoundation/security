@@ -209,7 +209,7 @@ class paloSantoRules {
 
         $query = "INSERT INTO filter(traffic, eth_in, eth_out, ip_source, ip_destiny, protocol, ".
                                     "sport, dport, icmp_type, number_ip, target, rule_order, activated, state, countries, continents) ".
-                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)";
+                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,1,?,?,?)";
         $arrParam = array($traffic,$eth_in,$eth_out,$source,$destino,$protocol,$port_in,$port_out,$type_icmp,$id_ip,$target,$order,$state,$geoipcountries,$geoipcontinents);
         $result = $this->_DB->genQuery($query,$arrParam);
 
