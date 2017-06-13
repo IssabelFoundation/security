@@ -434,6 +434,24 @@ class paloSantoRules {
     }
 */
 
+   /**
+    * Function to check if firewall rules are set
+    *
+    * @return bool     false if no firewall chains are loaded
+    */
+    function isActive()
+    {
+        $this->errMsg = '';
+        $sComando = '/usr/bin/issabel-helper fwconfig --isactive 2>&1';
+        $output = $ret = NULL;
+        exec($sComando, $output, $ret);
+        if ($ret != 0) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
     /**
      * Function that sets a new order for an especific rule 
      *
@@ -545,6 +563,16 @@ class paloSantoRules {
         return true;
     }
 
+    function hasGeoip() {
+        $sComando = '/usr/bin/issabel-helper fwconfig --isactivegeoip 2>&1';
+        $output = $ret = NULL;
+        exec($sComando, $output, $ret);
+        if ($ret != 0) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+
     function isFirstTime()
     {
         $query = "SELECT first_time from tmp_execute";
@@ -554,10 +582,20 @@ class paloSantoRules {
             $this->errMsg = $this->_DB->errMsg;
             return;
         }
+
         $data = $result[0];
-        if($data['first_time'] == 0)
-            return false;
-        return true;
+        $ret = true;
+        if($data['first_time'] == 0) {
+            $ret = false;
+        } else {
+            $ret= true;
+        }
+
+        if(!$this->isActive()) {
+            // if main ISSABEL chain is not present, warn user
+            $ret = true;
+        }
+        return $ret;
     }
 
     function setFirstTime()

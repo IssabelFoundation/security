@@ -599,6 +599,7 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
     //begin grid parameters
     $oGrid  = new paloSantoGrid($smarty);
     $first_time = $pRules->isFirstTime();
+    $has_geoip  = $pRules->hasGeoip();
     //$oGrid->setTplFile("$local_templates_dir/_list.tpl");
     $totalRules = $pRules->ObtainNumRules();
     $error ="";
@@ -759,13 +760,25 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
     $oGrid->setData($arrData);
     //$smarty->assign("desactivate", _tr("Desactivate FireWall"));
     if($first_time){
-        $smarty->assign("mb_message", "<b>"._tr("The firewall is totally desactivated. It is recommended to activate the firewall rules")."</b>");
+        $msg = "<b>"._tr("The firewall is totally desactivated. It is recommended to activate the firewall rules")."</b>";
+        if(!$has_geoip) {
+           $msg .= "<br><b>"._tr("The firewall does not have support for GeoIP Localization")."</b>";
+        }
+        $smarty->assign("mb_message", $msg);
         $smarty->assign("mb_title",_tr("WARNING"));
         $mensaje = _tr("The firewall is totally desactivated. It is recommended to activate the firewall rules");
+
         $mensaje2 = _tr("Activate FireWall");
         $oGrid->customAction("exec",$mensaje2);
     }
     else{
+
+        if(!$has_geoip) {
+           $msg = "<br><b>"._tr("The firewall does not have support for GeoIP Localization")."</b>";
+           $smarty->assign("mb_message", $msg);
+           $smarty->assign("mb_title",_tr("WARNING"));
+        }
+ 
         $oGrid->customAction("desactivate",_tr("Desactivate FireWall"));
         $oGrid->addNew("new",_tr("New Rule"));
         $mensaje = _tr("You have made changes to the definition of firewall rules, for this to take effect in the system press the next button");
