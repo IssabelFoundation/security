@@ -29,8 +29,8 @@ require_once 'Console/Getopt.php';
 $opt = Console_Getopt::getopt($argv, '', array(
     'flush',  // Remove all firewall rules from iptables
     'load',   // Load all firewall rules from database
-    'geoip',
-    'isactive'
+    'isactive',
+    'isactivegeoip'
 ));
 if (PEAR::isError($opt)) error_exit($opt->getMessage()."\n");
 //validateOptions($opt);
@@ -39,10 +39,10 @@ case '--flush':
     exit(action_flushFirewall($opt) ? 0 : 1);
 case '--load':
     exit(action_loadFirewall($opt) ? 0 : 1);
-case '--geoip':
-    exit(action_loadGeoip($argv) ? 0 : 1);
 case '--isactive':
     exit(action_isactive() ? 0 : 1);
+case '--isactivegeoip':
+    exit(isactivegeoip() ? 0 : 1);
 }
 error_exit("No action specified (--flush, --load, --geoip or --isactive)\n");
 
@@ -78,6 +78,7 @@ function action_loadFirewall($opt)
     if ($return == 0) {
         $dispGEOIP = TRUE;
     }
+
     $bExito = TRUE;
     $bFirewallActivo = FALSE;
     $issabelChains = array(
@@ -481,28 +482,13 @@ function manageF2B($opt)
     }
 }
 
-function action_loadGeoip($opt)
-{
-    exec("/usr/sbin/modprobe xt_geoip", $output, $return);
+function isactivegeoip() {
+    exec("/usr/sbin/lsmod | grep xt_geoip", $output, $return);
     if ($return != 0) {
         echo "xt_geoip module not installed";
         return FALSE;
     }
-    exec("/sbin/iptables -L INPUT 1", $output, $return);
-    if ($return != 0) {
-        echo "Iptables FAILED";
-        return FALSE;
-    } else {
-        if (preg_match("/geoip --source-country/", implode(' ', $output), $out)){
-            system('/sbin/iptables -D INPUT 1', $ret);
-        }
-        $cmd='/sbin/iptables -I INPUT 1 -m geoip --src-cc '.$opt[2].' -m state --state NEW -j DROP';
-        system($cmd, $ret);
-        if ($ret != 0) {
-            echo "FAIL";
-            return FALSE;
-        }
-    }
+    return TRUE;
 }
 
 function action_isactive() {
