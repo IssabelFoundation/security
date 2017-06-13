@@ -3,3 +3,9 @@ ignore_backup = no
 engine = sqlite3
 path = /var/www/db
 deletable = yes
+
+[countries]
+ignore_backup = no
+engine = sqlite3
+path = /var/www/db
+deletable = yes
