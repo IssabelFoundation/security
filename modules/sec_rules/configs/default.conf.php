@@ -25,4 +25,5 @@
     $arrConfModule['module_name']   = 'sec_rules';
     $arrConfModule['templates_dir'] = 'themes';
     $arrConfModule['dsn_conn_database'] = "sqlite://var/www/db/iptables.db";
+    $arrConfModule['dsn_conn_database_countries'] = "sqlite://var/www/db/countries.db";
 ?>

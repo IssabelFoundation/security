@@ -73,18 +73,37 @@ function action_flushFirewall($opt)
 // Load all the firewall rules from the database
 function action_loadFirewall($opt)
 {
+    $dispGEOIP = FALSE;
+    exec("/usr/sbin/modprobe xt_geoip", $output, $return);
+    if ($return == 0) {
+        $dispGEOIP = TRUE;
+    }
     $bExito = TRUE;
     $bFirewallActivo = FALSE;
     $issabelChains = array(
         'INPUT'     =>  'ISSABEL_INPUT',
         'OUTPUT'    =>  'ISSABEL_OUTPUT',
-        'FORWARD'   =>  'ISSABEL_FORWARD'
+        'FORWARD'   =>  'ISSABEL_FORWARD',
+        'ISSABEL_INPUT'   =>   'ISSABEL_INPUT_GEOIP',
+        'ISSABEL_OUTPUT'  =>   'ISSABEL_OUTPUT_GEOIP',
+        'ISSABEL_FORWARD'  =>   'ISSABEL_FORWARD_GEOIP'
     );
+
     $rules = array();
+    $mycontinent = array();
 
     try {
-        $conn = new PDO('sqlite:/var/www/db/iptables.db');
 
+
+        $connCountries = new PDO('sqlite:/var/www/db/countries.db');
+        $query = "SELECT continent_code AS continent,group_concat(code) AS countries FROM countries GROUP BY continent_code";
+        $sth = $connCountries->query($query);
+        $continents = $sth->fetchAll(PDO::FETCH_ASSOC);
+        foreach($continents as $idx=>$data) {
+            $mycontinent[$data['continent']]=$data['countries'];
+        }
+
+        $conn = new PDO('sqlite:/var/www/db/iptables.db');
         // Fix missing 'filter.state' field in some Issabel installations
         $sth = $conn->query('SELECT * FROM filter LIMIT 1');
         $rules = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -153,10 +172,10 @@ PETICION_PK;
             // Read rule configuration from database
             $sth = $conn->query(
                 'SELECT traffic, eth_in, eth_out, ip_source, ip_destiny, protocol, ' .
-                    'sport, dport, target, state ' .
+                    'sport, dport, target, state, countries, continents ' .
                 'FROM  filter WHERE activated = 1 ORDER BY rule_order');
             $rules = array_merge($rules, $sth->fetchAll(PDO::FETCH_ASSOC));
-        }
+        } 
     } catch (PDOException $e) {            
         $bExito = FALSE;
         fprintf(STDERR, "ERR: failed to query firewall rules - %s\n", $e->getMessage());
@@ -177,7 +196,7 @@ PETICION_PK;
                 break;
             }
         }
-    manageF2B('same');
+        manageF2B('same');
     }
 
     // Add ISSABEL_XXX chains to iptables configuration if not already present
@@ -195,8 +214,10 @@ PETICION_PK;
             }
             foreach (array_diff($issabelChains, $currentChains) as $key => $sChain) {
                 system("/sbin/iptables -N $sChain", $ret);
+        //echo "/sbin/iptables -N $sChain";
                 if ($ret) { $bExito = FALSE; break; }
                 system("/sbin/iptables -A $key -j $sChain", $ret);
+        //echo "/sbin/iptables -A $key -j $sChain";
                 if ($ret) { $bExito = FALSE; break; }
             }
         }
@@ -206,8 +227,12 @@ PETICION_PK;
     if ($bExito && $bFirewallActivo) foreach ($rules as $rule) {
         $commandParams = array(
             '/sbin/iptables',
-            '-A '.$issabelChains[$rule['traffic']],
-        );
+    );
+    if ($rule['protocol'] == 'GEOIP') { 
+        $commandParams[] = '-A '.$issabelChains[$rule['traffic']].'_GEOIP';
+    } else {
+            $commandParams[] = '-A '.$issabelChains[$rule['traffic']];
+    }
         if ($rule['ip_destiny'] != '0.0.0.0/0' && $rule['ip_destiny'] != '')
             $commandParams[] = "-d ".escapeshellarg($rule['ip_destiny']);
         if ($rule['ip_source'] != '0.0.0.0/0' && $rule['ip_source'] != '')
@@ -295,14 +320,79 @@ PETICION_PK;
             $commandParams[] = "-m state --state ".escapeshellarg($rule['state']);
             break;
         }
-        if ($rule['eth_in'] != 'ANY' && $rule['eth_in'] != '')
+
+        if ($rule['eth_in'] != 'ANY' && $rule['eth_in'] != '') {
             $commandParams[] = "-i ".escapeshellarg($rule['eth_in']);
-        if ($rule['eth_out'] != 'ANY' && $rule['eth_out'] != '')
+        }
+        if ($rule['eth_out'] != 'ANY' && $rule['eth_out'] != '') {
             $commandParams[] = "-o ".escapeshellarg($rule['eth_out']);
-        $commandParams[] = "-j ".escapeshellarg($rule['target']);
-        
+        }
+        if ($rule['protocol'] == 'GEOIP' && $rule['target'] == 'ACCEPT' && ($rule['countries'] != '' || $rule['continents'] != '')) {
+
+            // expand continent into individual countries
+            $countries=array();
+            $continents = explode(",",$rule['continents']);
+            foreach($continents as $code=>$ctrystring) {
+                 $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+            }
+
+            $countries = array_merge($countries,explode(",",$rule['countries']));
+            $countries = array_unique($countries);
+
+            $cuantos_paises = count($countries);
+            if($cuantos_paises<10) {
+                $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg('RETURN');
+            } else {
+                // split countries in multiple commands because of limit in geoip matching
+                $subsetcommand = array();
+                $comando_hasta_ahora = implode(' ',$commandParams);
+                $paises = array_chunk($countries,10);
+                foreach($paises as $subset) {
+                    $impsubset = implode(",",$subset);
+                    $subsetcommand[] = $comando_hasta_ahora . " -m geoip --src-cc ".escapeshellarg($impsubset)." -j ".escapeshellarg('RETURN');
+                }
+                
+            }
+
+    } else if ($rule['protocol'] == 'GEOIP' && ($rule['countries'] != '' || $rule['continents'] != '' )) {
+
+            // expand continent into individual countries
+            $countries=array();
+            $continents = explode(",",$rule['continents']);
+            foreach($continents as $code=>$ctrystring) {
+                 $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+            }
+
+            $countries = array_merge($countries,explode(",",$rule['countries']));
+            $countries = array_unique($countries);
+            $cuantos_paises = count($countries);
+            if($cuantos_paises<10) {
+            $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg($rule['target']);
+            } else {
+                // split countries in multiple commands because of limit in geoip matching
+                $subsetcommand = array();
+                $comando_hasta_ahora = implode(' ',$commandParams);
+                $paises = array_chunk($countries,10);
+                foreach($paises as $subset) {
+                    $impsubset = implode(",",$subset);
+                    $subsetcommand[] = $comando_hasta_ahora . " -m geoip --src-cc ".escapeshellarg($impsubset)." -j ".escapeshellarg($rule['target']);
+                }
+            }
+
+        } else {
+            $commandParams[] = "-j ".escapeshellarg($rule['target']);
+        } 
         $ret = NULL;
-        system(implode(' ', $commandParams), $ret);
+    if (($rule['protocol'] != 'GEOIP') || ($rule['protocol'] == 'GEOIP' && $dispGEOIP)) {
+            if(isset($subsetcommand)) {
+                foreach($subsetcommand as $cmd) {
+                    system($cmd,$ret);
+                }
+                $subsetcommand=array();
+            } else {
+                system(implode(' ', $commandParams), $ret);
+            }
+    }
         if ($ret) { $bExito = FALSE; break; }
     }
 
@@ -337,7 +427,7 @@ function manageF2B($opt)
                     echo "Fail2ban restart FAILED";
                 }
             } else {
-                echo "Ok, process is not running, do nothing\n";
+                echo "Fail2ban process is not running, do nothing\n";
             }
             break;
         case 'start':

@@ -38,6 +38,8 @@ class paloSantoRules {
         if (is_object($pDB)) {
             $this->_DB =& $pDB;
             $this->errMsg = $this->_DB->errMsg;
+            $this->updateStructure();
+
         } else {
             $dsn = (string)$pDB;
             $this->_DB = new paloDB($dsn);
@@ -46,6 +48,7 @@ class paloSantoRules {
                 $this->errMsg = $this->_DB->errMsg;
                 // debo llenar alguna variable de error
             } else {
+                $this->updateStructure();
                 // debo llenar alguna variable de error
             }
         }
@@ -53,6 +56,28 @@ class paloSantoRules {
 
     /*HERE YOUR FUNCTIONS*/
 
+    function hasField($table,$field) {
+        $hasfield=0;
+        $query = "PRAGMA table_info($table)";
+        $result = $this->_DB->fetchTable($query, true);
+        foreach($result as $idx=>$field) {
+            if($field['name']==$field) {
+               $hasfield=1;
+            }
+         }
+         return $hasfield;
+     }
+
+     function updateStructure() {
+         if($this->hasField('filter','countries')==0) {
+             $query = "ALTER TABLE filter ADD countries TEXT";
+             $result = $this->_DB->genQuery($query,array());
+         }
+         if($this->hasField('filter','continents')==0) {
+             $query = "ALTER TABLE filter ADD continents TEXT";
+             $result = $this->_DB->genQuery($query,array());
+         }
+     }
      /**
      * Function that returns the number of rules (data) in the database
      *  .
@@ -138,28 +163,37 @@ class paloSantoRules {
      */
     function saveRule( $arrValues )
     {
+
         $traffic   = ($arrValues['traffic'] == null)       ? "" : $arrValues['traffic'];
         $eth_in    = ($arrValues['interface_in'] == null)  ? "" : $arrValues['interface_in'];
         $eth_out   = ($arrValues['interface_out'] == null) ? "" : $arrValues['interface_out'];
 
         $ip_s      = ($arrValues['ip_source'] == null)     ? "" : $arrValues['ip_source'];
         $ip_mask_s = ($arrValues['mask_source'] == null)   ? "" : $arrValues['mask_source'];
-        if($ip_s != "")
-            if($ip_mask_s != "")
+
+        if($ip_s != "") {
+            if($ip_mask_s != "") {
                 $source = $ip_s."/".$ip_mask_s;
-            else
+            } else {
                 $source = $ip_s;
-        else
+            }
+        } else {
             $source = "";
+        }
+
         $ip_d      = ($arrValues['ip_destin'] == null)     ? "" : $arrValues['ip_destin'];
         $ip_mask_d = ($arrValues['mask_destin'] == null)   ? "" : $arrValues['mask_destin'];
-        if($ip_d != "")
-            if($ip_mask_d != "")
+
+        if($ip_d != "") {
+            if($ip_mask_d != "") {
                 $destino = $ip_d."/".$ip_mask_d;
-            else
+            } else {
                 $destino = $ip_d;
-        else
+            }
+        } else {
             $destino = "";
+        }
+
         $protocol  = ($arrValues['protocol'] == null)      ? "" : $arrValues['protocol'];
         $port_in   = ($arrValues['port_in'] == null)       ? "" : $arrValues['port_in'];
         $port_out  = ($arrValues['port_out'] == null)      ? "" : $arrValues['port_out'];
@@ -167,12 +201,16 @@ class paloSantoRules {
         $id_ip     = ($arrValues['id_ip'] == null)         ? "" : $arrValues['id_ip'];
         $state     =  $arrValues['state'];
         $target    = ($arrValues['target'] == null)        ? "" : $arrValues['target'];
+        $geoipcountries  = ($arrValues['geoipcountries'] == null)      ? "" : implode(",",$arrValues['geoipcountries']);
+        $geoipcontinents = ($arrValues['geoipcontinents'] == null)     ? "" : implode(",",$arrValues['geoipcontinents']);
+
         $Max = $this->getMaxOrder();
         $order = 1 + $Max['lastRule'];
+
         $query = "INSERT INTO filter(traffic, eth_in, eth_out, ip_source, ip_destiny, protocol, ".
-                                    "sport, dport, icmp_type, number_ip, target, rule_order, activated, state) ".
-                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,1,?)";
-        $arrParam = array($traffic,$eth_in,$eth_out,$source,$destino,$protocol,$port_in,$port_out,$type_icmp,$id_ip,$target,$order,$state);
+                                    "sport, dport, icmp_type, number_ip, target, rule_order, activated, state, countries, continents) ".
+                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)";
+        $arrParam = array($traffic,$eth_in,$eth_out,$source,$destino,$protocol,$port_in,$port_out,$type_icmp,$id_ip,$target,$order,$state,$geoipcountries,$geoipcontinents);
         $result = $this->_DB->genQuery($query,$arrParam);
 
         if( $result == FALSE )
@@ -180,6 +218,14 @@ class paloSantoRules {
             $this->errMsg = $this->_DB->errMsg;
             return false;
         }
+
+        if( $result == FALSE )
+        {
+            $this->errMsg = $this->_DB->errMsg;
+            return false;
+        }
+
+
         return $this->updateNotExecutedInSystem();
     }
 
@@ -199,22 +245,26 @@ class paloSantoRules {
 
         $ip_s      = ($arrValues['ip_source'] == null)     ? "" : $arrValues['ip_source'];
         $ip_mask_s = ($arrValues['mask_source'] == null)   ? "" : $arrValues['mask_source'];
-        if($ip_s != "")
-            if($ip_mask_s != "")
+        if($ip_s != "") {
+            if($ip_mask_s != "") {
                 $source = $ip_s."/".$ip_mask_s;
-            else
+            } else {
                 $source = $ip_s;
-        else
+            }
+        } else {
             $source = "";
+        }
         $ip_d      = ($arrValues['ip_destin'] == null)     ? "" : $arrValues['ip_destin'];
         $ip_mask_d = ($arrValues['mask_destin'] == null)   ? "" : $arrValues['mask_destin'];
-        if($ip_d != "")
-            if($ip_mask_d != "")
+        if($ip_d != "") {
+            if($ip_mask_d != "") {
                 $destino = $ip_d."/".$ip_mask_d;
-            else
+            } else {
                 $destino = $ip_d;
-        else
+            }
+        } else {
             $destino = "";
+        }
         $protocol  = ($arrValues['protocol'] == null)      ? "" : $arrValues['protocol'];
         $port_in   = ($arrValues['port_in'] == null)       ? "" : $arrValues['port_in'];
         $port_out  = ($arrValues['port_out'] == null)      ? "" : $arrValues['port_out'];
@@ -223,8 +273,12 @@ class paloSantoRules {
         $state     =  $arrValues['state'];
         $target    = ($arrValues['target'] == null)        ? "" : $arrValues['target'];
         $orden     = ($arrValues['orden'] == null)         ?  0 : $arrValues['orden'];
-        $query = "UPDATE filter SET traffic = ?, eth_in = ?, eth_out = ?, ip_source = ?, ip_destiny = ?, protocol = ?, sport = ?, dport = ?, icmp_type = ?, number_ip = ?, target = ?, rule_order = ?, state = ? WHERE id = ?";
-        $arrParam = array($traffic,$eth_in,$eth_out,$source,$destino,$protocol,$port_in,$port_out,$type_icmp,$id_ip,$target,$orden,$state,$id);
+
+        $geoipcountries  = ($arrValues['geoipcountries'] == null)   ? "" : implode(",",$arrValues['geoipcountries']);
+        $geoipcontinents = ($arrValues['geoipcontinents'] == null)  ? "" : implode(",",$arrValues['geoipcontinents']);
+
+        $query = "UPDATE filter SET traffic = ?, eth_in = ?, eth_out = ?, ip_source = ?, ip_destiny = ?, protocol = ?, sport = ?, dport = ?, icmp_type = ?, number_ip = ?, target = ?, rule_order = ?, state = ?, countries = ?, continents = ?  WHERE id = ?";
+        $arrParam = array($traffic,$eth_in,$eth_out,$source,$destino,$protocol,$port_in,$port_out,$type_icmp,$id_ip,$target,$orden,$state,$geoipcountries,$geoipcontinents,$id);
         $result = $this->_DB->genQuery($query,$arrParam);
 
         if( $result == FALSE )
@@ -232,6 +286,7 @@ class paloSantoRules {
             $this->errMsg = $this->_DB->errMsg;
             return false;
         }
+
         return $this->updateNotExecutedInSystem();
     }
 
