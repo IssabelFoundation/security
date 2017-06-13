@@ -331,15 +331,26 @@ PETICION_PK;
 
             // expand continent into individual countries
             $countries=array();
-            $continents = explode(",",$rule['continents']);
-            foreach($continents as $code=>$ctrystring) {
-                 $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+
+            if($rule['continents']<>'') {
+                $continents = explode(",",$rule['continents']);
+                if(count($continents)>0) {
+                    foreach($continents as $code=>$ctrystring) {
+                         $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+                    }
+                }
             }
 
-            $countries = array_merge($countries,explode(",",$rule['countries']));
-            $countries = array_unique($countries);
+            if($rule['countries']<>'') {
+                $expcountries = explode(",",$rule['countries']);
+                if(count($expcountries)>0) {
+                    $countries = array_merge($countries,$expcountries);
+                }
+            }
 
+            $countries = array_unique($countries);
             $cuantos_paises = count($countries);
+
             if($cuantos_paises<10) {
                 $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg('RETURN');
             } else {
@@ -351,23 +362,34 @@ PETICION_PK;
                     $impsubset = implode(",",$subset);
                     $subsetcommand[] = $comando_hasta_ahora . " -m geoip --src-cc ".escapeshellarg($impsubset)." -j ".escapeshellarg('RETURN');
                 }
-                
             }
 
     } else if ($rule['protocol'] == 'GEOIP' && ($rule['countries'] != '' || $rule['continents'] != '' )) {
 
             // expand continent into individual countries
             $countries=array();
-            $continents = explode(",",$rule['continents']);
-            foreach($continents as $code=>$ctrystring) {
-                 $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+
+            if($rule['continents']<>'') {
+                $continents = explode(",",$rule['continents']);
+                if(count($continents)>0) {
+                    foreach($continents as $code=>$ctrystring) {
+                         $countries = array_merge($countries,explode(",",$mycontinent[$ctrystring]));
+                    }
+                }
             }
 
-            $countries = array_merge($countries,explode(",",$rule['countries']));
+            if($rule['countries']<>'') {
+                $expcountries = explode(",",$rule['countries']);
+                if(count($expcountries)>0) {
+                    $countries = array_merge($countries,$expcountries);
+                }
+            }
+
             $countries = array_unique($countries);
             $cuantos_paises = count($countries);
+
             if($cuantos_paises<10) {
-            $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg($rule['target']);
+                $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg($rule['target']);
             } else {
                 // split countries in multiple commands because of limit in geoip matching
                 $subsetcommand = array();
