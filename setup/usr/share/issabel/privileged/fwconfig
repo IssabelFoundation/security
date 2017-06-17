@@ -390,7 +390,7 @@ PETICION_PK;
             $cuantos_paises = count($countries);
 
             if($cuantos_paises<10) {
-                $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -j ".escapeshellarg($rule['target']);
+                $commandParams[] = "-m geoip --src-cc ".escapeshellarg($rule['countries'])." -m state --state NEW -j ".escapeshellarg($rule['target']);
             } else {
                 // split countries in multiple commands because of limit in geoip matching
                 $subsetcommand = array();
@@ -398,7 +398,7 @@ PETICION_PK;
                 $paises = array_chunk($countries,10);
                 foreach($paises as $subset) {
                     $impsubset = implode(",",$subset);
-                    $subsetcommand[] = $comando_hasta_ahora . " -m geoip --src-cc ".escapeshellarg($impsubset)." -j ".escapeshellarg($rule['target']);
+                    $subsetcommand[] = $comando_hasta_ahora . " -m geoip --src-cc ".escapeshellarg($impsubset)." -m state --state NEW -j ".escapeshellarg($rule['target']);
                 }
             }
 
