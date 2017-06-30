@@ -242,7 +242,7 @@ function createFieldFormNew() {
             "LABEL"                  => _tr("Whitelist"),
             "REQUIRED"               => "no",
             "INPUT_TYPE"             => "TEXTAREA",
-            "INPUT_EXTRA_PARAM"      => array("style" => "width:162px"),
+            "INPUT_EXTRA_PARAM"      => array("style" => "width:162px", "id"=>"ignoreipfield"),
             "VALIDATION_TYPE"        => "",
             "VALIDATION_EXTRA_PARAM" => "" 
         ),
@@ -265,11 +265,15 @@ function saveJail($smarty, $module_name, $local_templates_dir, &$pDB, $arrConf)
     $mode       = getParameter("mode");
     $maxretry   = getParameter("maxretry");
     $bantime    = getParameter("bantime");
-    $ignoreip  = getParameter("ignoreip");
+    $ignoreip   = getParameter("ignoreip");
     $enabled    = getParameter("enabled");
 
     $id_except  = getParameter('idtemp');
     $isError    = false;
+
+    // Be sure ignoreip in fail2ban is separated with spaces (and one space) only
+    $ignoreip = str_replace(","," ",$ignoreip);
+    $ignoreip = preg_replace('/\s+/', ' ', $ignoreip);
     
     $iJails = new IssabelF2BService($pDB);
 
