@@ -2,10 +2,10 @@ $(function(){
 
 //generate certificate
 $("#btninstall").click(function() {
-    $("#loading1").html("<div align=center><br><br><img src='modules/letsencrypt/themes/default/ajaxl.gif'/></div><br><br>");
+    $("#loading1").html("<div align=center><br><br><img src='modules/sec_letsencrypt/themes/default/ajaxl.gif'/></div><br><br>");
     $.ajax({
         type: "POST",
-        url: "modules/letsencrypt/installcert.php",
+        url: "modules/sec_letsencrypt/installcert.php",
         data:{   
             staging: $("#staging:checked").val(),
             domain: $("#domain").val(),
@@ -29,10 +29,10 @@ $("#btninstall").click(function() {
 
 // Renew Certificate
 $("#btnrenew").click(function() {
-    $("#loading1").html("<div align=center><br><br><img  src='modules/letsencrypt/themes/default/ajaxl.gif'/></div><br><br>");
+    $("#loading1").html("<div align=center><br><br><img  src='modules/sec_letsencrypt/themes/default/ajaxl.gif'/></div><br><br>");
     $.ajax({
         type: "POST",
-        url: "modules/letsencrypt/installcert.php",
+        url: "modules/sec_letsencrypt/installcert.php",
         data:{   
             renew: 1
         },
