@@ -54,9 +54,9 @@ chmod +x setup/updateDatabase
 # Crontab for portknock authorization cleanup
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
 cp setup/etc/cron.d/issabel-portknock.cron $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.monthly/
-cp setup/etc/cron.monthly/renewssl $RPM_BUILD_ROOT%{_sysconfdir}/cron.monthly/
 chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/issabel-portknock.cron
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/
+cp setup/etc/cron.daily/renewssl $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/
 cp setup/etc/fail2ban/jail.d/issabel.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d
@@ -157,7 +157,7 @@ fi
 %defattr(0755, root, root)
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock
-%{_sysconfdir}/cron.monthly/renewssl
+%{_sysconfdir}/cron.daily/renewssl
 %{_bindir}/issabel-portknock-cleanup
 %{_bindir}/issabel-portknock-validate
 
