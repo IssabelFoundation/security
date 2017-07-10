@@ -57,5 +57,10 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
+    <menuitem menuid="sec_letsencrypt" desc="HTTPS Certificate (Let's Encrypt)" parent="security" module="yes"  link="" order="6">
+       <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
   </menulist>
 </module>

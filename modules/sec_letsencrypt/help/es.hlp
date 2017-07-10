@@ -1,0 +1,12 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>Es posible obtener un certificado seguro SSL gratuitamente usando el servico de Letsencrypt</p>
+
+</body>
+</html>

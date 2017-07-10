@@ -151,10 +151,11 @@ fi
 %{_datadir}/issabel/module_installer/*
 %defattr(644, root, root)
 %{_sysconfdir}/cron.d/issabel-portknock.cron
+%{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 %defattr(0755, root, root)
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock
-%{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
+%{_sysconfdir}/cron.monthly/renewssl
 %{_bindir}/issabel-portknock-cleanup
 %{_bindir}/issabel-portknock-validate
 
