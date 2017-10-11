@@ -3,7 +3,7 @@
 Summary: Issabel Security
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 2
+Release: 4
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
@@ -29,7 +29,7 @@ Requires: issabel-pbx >= 4.0.0-0
 Requires: coreutils
 
 # /usr/share/issabel/privileged/anonymoussip recarga asterisk
-Requires: asterisk
+# Requires: asterisk
 
 Obsoletes: elastix-security
 
