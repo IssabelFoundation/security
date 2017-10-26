@@ -60,7 +60,7 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("DOMAIN",     _tr("Domain"));
     $smarty->assign("EMAIL",      _tr("Email"));
     $smarty->assign("STAGING",    _tr("Staging Certificate(Use this for testing)"));
-    $smarty->assign("STEP1",      _tr("1.- Create a Valid Domian by purchasing it with you preferred Vendor or get one from free DDNS service like No-Ip.org"));
+    $smarty->assign("STEP1",      _tr("1.- Create a Valid Domain by purchasing it with you preferred Vendor or get one from free DDNS service like No-Ip.org"));
     $smarty->assign("STEP2",      _tr("2.- Be sure that you domain is redirected to your PBX Service."));
     $smarty->assign("STEP3",      _tr("3.- Open the 443 and 80 ports in your firewall and redirect to your PBX."));
     $smarty->assign("STEP4",      _tr("4.- In the field DOMAIN enter your domain to obtain a valid certificate. You can add many domains comma separated"));
