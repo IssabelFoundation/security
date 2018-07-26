@@ -32,7 +32,9 @@ switch($argv[1]){
         if(isset($argv[2]) && isset($argv[3])) {
             $params = array();
             $params[]="-n";
-            $params[]="--apache";
+            $params[]="-i apache";
+            $params[]="-a webroot";
+            $params[]="-w /var/www/html";
             $params[]="--agree-tos";
 
             if(isset($argv[4])) {
