@@ -1,5 +1,5 @@
 #!/bin/bash
 if [ -f /etc/letsencrypt/values ];
 then
-/usr/bin/certbot renew  --quiet
+    /usr/share/issabel/privileged/ssl_certbot renewcertificate >/dev/null
 fi
