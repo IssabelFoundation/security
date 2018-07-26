@@ -61,6 +61,9 @@ switch($argv[1]){
                 exit(1);
             } else {
                 //exec("/sbin/service httpd restart 2>&1", $output, $ret);
+
+                writeAsteriskPEMfile();
+
                 echo implode("\n",$output);
                 exit(0);
             }
@@ -77,6 +80,9 @@ switch($argv[1]){
             fputs(STDERR, implode('', $output));
             exit(1);
         } else {
+
+            writeAsteriskPEMfile();
+
             echo implode("\n",$output);
             exit(0);
         }
@@ -126,4 +132,15 @@ function editServerName($sHostname) {
         }
     }
     file_put_contents($sslfile, $contenidoNuevo);
+}
+
+function writeAsteriskPEMfile() {
+
+    if (!file_exists('/etc/asterisk/keys')) {
+        mkdir('/etc/asterisk/keys', 0751, true);
+    }
+
+    exec(">/etc/asterisk/keys/asterisk.pem", $output, $ret);
+    exec("for A in `grep '^SSLCert' /etc/httpd/conf.d/ssl.conf | grep -v chain | awk '{print $2}'`; do cat \$A >>/etc/asterisk/keys/asterisk.pem; done", $output, $ret);
+
 }
