@@ -47,9 +47,9 @@ switch($argv[1]){
             $lcomandos = implode(" ",$params);
             $comando = "/usr/bin/certbot $lcomandos";
 
-            $fp=fopen("/tmp/pepe.log","a");
-            fputs($fp,"$comando\n");
-            fclose($fp);
+            //$fp=fopen("/tmp/certbot.log","a");
+            //fputs($fp,"$comando\n");
+            //fclose($fp);
 
             $output = $ret = NULL;
 
