@@ -3,6 +3,7 @@ include("/var/www/html/libs/misc.lib.php");
 include("/var/www/html/configs/default.conf.php");
 include("/var/www/html/libs/paloSantoACL.class.php");
 include_once("/var/www/html/libs/paloSantoDB.class.php");
+include_once("/var/www/html/libs/paloSantoNetwork.class.php");
 
 session_name("issabelSession");
 session_start();
@@ -21,6 +22,15 @@ if(!$pACL->isUserAdministratorGroup($issabel_user)){
     die();
 }
 
+$pNet = new paloNetwork();
+$arrNetwork = $pNet->obtener_configuracion_red();
+if(is_array($arrNetwork)) {
+    $arrNetworkData['dns_ip_1'] = isset($arrNetwork['dns'][0])?$arrNetwork['dns'][0]:'';
+    $arrNetworkData['dns_ip2'] = isset($arrNetwork['dns'][1])?$arrNetwork['dns'][1]:'';
+    $arrNetworkData['host'] = isset($arrNetwork['host'])?$arrNetwork['host']:'';
+    $arrNetworkData['gateway_ip'] = isset($arrNetwork['gateway'])?$arrNetwork['gateway']:'';
+}
+
 $renew=0;
 if(isset($_POST['renew'])) {
     $renew = 1;
@@ -28,6 +38,7 @@ if(isset($_POST['renew'])) {
     $staging = isset($_POST['staging'])?$_POST['staging']:'';
     $domain  = $_POST['domain'];
     $email   = $_POST['email'];
+    $arrNetworkData['host'] = $domain;
 }
 
 // Do a renew
@@ -81,6 +92,7 @@ if($domain==''){
 
     if($retorno==0) {
         exec("/usr/bin/issabel-helper ssl_certbot writevars ".escapeshellarg($email)." ".escapeshellarg($domain), $out, $rtn);
+        $pNet->escribir_configuracion_red_sistema($arrNetworkData);
     }
 
     $output = "<strong>Output log: </strong><br><pre>";

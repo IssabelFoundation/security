@@ -1,6 +1,10 @@
-{if $mb_message ne ''}
+{if $NO_HOSTNAME_NOTICE ne ''}
 <br/>
-{/if}
+<div class="alert alert-danger">
+{$NO_HOSTNAME_NOTICE}
+</div>
+
+{else}
 
 <div class="box-header well span5">
 
@@ -74,3 +78,4 @@
             <li class="list-group-item list-group-item-warning">{$STEP11}</li>
         </ul>
 </div>
+{/if}

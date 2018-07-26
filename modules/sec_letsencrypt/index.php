@@ -30,6 +30,12 @@ function _moduleContent(&$smarty, $module_name)
         }
     }
 
+    if(isValidIP($_SERVER['HTTP_HOST'])) {
+        $smarty->assign("NO_HOSTNAME_NOTICE", _tr("Please be sure to access the Web UI via a valid name configured in your DNS. That would be the same domain you will pass to Let's Encrypt to validate the SSL certificate. You should not access the site via IP address."));
+    } else {
+        $smarty->assign("NO_HOSTNAME_NOTICE", "");
+    }
+
     $sHostname = file_get_contents("/etc/hostname");
     $sHostname = trim(preg_replace('/\s\s+/', ' ', $sHostname));
     $smarty->assign("valuedomain", $sHostname);
@@ -75,4 +81,8 @@ function _moduleContent(&$smarty, $module_name)
     $contenidoModulo = $smarty->fetch("$local_templates_dir/new.tpl");
 
     return $contenidoModulo;
+}
+
+function isValidIP($str) {
+    return (bool)preg_match('/^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:[.](?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$/', $str);
 }
