@@ -49,24 +49,24 @@ class paloSantoAdvancedSecuritySettings{
 	}
     }
     
-    function changeIssabelPBXPassword($fpbx_password, $arrConf)
+    function changeIssabelPBXPassword($ipbx_password, $arrConf)
     {
       //--------------------------- Begin Transaction --------------------------------
       //Paso #1: Actualizar la clave del usuario Admin.
       $this->_DB->beginTransaction();
-      $resultUpdatePass = $this->updateIssabelPBXPasswordAdmin($fpbx_password);
+      $resultUpdatePass = $this->updateIssabelPBXPasswordAdmin($ipbx_password);
       if(!$resultUpdatePass){
 	  $this->_DB->rollBack();
           return false;
       }
       //Paso #2: Crear el usuario asteriskuser y asignarle el password ingresado.
-      $resultCreateUser = $this->createAsteriskUser($fpbx_password);
+      $resultCreateUser = $this->createAsteriskUser($ipbx_password);
       if(!$resultCreateUser){
 	  $this->_DB->rollBack();
           return false;
       }
       //Paso #3: Actualizar los archivos de configuración.
-      $resultUpdateConfFiles = $this->updateConfFiles($fpbx_password,$arrConf);
+      $resultUpdateConfFiles = $this->updateConfFiles($ipbx_password,$arrConf);
       if(!$resultUpdateConfFiles['result']){
 	 $this->_DB->rollBack();
          return $arrResult;
@@ -76,9 +76,9 @@ class paloSantoAdvancedSecuritySettings{
       return $resultUpdateConfFiles;
     }
 
-    private function updateIssabelPBXPasswordAdmin($fpbx_password)
+    private function updateIssabelPBXPasswordAdmin($ipbx_password)
     {
-      $arrParam[] = $fpbx_password;
+      $arrParam[] = $ipbx_password;
       $query = "UPDATE ampusers SET password_sha1=sha1(?) WHERE username = 'admin' ";
 
       $result=$this->_DB->genQuery($query,$arrParam);
@@ -88,9 +88,9 @@ class paloSantoAdvancedSecuritySettings{
       return $result;
     }
     
-   private function createAsteriskUser($fpbx_password)
+   private function createAsteriskUser($ipbx_password)
    {
-        $query = "GRANT USAGE ON *.* TO 'asteriskuser'@'localhost' IDENTIFIED BY '$fpbx_password' ";
+        $query = "GRANT USAGE ON *.* TO 'asteriskuser'@'localhost' IDENTIFIED BY '$ipbx_password' ";
 
         $result=$this->_DB->genExec($query);
         if($result == FALSE){
@@ -99,9 +99,9 @@ class paloSantoAdvancedSecuritySettings{
         return $result;
    }
     
-   private function updateConfFiles($fpbx_password,$arrConf){
+   private function updateConfFiles($ipbx_password,$arrConf){
         $output = $retval = NULL;
-        exec('/usr/bin/issabel-helper setadminpwd '.escapeshellarg($fpbx_password).' 2>&1', 
+        exec('/usr/bin/issabel-helper setadminpwd '.escapeshellarg($ipbx_password).' 2>&1', 
             $output, $retval);
         $arrResult = array(
             'result'            => ($retval == 0),
@@ -115,11 +115,11 @@ class paloSantoAdvancedSecuritySettings{
         return $arrResult;
    }
 
-   function updateStatusIssabelPBXFrontend($status_fpbx_frontend)
+   function updateStatusIssabelPBXFrontend($status_ipbx_frontend)
    {
       //Actualizar la clave ActivatedIssabelPBX.
       $pDBSettings = new paloDB($this->arrConf['issabel_dsn']["settings"]);
-      return (set_key_settings($pDBSettings,"activatedIssabelPBX",$status_fpbx_frontend));
+      return (set_key_settings($pDBSettings,"activatedIssabelPBX",$status_ipbx_frontend));
    }
 
    function isActivatedIssabelPBXFrontend()

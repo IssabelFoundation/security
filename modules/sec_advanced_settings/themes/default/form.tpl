@@ -16,9 +16,9 @@
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
-                        <b>{$status_fpbx_frontend.LABEL}:</b>
+                        <b>{$status_ipbx_frontend.LABEL}:</b>
                     </td>
-		    <td align="left" ><input type="hidden" name="oldstatus_fpbx_frontend" id="oldstatus_fpbx_frontend" value="{if $value_fpbx_frontend}1{else}0{/if}" /><input type="checkbox" name="status_fpbx_frontend" id="status_fpbx_frontend" {if $value_fpbx_frontend}checked="checked"{/if} /></td>
+		    <td align="left" ><input type="hidden" name="oldstatus_ipbx_frontend" id="oldstatus_ipbx_frontend" value="{if $value_ipbx_frontend}1{else}0{/if}" /><input type="checkbox" name="status_ipbx_frontend" id="status_ipbx_frontend" {if $value_ipbx_frontend}checked="checked"{/if} /></td>
 		</tr>
         <tr class="letra12">
             <td align="left" ><b>{$status_anonymous_sip.LABEL}:</b></td>
@@ -33,13 +33,13 @@
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
-                        <b>{$fpbx_password.LABEL}:</b>                        
+                        <b>{$ipbx_password.LABEL}:</b>                        
                     </td>
-		    <td align="left" >{$fpbx_password.INPUT}</td>
+		    <td align="left" >{$ipbx_password.INPUT}</td>
 		</tr>
 		<tr class="letra12">
-		    <td align="left" ><b>{$fpbx_confir_password.LABEL}:</b></td>
-		    <td align="left" >{$fpbx_confir_password.INPUT}</td>
+		    <td align="left" ><b>{$ipbx_confirm_passwrod.LABEL}:</b></td>
+		    <td align="left" >{$ipbx_confirm_passwrod.INPUT}</td>
 		</tr>
 	    </table>
 	</td>

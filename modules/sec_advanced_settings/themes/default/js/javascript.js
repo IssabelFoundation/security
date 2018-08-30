@@ -62,6 +62,6 @@ function prepararBoton(s)
 }
 
 $(document).ready(function () {
-	prepararBoton("status_fpbx_frontend");
+	prepararBoton("status_ipbx_frontend");
 	prepararBoton("status_anonymous_sip");
 });

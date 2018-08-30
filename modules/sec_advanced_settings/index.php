@@ -54,7 +54,7 @@ function _moduleContent(&$smarty, $module_name)
         case "update_advanced_security_settings":
             $content = updateAdvancedSecuritySettings($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
-        case "update_status_fpbx_frontend":
+        case "update_status_ipbx_frontend":
             $content = updateStatusIssabelPBXFrontend($arrConf);
             break;
         case "update_status_anonymous_sip":
@@ -70,7 +70,7 @@ function _moduleContent(&$smarty, $module_name)
 function viewFormAdvancedSecuritySettings($smarty, $module_name, $local_templates_dir, $arrConf)
 {
     $pAdvancedSecuritySettings       = new paloSantoAdvancedSecuritySettings($arrConf);
-    $value_fpbx_frontend             = $pAdvancedSecuritySettings->isActivatedIssabelPBXFrontend();
+    $value_ipbx_frontend             = $pAdvancedSecuritySettings->isActivatedIssabelPBXFrontend();
     $value_anonymous_sip             = $pAdvancedSecuritySettings->isActivatedAnonymousSIP();
     $arrFormAdvancedSecuritySettings = createFieldForm();
     $oForm = new paloForm($smarty,$arrFormAdvancedSecuritySettings);
@@ -78,7 +78,7 @@ function viewFormAdvancedSecuritySettings($smarty, $module_name, $local_template
     $smarty->assign("SAVE", _tr("Save"));
     $smarty->assign("subtittle1", _tr("Enable access"));
     $smarty->assign("subtittle2", _tr("Change Password"));
-    $smarty->assign("value_fpbx_frontend", $value_fpbx_frontend);
+    $smarty->assign("value_ipbx_frontend", $value_ipbx_frontend);
     $smarty->assign("value_anonymous_sip", $value_anonymous_sip);
     $smarty->assign("icon", "modules/".$module_name."/images/security_advanced_settings.png");
 
@@ -91,7 +91,7 @@ function updateStatusIssabelPBXFrontend($arrConf)
 {
     $pAdvanceSecuritySettings = new paloSantoAdvancedSecuritySettings($arrConf);
     $jsonObject               = new PaloSantoJSON();
-    $statusIssabelPBXFrontend    = getParameter("new_status_fpbx_frontend");
+    $statusIssabelPBXFrontend    = getParameter("new_status_ipbx_frontend");
     $result = $pAdvanceSecuritySettings->updateStatusIssabelPBXFrontend($statusIssabelPBXFrontend);
     $arrData['result']       = $result;
     $arrData['button_title'] = _tr("Dismiss");
@@ -142,10 +142,10 @@ function updateAdvancedSecuritySettings($smarty, $module_name, $local_templates_
     $oForm                           = new paloForm($smarty,$arrFormAdvancedSecuritySettings);
 
     //GET FIELDS
-    $fpbx_password 	  = '';
-    $fpbx_confir_password = '';
-    if(isset($_POST["fpbx_password"]))        $fpbx_password         = getParameter("fpbx_password");
-    if(isset($_POST["fpbx_confir_password"])) $fpbx_confir_password  = getParameter("fpbx_confir_password");
+    $ipbx_password 	  = '';
+    $ipbx_confirm_passwrod = '';
+    if(isset($_POST["ipbx_password"]))        $ipbx_password         = getParameter("ipbx_password");
+    if(isset($_POST["ipbx_confirm_passwrod"])) $ipbx_confirm_passwrod  = getParameter("ipbx_confirm_passwrod");
 
     //VALIDATIONS OF PASSWORD
     $msgValidationEmptyFields = "";
@@ -153,17 +153,17 @@ function updateAdvancedSecuritySettings($smarty, $module_name, $local_templates_
     $msgValidationConfirPassword = "";
 
     //VALIDATION OF EMPTY FIELDS
-    if($fpbx_password == '')
+    if($ipbx_password == '')
       $msgValidationEmptyFields .= _tr("Database and Web Administration IssabelPBX Password")."<br/>";
-    if($fpbx_confir_password == '')
+    if($ipbx_confirm_passwrod == '')
       $msgValidationEmptyFields .= _tr("Password Confirmation")."<br/>";
 
     //VALIDATION OF PASSWORD
-    if(!validatePassword($fpbx_password))
+    if(!validatePassword($ipbx_password))
       $msgValidationPassword = _tr("Password may only contain alphanumeric characters, spaces, or the following: .&-@=_!<>.");
 
     //VALIDATION OF CONFIRMATION PASSWORD
-    if(!validateConfirmationPassword($fpbx_password, $fpbx_confir_password))
+    if(!validateConfirmationPassword($ipbx_password, $ipbx_confirm_passwrod))
       $msgValidationConfirPassword = _tr("Password and confirmation do not match!");
 
     //ERROR MESSAGE
@@ -188,12 +188,12 @@ function updateAdvancedSecuritySettings($smarty, $module_name, $local_templates_
         //SAVE CONFIGURATIONS
 	$pAdvancedSecuritySettings = new paloSantoAdvancedSecuritySettings($arrConf,$pDB);
         //Save configurations ChangePassword
-	$resultChangePass = $pAdvancedSecuritySettings->changeIssabelPBXPassword($fpbx_password, $arrConf);
+	$resultChangePass = $pAdvancedSecuritySettings->changeIssabelPBXPassword($ipbx_password, $arrConf);
 	if(is_array($resultChangePass) && isset($resultChangePass['result']) && $resultChangePass['result']){
 	    $smarty->assign("mb_title", _tr("Information").":");
 	    $messageChangePassword = "<br/>"._tr("Password has been updated.");
-	    $_POST["fpbx_password"] = "";
-	    $_POST["fpbx_confir_password"] = "";
+	    $_POST["ipbx_password"] = "";
+	    $_POST["ipbx_confirm_passwrod"] = "";
 	}else{
 	    $smarty->assign("mb_title", _tr("Error").":");
 	    $messageChangePassword = "<br/>"._tr("Password has not been updated.");
@@ -210,16 +210,16 @@ function updateAdvancedSecuritySettings($smarty, $module_name, $local_templates_
     return $content;
 }
 
-function validatePassword($fpbx_password){
+function validatePassword($ipbx_password){
     $patron = '/^[a-zA-Z0-9-@=_!<> .|&]+$/';
-    $result = preg_match($patron, $fpbx_password);
-    if(trim($fpbx_password) != '' && $result)
+    $result = preg_match($patron, $ipbx_password);
+    if(trim($ipbx_password) != '' && $result)
 	return true;
     return false;
 }
 
-function validateConfirmationPassword($fpbx_password, $fpbx_confir_password){
-    if($fpbx_password == $fpbx_confir_password)
+function validateConfirmationPassword($ipbx_password, $ipbx_confirm_passwrod){
+    if($ipbx_password == $ipbx_confirm_passwrod)
       return true;
     return false;
 }
@@ -227,7 +227,7 @@ function validateConfirmationPassword($fpbx_password, $fpbx_confir_password){
 function createFieldForm()
 {
     $arrFields = array(
-	     "status_fpbx_frontend"    => array ("LABEL"                  => _tr('Enable direct access (Non-embedded) to IssabelPBX'),
+	     "status_ipbx_frontend"    => array ("LABEL"                  => _tr('Enable direct access (Non-embedded) to IssabelPBX'),
 						"REQUIRED"               => "no",
 						"INPUT_TYPE"             => "CHECKBOX",
 						"INPUT_EXTRA_PARAM"      => "",
@@ -241,14 +241,14 @@ function createFieldForm()
                         "VALIDATION_TYPE"        => "text",
                         "VALIDATION_EXTRA_PARAM" => "",
                            ),
-            "fpbx_password"	      => array ("LABEL"                  => _tr("Database and Web Administration IssabelPBX Password"),
+            "ipbx_password"	      => array ("LABEL"                  => _tr("Database and Web Administration IssabelPBX Password"),
 						"REQUIRED"               => "no",
 						"INPUT_TYPE"             => "PASSWORD",
 						"INPUT_EXTRA_PARAM"      => "",
 						"VALIDATION_TYPE"        => "",
 						"VALIDATION_EXTRA_PARAM" => ""
                                                ),
-            "fpbx_confir_password"    => array ("LABEL"                  => _tr("Password Confirmation"),
+            "ipbx_confirm_passwrod"    => array ("LABEL"                  => _tr("Password Confirmation"),
 						"REQUIRED"               => "no",
 						"INPUT_TYPE"             => "PASSWORD",
 						"INPUT_EXTRA_PARAM"      => "",
@@ -263,8 +263,8 @@ function getAction()
 {
     if(getParameter("update_advanced_security_settings")) //Get parameter by POST (submit)
         return "update_advanced_security_settings";
-    if(getParameter("action")=="update_status_fpbx_frontend")
-        return "update_status_fpbx_frontend";
+    if(getParameter("action")=="update_status_ipbx_frontend")
+        return "update_status_ipbx_frontend";
     if(getParameter("action")=="update_status_anonymous_sip")
         return "update_status_anonymous_sip";
     else
