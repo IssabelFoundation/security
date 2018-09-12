@@ -19,8 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoAdvancedSecuritySettings.class.php,v 1.1 2011-05-13 11:05:31 Estefanía Morán Meza emoran@palosanto.com Exp $ */
-  
+  $Id: paloSantoChangePassword.class.php, Wed 12 Sep 2018 07:34:42 PM EDT, nicolas@issabel.com
+  */  
   
 class paloSantoAdvancedSecuritySettings{
     var $_DB;
@@ -131,7 +131,7 @@ class paloSantoAdvancedSecuritySettings{
     function isActivatedAnonymousSIP()
     {
         $bValorPrevio = TRUE;   // allowguest es yes hasta encontrar seteo
-        foreach (file('/etc/asterisk/sip_general_custom.conf') as $sLinea) {
+        foreach (file('/etc/asterisk/sip_general_additional.conf') as $sLinea) {
             $regs = NULL;
             if (preg_match('/^allowguest\s*=\s*(\S+)$/', trim($sLinea), $regs)) {
                 $bValorPrevio = in_array(strtolower($regs[1]), array('yes', '1', 'true'));
