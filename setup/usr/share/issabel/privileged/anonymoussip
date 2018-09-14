@@ -20,9 +20,11 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: anonymoussip.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: anonymoussip.php, Fri 14 Sep 2018 12:01:47 PM EDT, nicolas@issabel.com
 */
 require_once 'Console/Getopt.php';
+
+define('PASSWD_PATH', '/etc/issabel.conf');
 
 // Parse command-line options
 $opt = Console_Getopt::getopt($argv, '', array(
@@ -50,31 +52,65 @@ function error_exit($sMsg, $errorcode = 1)
 
 function action_enableAnonymous($opt, $bEnable, $bExplicitSet)
 {
-	$lineas = array();
+    $lineas = array();
     $bEncontrado = FALSE;   // was allowguest found?
     $bValorPrevio = TRUE;   // previous value?
     foreach (file('/etc/asterisk/sip_general_additional.conf') as $sLinea) {
-    	$regs = NULL;
+        $regs = NULL;
         if (preg_match('/^allowguest\s*=\s*(\S+)$/', trim($sLinea), $regs)) {
-    		$bEncontrado = TRUE;
+            $bEncontrado = TRUE;
             $bValorPrevio = in_array(strtolower($regs[1]), array('yes', '1', 'true'));
             $sLinea = "allowguest=".($bEnable ? 'yes' : 'no')."\n";
-    	}
+        }
         $lineas[] = $sLinea;
     }
     if ($bValorPrevio == $bEnable) return TRUE;
     if ($bEncontrado && !$bExplicitSet) return TRUE;
     if (!$bEncontrado) $lineas[] = "allowguest=".($bEnable ? 'yes' : 'no')."\n";
-    if (FALSE === file_put_contents('/etc/asterisk/sip_general_custom.conf', $lineas))
+    if (FALSE === file_put_contents('/etc/asterisk/sip_general_additional.conf', $lineas)) {
         return FALSE;
+    }
     
+    updateMysql($bEnable);
+
     $output = $retval = NULL;
     exec("/sbin/service asterisk status", $flag, $status);
     if($status==0){
         exec('/sbin/service asterisk reload > /dev/null 2>&1', $output, $retval);
         return ($retval == 0);
-    }else
+    } else {
         return true;
+    }
+}
+
+function updateMysql($bEnable) {
+
+    foreach (file(PASSWD_PATH) as $s) {
+        $regs = NULL;
+        if (preg_match('/^mysqlrootpwd\s*=\s*(.+)$/', trim($s), $regs)) {
+            $sMysqlRootPass = $regs[1];
+           break;
+        }
+    }
+
+    if (is_null($sMysqlRootPass)) {
+        return;
+    }
+
+    $value = $bEnable ? 'yes' : 'no';
+
+    try {
+        $conn = new PDO('mysql:host=localhost;dbname=asterisk', 'root', $sMysqlRootPass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ 
+        $query = "UPDATE sipsettings SET data='$value' WHERE keyword='allowguest'";
+        $sth = $conn->query($query);
+        $sth = NULL;
+        $conn = NULL;
+    } catch (PDOException $e) {
+        return;
+    }
 
 }
+
 ?>
