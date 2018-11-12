@@ -1,25 +1,27 @@
 <?php
-  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
-  Codificación: UTF-8
-  +----------------------------------------------------------------------+
-  | Issabel version 1.4-2                                               |
-  | http://www.issabel.org                                               |
-  +----------------------------------------------------------------------+
-  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
-  +----------------------------------------------------------------------+
-  | The contents of this file are subject to the General Public License  |
-  | (GPL) Version 2 (the "License"); you may not use this file except in |
-  | compliance with the License. You may obtain a copy of the License at |
-  | http://www.opensource.org/licenses/gpl-license.php                   |
-  |                                                                      |
-  | Software distributed under the License is distributed on an "AS IS"  |
-  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
-  | the License for the specific language governing rights and           |
-  | limitations under the License.                                       |
-  +----------------------------------------------------------------------+
-  | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2008-09-11 03:09:47 Jonathan jvega@palosanto.com Exp $ */
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+Codificación: UTF-8
++----------------------------------------------------------------------+
+| Issabel version 1.4-2                                                |
+| http://www.issabel.org                                               |
++----------------------------------------------------------------------+
+| Copyright (c) 2018 Issabel Foundation                                |
+| Copyright (c) 2006 Palosanto Solutions S. A.                         |
++----------------------------------------------------------------------+
+| The contents of this file are subject to the General Public License  |
+| (GPL) Version 2 (the "License"); you may not use this file except in |
+| compliance with the License. You may obtain a copy of the License at |
+| http://www.opensource.org/licenses/gpl-license.php                   |
+|                                                                      |
+| Software distributed under the License is distributed on an "AS IS"  |
+| basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+| the License for the specific language governing rights and           |
+| limitations under the License.                                       |
++----------------------------------------------------------------------+
+| The Initial Developer of the Original Code is PaloSanto Solutions    |
++----------------------------------------------------------------------+
+$Id: index.php, Mon 12 Nov 2018 08:57:22 AM EST, nicolas@issabel.com
+*/
 //include issabel framework
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
@@ -201,6 +203,28 @@ function createFieldForm($pDB,$arrValues = array())
     $protocol_number = $oPort ->getIPProtNumber();
     $arrInterface['ANY'] = _tr('ANY');
     $arrInterfacetmp = $pRules->obtener_nombres_interfases_red();
+
+    $vlan_dictionary = array();
+    $vlan_dictionary['eth0.100']='WAN';
+    $vlan_dictionary['eth0.200']='LAN';
+
+    $hideNic=array();
+    foreach($arrInterfacetmp as $dev=>$name) {
+        if(preg_match("/\./",$dev)) {
+            // if vlan, hide parent/real nic
+            $parts = preg_split("/\./",$dev);
+            $hideNic[] = $parts[0];
+        } else if(preg_match("/^dummy/",$dev)) {
+            $hideNic[] = $dev;
+        }
+        if($dev==$name) {
+            if(isset($vlan_dictionary[$dev])) $arrInterfacetmp[$dev]=$vlan_dictionary[$dev];
+        }
+    }
+    foreach($hideNic as $nic) {
+        unset($arrInterfacetmp[$nic]);
+    }
+
     foreach($arrInterfacetmp as $key => $value)
         $arrInterface[$key] = $value;
     $arrTarget    = array("ACCEPT" => _tr("ACCEPT"), "DROP" => _tr("DROP"), "REJECT" => _tr("REJECT"));
