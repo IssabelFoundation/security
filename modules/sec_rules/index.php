@@ -20,9 +20,8 @@ Codificación: UTF-8
 +----------------------------------------------------------------------+
 | The Initial Developer of the Original Code is PaloSanto Solutions    |
 +----------------------------------------------------------------------+
-$Id: index.php, Mon 12 Nov 2018 08:57:22 AM EST, nicolas@issabel.com
+$Id: index.php, Mon 12 Nov 2018 09:51:13 AM EST, nicolas@issabel.com
 */
-//include issabel framework
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 include_once "libs/paloSantoDB.class.php";
@@ -688,8 +687,17 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
     }
     $oGrid->setColumns($arrColumns);
 
+
+    $vlan_dictionary = array();
+    $vlan_dictionary['eth0.100']='WAN';
+    $vlan_dictionary['eth0.200']='LAN';
+ 
     if(is_array($arrResult) && $total>0) {
         foreach($arrResult as $key => $value) {
+
+            $value_in  = isset($vlan_dictionary[$value[eth_in]])?$vlan_dictionary[$value[eth_in]]:$value[eth_in];
+            $value_out  = isset($vlan_dictionary[$value[eth_out]])?$vlan_dictionary[$value[eth_out]]:$value[eth_out];
+
             if(!$first_time){
                 $arrTmp[0] = "<input type='checkbox' name='id_".$value['id']."' />";
                 $arrTmp[1] = "<div id='div_$value[id]' style='width: 22px; font-size: 14pt;color:#E35332;float:left;text-align:right'>$value[rule_order] </div>";
@@ -700,15 +708,15 @@ function reportRules($smarty, $module_name, $local_templates_dir, &$pDB, $arrCon
             if($value['traffic'] == "INPUT") {
                 $image = "modules/$module_name/images/fw_input.gif";
                 $title = _tr("INPUT");
-                $arrTmp[4] = _tr("IN").": $value[eth_in]";
+                $arrTmp[4] = _tr("IN").": $value_in";
             } elseif ($value['traffic'] == "OUTPUT") {
                 $image = "modules/$module_name/images/fw_output.gif";
                 $title = _tr("OUTPUT");
-                $arrTmp[4] = _tr("OUT").": $value[eth_out]";
+                $arrTmp[4] = _tr("OUT").": $value_out]";
             } else {
                 $image = "modules/$module_name/images/fw_forward.gif";
                 $title = _tr("FORWARD");
-                $arrTmp[4] = _tr("IN").":  $value[eth_in]<br />"._tr("OUT").": $value[eth_out]";
+                $arrTmp[4] = _tr("IN").":  $value_in<br />"._tr("OUT").": $value_out";
             }
 
             $arrTmp[2] = "<a><img src='$image' border=0 title='"._tr($title)."'</a>";
@@ -947,8 +955,17 @@ function changeOtherPage($pDB, $module_name)
         if(count($rule)!=0)
             $correct = true;
     }
+
+    $vlan_dictionary = array();
+    $vlan_dictionary['eth0.100']='WAN';
+    $vlan_dictionary['eth0.200']='LAN';
+
     if($correct){
         if(is_array($rule)){
+
+            $rule_in  = isset($vlan_dictionary[$rule[eth_in]])?$vlan_dictionary[$rule[eth_in]]:$rule[eth_in];
+            $rule_out  = isset($vlan_dictionary[$rule[eth_out]])?$vlan_dictionary[$rule[eth_out]]:$rule[eth_out];
+
             $Exito1 = $pRules->updateOrder($actual_id,$rule["rule_order"]);
             $Exito2 = $pRules->updateOrder($rule["id"],$actual_order);
             $mensaje = _tr("You have made changes to the definition of firewall rules, for this to take effect in the system press the next button");
@@ -959,15 +976,15 @@ function changeOtherPage($pDB, $module_name)
                 if($rule['traffic'] == "INPUT"){
                     $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_input.gif";
                     $arrayResult["traffic"]["title"] = _tr("INPUT");
-                    $arrayResult["interface"] = _tr("IN").": $rule[eth_in]";
+                    $arrayResult["interface"] = _tr("IN").": $rule_in";
                 }elseif($rule['traffic'] == "OUTPUT"){
                     $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_output.gif";
                     $arrayResult["traffic"]["title"] = _tr("OUTPUT");
-                    $arrayResult["interface"] = _tr("OUT").": $rule[eth_out]";
+                    $arrayResult["interface"] = _tr("OUT").": $rule_out";
                 }else{
                     $arrayResult["traffic"]["image"] = "modules/$module_name/images/fw_forward.gif";
                     $arrayResult["traffic"]["title"] = _tr("FORWARD");
-                    $arrayResult["interface"] = _tr("IN").":  $rule[eth_in]<br />"._tr("OUT").": $rule[eth_out]";
+                    $arrayResult["interface"] = _tr("IN").":  $rule_in<br />"._tr("OUT").": $rule_out";
                 }
                 if($rule['target'] == "ACCEPT"){
                     $arrayResult["target"]["image"] = "modules/$module_name/images/target_accept.gif";
