@@ -372,7 +372,7 @@ function F2BUpdateJails(&$pDB) {
 
         if($jail=='apache') {
             $dojails = array  ( 'apache-auth','apache-badbots','apache-botsearch','apache-fakegooglebot',
-                                'apache-modsecurity','apache-nohome','apache-noscript','apache-overflows', 'apache-shellshock');
+                                'apache-modsecurity','apache-nohome','apache-noscript','apache-overflows', 'apache-shellshock', 'issabel-gui');
             foreach($dojails as $individualjail) {
                 $finaldatos[$individualjail]=$conf;
             }
