@@ -50,6 +50,7 @@ mv setup/usr/share/issabel/privileged/*  $RPM_BUILD_ROOT%{_datadir}/issabel/priv
 rmdir setup/usr/share/issabel/privileged
 
 chmod +x setup/updateDatabase
+chmod +x setup/reloadIssabelconf
 
 # Crontab for portknock authorization cleanup
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
@@ -65,7 +66,8 @@ chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/issabel.conf
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/
 cp setup/etc/fail2ban/filter.d/asterisk-ami.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d
 chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
-
+cp setup/etc/fail2ban/filter.d/issabel-gui.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d
+chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/issabel-gui.conf
 
 # Startup service for portknock
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
@@ -104,13 +106,15 @@ preversion=`cat $pathModule/preversion_%{modname}.info`
 rm $pathModule/preversion_%{modname}.info
 
 if [ $1 -eq 1 ]; then #install
-  # The installer database
+    # The installer database
     issabel-dbprocess "install" "$pathModule/setup/db"
+    $pathModule/setup/reloadIssabelconf install
 elif [ $1 -eq 2 ]; then #update
-   # The update database
-      $pathModule/setup/checkFields "$preversion" "$pathModule"
-      issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
-      $pathModule/setup/updateDatabase "$preversion"
+    # The update database
+    $pathModule/setup/checkFields "$preversion" "$pathModule"
+    issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
+    $pathModule/setup/updateDatabase "$preversion"
+    $pathModule/setup/reloadIssabelconf upgrade
 fi
 
 # The installer script expects to be in /tmp/new_module
@@ -154,6 +158,7 @@ fi
 %defattr(644, root, root)
 %{_sysconfdir}/cron.d/issabel-portknock.cron
 %{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
+%{_sysconfdir}/fail2ban/filter.d/issabel-gui.conf
 %defattr(0755, root, root)
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock

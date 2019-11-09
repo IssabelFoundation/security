@@ -169,5 +169,97 @@ class IssabelF2BService {
         return $returncode;
     }
 
+    function F2BUpdateJails(&$pDB) {
+
+    $ini_file = "/etc/fail2ban/jail.d/issabel.conf";
+    $datosini = parse_ini_file($ini_file,true);
+
+    $iJails     = new IssabelF2BService($pDB);
+    $arrResult = $iJails->obtainJails();
+    $dbdatos = array();
+    $finaldatos = array();
+
+    foreach($arrResult as $idx => $datos) {
+        $dbdatos[$datos['name']]['maxretry']=$datos['maxretry'];
+        $dbdatos[$datos['name']]['bantime']=$datos['bantime'];
+        $dbdatos[$datos['name']]['ignoreip']=$datos['ignoreip'];
+        $dbdatos[$datos['name']]['enabled']=$datos['enabled'];
+    }
+
+    foreach($dbdatos as $jail => $conf) {
+
+        $conf['bantime'] = $conf['bantime'] * 60 * 60;
+
+        if($jail=='apache') {
+            $dojails = array  ( 'apache-auth','apache-badbots','apache-botsearch','apache-fakegooglebot',
+                                'apache-modsecurity','apache-nohome','apache-noscript','apache-overflows', 'apache-shellshock', 'issabel-gui');
+            foreach($dojails as $individualjail) {
+                $finaldatos[$individualjail]=$conf;
+            }
+        } else if($jail=='postfix') {
+            $dojails = array('postfix','postfix-sasl');
+            foreach($dojails as $individualjail) {
+                $finaldatos[$individualjail]=$conf;
+            }
+        } else if($jail=='sshd') {
+            $dojails = array('sshd','sshd-ddos');
+            foreach($dojails as $individualjail) {
+                $finaldatos[$individualjail]=$conf;
+            }
+        } else if($jail=='asterisk') {
+            $dojails = array('asterisk','asterisk-ami');
+            foreach($dojails as $individualjail) {
+                $finaldatos[$individualjail]=$conf;
+            }
+
+        } else {
+            $finaldatos[$jail]=$conf;
+        }
+
+    }
+    $finalini=array();
+    foreach($datosini as $section => $conf) {
+        if(isset($finaldatos[$section])) {
+             $finalini[$section]=array_merge($conf,$finaldatos[$section]);
+        }
+    }
+
+    $this->write_php_ini($finalini,$ini_file);
+
+    exec('/usr/bin/issabel-helper fb_client reload', $respuesta, $retorno);
+
+    }
+
+    function write_php_ini($array, $file) {
+        $res = array();
+        foreach($array as $key => $val) {
+            if(is_array($val)) {
+                $res[] = "[$key]";
+                foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : ''.$sval.'');
+            } else {
+                $res[] = "$key = ".(is_numeric($val) ? $val : ''.$val.'');
+            }
+        }
+        $this->safefilerewrite($file, implode("\r\n", $res));
+    }
+
+    function safefilerewrite($fileName, $dataToSave) {
+        if ($fp = fopen($fileName, 'w')) {
+            $startTime = microtime(TRUE);
+            do {
+                $canWrite = flock($fp, LOCK_EX);
+                // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
+                if(!$canWrite) usleep(round(rand(0, 100)*1000));
+            } while ((!$canWrite)and((microtime(TRUE)-$startTime) < 5));
+    
+            //file was locked so now we can store information
+            if ($canWrite) {
+                fwrite($fp, $dataToSave);
+                flock($fp, LOCK_UN);
+            }
+            fclose($fp);
+        }
+    }
+
 }
 ?>

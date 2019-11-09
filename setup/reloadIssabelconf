@@ -1,0 +1,20 @@
+#!/usr/bin/php
+<?php
+
+$comando = $argv[1];
+
+$documentRoot = "/var/www/html";
+$databasePath = "/var/www/db";
+include_once "$documentRoot/libs/paloSantoDB.class.php";
+include_once "$documentRoot/modules/sec_fb_admin/libs/IssabelF2Bservice.class.php";
+
+$pDB = new paloDB("sqlite3:///$databasePath/iptables.db");
+$iJails = new IssabelF2BService($pDB);
+
+if($comando=='install') {
+    $iJails->creaTablaSiNoExiste();
+} else 
+if($comando=='upgrade') {
+    $iJails->F2BUpdateJails($pDB);
+}
+
