@@ -1,10 +1,11 @@
 <?php
-  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.6-6                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,41 +19,21 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  | Translate by: Haamed Kouhfallah                                      |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.1 2010-07-21 01:08:56 Bruno Macias bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
-"Host Name" => "نام هاست",
-"Remote SMTP Delivery" => "SMTP تحويل از راه دور از طريق پروتکل",
-"Remote SMTP Server" => "SMTP سرور کنترل از راه دور",
-"Port" => "درگاه",
-"Username" => "Username",
-"Password" => "Password",
-"Enable" => "فعال سازي",
-"Disable" => "غيرفعال سازي",
-"Enabled" => "فعال سازي شده",
-"Disabled" => "غيرفعال سازي شده",
-"Save" => "ذخيره/به روز",
-"Status" => "وضعيت",
-"Result transaction" => "نتيجه تراکنش",
-"Configured successful" => "تنظيمات با موفقيت انجام شد",
-"Autentification" => "Authentication",
-"Invalid file extension.- It must be pem" => "Invalid file extension.- It must be pem",
-"Message Remote SMTP Server" => "<p>The parameter 'Domain' specifies the default host to send mail. In the case of SMTP, specify a domain, host, [host] or [address]; the form [host] turns off MX lookups.<br /><br />
-            Domain = [gateway.my.domain]<br />
-            Domain = uucphost<br />
-            Domain = [an.ip.add.ress]</p>",
-"Message Remote Autentification" => "This option allows the authentication with certificates.",
-"Message Remote SMTP Cert" => "To enable the certificates option is neccesary to specify the required fields",
-"OTHER" => "OTHER",
-"SMTP Server" => "SMTP Server",
-"Domain" => "Domain",
-"TLS Enable" => "TLS Enable",
-"Ex" => "Ex",
-"Failed to connect to server" => "Failed to connect to server",
-"Failed to send hello command" => "Failed to send hello command",
-"Failed to start TLS" => "Failed to start TLS",
-"Authenticate not accepted from server" => "Authenticate not accepted from server",
-"Authenticate Error, TLS must be activated" => "Authenticate Error, TLS must be activated",
+"Jail" => "زندان",
+"IP" => "آی پی",
+"Fail2Ban Banned IPs" => "آی پی های بسته شده",
+"Unbanned correctly" => "به درستی آزاد شد",
+"Unban" => "آزاد شود",
+"Error" => "خطا",
+"Name" => "نام",
+"The following fields contain errors" => "فیلد های زیر دارای خطا هستند",
+"Validation Error" => "خطا در اعتبار سنجی",
 );
 ?>
