@@ -194,22 +194,30 @@ class IssabelF2BService {
             $dojails = array  ( 'apache-auth','apache-badbots','apache-botsearch','apache-fakegooglebot',
                                 'apache-modsecurity','apache-nohome','apache-noscript','apache-overflows', 'apache-shellshock', 'issabel-gui');
             foreach($dojails as $individualjail) {
-                $finaldatos[$individualjail]=$conf;
+                if(file_exists("/etc/fail2ban/filter.d/${individualjail}.conf")) {
+                    $finaldatos[$individualjail]=$conf;
+                }
             }
         } else if($jail=='postfix') {
             $dojails = array('postfix','postfix-sasl');
             foreach($dojails as $individualjail) {
-                $finaldatos[$individualjail]=$conf;
+                if(file_exists("/etc/fail2ban/filter.d/${individualjail}.conf")) {
+                    $finaldatos[$individualjail]=$conf;
+                }
             }
         } else if($jail=='sshd') {
             $dojails = array('sshd','sshd-ddos');
             foreach($dojails as $individualjail) {
-                $finaldatos[$individualjail]=$conf;
+                if(file_exists("/etc/fail2ban/filter.d/${individualjail}.conf")) {
+                    $finaldatos[$individualjail]=$conf;
+                }
             }
         } else if($jail=='asterisk') {
             $dojails = array('asterisk','asterisk-ami');
             foreach($dojails as $individualjail) {
-                $finaldatos[$individualjail]=$conf;
+                if(file_exists("/etc/fail2ban/filter.d/${individualjail}.conf")) {
+                    $finaldatos[$individualjail]=$conf;
+                }
             }
 
         } else {
