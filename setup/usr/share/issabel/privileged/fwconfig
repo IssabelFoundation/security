@@ -440,7 +440,7 @@ function manageF2B($opt)
 {
     switch ($opt) {
         case 'same':
-            exec("pgrep fail2ban", $output, $return);
+            exec("systemctl -q is-active fail2ban", $output, $return);
             if ($return == 0) {
                 echo "Ok, process is running, restarting\n";
                 //exec("systemctl restart fail2ban", $output, $return);
