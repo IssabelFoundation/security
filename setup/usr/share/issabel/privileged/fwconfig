@@ -411,7 +411,7 @@ PETICION_PK;
                 foreach($subsetcommand as $cmd) {
                     system($cmd,$ret);
                 }
-                $subsetcommand=array();
+                unset($subsetcommand);
             } else {
                 system(implode(' ', $commandParams), $ret);
             }
