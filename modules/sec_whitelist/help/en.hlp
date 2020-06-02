@@ -1,0 +1,12 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>The "White List" option on "Security" menu allows you to define individual IP addresses or Networks to be whitelisted from any possbile Firewall rules you define, including the realtime black list Issabel Guru RBL.</p>
+        <p>Click the "Add" button to add new IP addresses with the format 192.168.1.1 or IP/Subnet with the format 192.168.1.0/24</p>
+        <p>There is no need to "Appy Changes" on the firewall rules when you add or remove entries to the white list</p>
+    </body>
+</html>

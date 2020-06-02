@@ -1,0 +1,12 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>La opción "Lista Blanca" del menú "Seguridad" le permite definir direcciones IP individuales o subredes que tendrás acceso irrestricto al equipo, pasando por alto cualquier regla de Cortafuegos que pueda tener definida y pasando también por alto la lista negra de tiepo real Issabel Guru RBL.</p>
+        <p>Pulse el botón "Agregar" para añadir una dirección IP individual con el formato 192.168.1.1 o bien una IP/máscara de red con el formato 192.168.1.0/24</p>
+        <p>No hay necesidad de "Aplicar Relgas" en el Cortafuegos cada vez que agregue o quite direcciones de la lista blanca.</p>
+    </body>
+</html>

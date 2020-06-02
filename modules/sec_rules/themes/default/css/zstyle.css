@@ -1,0 +1,111 @@
+.fielform  {
+    border-color:#9C9C9C;
+    border-width:thin;
+    color:black;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:12px;
+    height:auto;
+    position:relative;
+    width:303px;
+}
+.sombreado {
+    /*background:none repeat scroll 0 0 white;*/
+    width:22px;
+    font-size:14pt;
+    color:#E35332;
+    float:left;
+    text-align:right;
+}
+.mensajeStatus{
+    margin-left: 5px;
+	margin-top: 2px;
+    /*border: 1px solid #AAA;*/
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    padding-left:10px;
+	padding-right:10px;
+    height:20px;
+    padding-top:2px;
+	width:150px;
+}
+
+.tabForm { margin-top: 10px; }
+
+.editrule, .activate, .deactivate { cursor: pointer; height: 16px;}
+
+#ip_detail { width:50%; }
+
+div.row > div { box-sizing: border-box !important; }
+
+.newrecordtable {
+   width:100%;
+   padding-top:10px;
+   padding-bottom:10px;
+}
+
+.newrecordtable > tbody > tr > td {
+   padding-top:10px;
+   padding-bottom:10px;
+}
+
+#rulestable > tbody > tr >td,
+#geoiptable > tbody > tr >td {
+  font-size:.8em;
+  text-align: left;
+}
+
+body.waiting,
+body.waiting a:hover,
+body.waiting * {
+  cursor: progress !important;
+}
+
+#toast-container > div {
+  opacity:1;
+}
+
+
+.applyrules {
+  animation: glowing 3s linear infinite;
+  border:1px solid #d4d4d4;
+}
+
+@keyframes glowing {
+  0% { transition: 1s ease-in-out; background: #ffffff; }
+  25% { transition: 1s ease-in-out; background: #dfff7f; }
+  50% { transition: 1s ease-in-out; background: #dfff7f; }
+  100% { transition: 1s ease-in-out; background: #fcfdff;}
+}
+
+.frm-control {
+  display: block;
+  width: 100%;
+  height: 31px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -moz-transition: border-color ease-in-out .15s, -moz-box-shadow ease-in-out .15s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  float:left;
+}
+
+.frm-control:focus {
+  border-color: #c8cdd7;
+  outline: 0;
+}
+
+.frm-slash {
+  float:left;
+  line-height: 2.8em;
+  height: 2.8em;
+}
