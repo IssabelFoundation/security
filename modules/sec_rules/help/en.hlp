@@ -9,11 +9,13 @@
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules1.png" border="0" />
         <p>Figure 1</p></div>
         <br />
-	<p>To use this module the firewall must be enabled with the rules that appear by default. It can be done by clicking on "Activate Firewall" button. Once the firewall is enabled, you can create, delete, edit, disable and reorder the iptables rules.</p>
+	<p>To protect your system, you must enable the firewall by clicking the "Activate Firewall" button. From within this module you can create, delete, edit and disable or enable rules using their respective buttons, or reorder them using drag and drop.</p>
+        <p>Rule evaluation is done from top to bottom. The first rule that matches is evaluated, discarding any further evaluations that might come below. For this reason, rule order is extremely important. For example, if you create a rule that allow traffic from and to anywhere, and put that rule on the top, then any subsequent rule is just ignored and not even evaluated, so you will open up your firewall completely.</p>
+        <p>It is important to mention that Geolocalized rules are evaluated first, before the normal firewall rules. That means that if you create a rule to deny access to some continent, and then you add an individual normal rule to allow some specific IP address from that continent, then that normal rule won't be evaluated as the GeoIP rule denying access matched first. In order to overcome this, you should create an allow GeoIP rule and put it on top, or use the white list modules.</p>
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules2.png" border="0" />
         <p>Figure 2</p></div>
         <br />
-	<p>Every time you create or edit the rules, you have to save the changes. You can do this by clicking on "Save" button that will appear automatically when you modify something. If you don't save the changes the rules won't take effect in the system.</p>
+	<p>Every time you create or edit the rules, you have to apply the changes. You can do this by clicking on "Save" button that will appear automatically when you modify something. If you don't apply the changes the rules won't take effect in the system.</p>
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules_save.png" border="0" />
         <p>Figure 3</p></div>
         <br />
@@ -24,20 +26,20 @@
         <br />
 	<p>The ports used when you select the protocol TCP, UDP, ICMP and IP, are obtained from the module "Define Ports" in the same menu. Therefore, make sure the port you want to use is previously defined if you want to create a new rule.</p>
 	<p>In the source and destination address fields you have to enter the IP with the format <i>x.x.x.x/y</i>, where <i>y</i> is the network mask and should be a number between 0 and 32. If you let the default IP address (0.0.0.0) the netmask will be 0. If you let the netmask in blank it will not be taken into account. To enter a specific IP address, just let in blank the netmask value.</p>
-	<p>Once you created the rule, click on "Save" button and the new rule will appear in the list. Make sure you save the changes so they take effect in the system after creating a new rule.</p>
+	<p>Once you created the rule, click on "Save" button and the new rule will appear in the list. Make sure you apply the changes so they take effect in the system after creating a new rule.</p>
 	<br />       
 	<h2>Editing a Rule</h2>
 	<p>To edit an existing rule, click on the blue notebook icon corresponding to the rule. Here you can modify parameters of the rule.</p>        
         <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_firewallrules_edit.png" border="0" />
         <p>Figure 5</p></div>
 	<h2>Deleting a Rule</h2>
-	<p>To delete a rule just select the checkbox corresponding to the rule at the left side and click on "Delete" button. Make sure you save the changes so they take effect in the system after deleting a rule.</p>        
+	<p>To delete a rule just select the checkbox corresponding to the rule at the left side and click on "Delete" button. Make sure you apply the changes so they take effect in the system after deleting a rule.</p>        
         <br />
 	<h2>Reordering the Rules</h2>
-	<p>You can modify the order of the rules by clicking on the blue arrows in the column Order. If you click on the up arrow of a rule, this rule will go up one position and the one which was in that position will go down. If you click on the down arrow of a rule, this rule will go down one position and the one which was in that position will go up. Make sure you save the changes so they take effect in the system after modifying the position of the rules.</p>         
+	<p>You can modify the order of the rules using drag and drop with your mouse. Once that is done, to not forget to Apply Changes for the new rule order to take effect.</p>
 	<br />
 	<h2>Activate / Deactivate a rule</h2>
-	<p>You can activate or deactivate a rule by clicking on the light bulb corresponding to the rule. When it is ON the rule is activated, when it is OFF the rule is deactivated. Make sure you save the changes so they take effect in the system after doing this action.</p>
+	<p>You can activate or deactivate a rule by clicking on the switch corresponding to the rule. When it is ON (green) the rule is activated, when it is OFF (gray) the rule is deactivated. Make sure you save the changes so they take effect in the system after doing this action.</p>
 <br />
     </body>
 </html>

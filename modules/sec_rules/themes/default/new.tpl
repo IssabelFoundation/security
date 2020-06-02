@@ -1,15 +1,9 @@
-<table width="99%" border="0" cellspacing="0" cellpadding="4" align="center">
-    <tr class="letra12">
-        <td align="left"><input class="button" type="submit" name="save" value="{$SAVE}">&nbsp; <input class="button" type="submit" name="cancel" value="{$CANCEL}"></td>
-        <td align="right" nowrap><span class="letra12"><span  class="required">*</span> {$REQUIRED_FIELD}</span></td>
-    </tr>
-</table>
-
-<div class="tabForm" style="font-size: 16px; height: auto">
-    <div id="ip_detail" style="display: inline; float: left;">
+<div class='container-fluid' style='box-sizing: border-box;'>
+<div class="row">
+    <div id="ip_detail" class='col-md-6'>
         <fieldset class="fielform">
         <legend><strong>{$ip_detail}</strong></legend>
-        <table style="font-size: 16px;" width="100%" cellspacing="0" cellpadding="8">
+        <table class='newrecordtable'>
             <!--*****************************************-->
             <tr class="letra12">
                 <td align="left" width="50%"><b>{$traffic_label}:</span></b></td>
@@ -25,20 +19,20 @@
             </tr>
             <tr class="letra12" id="id_source">
                 <td align="left"><b>{$ip_source.LABEL}:</b></td>
-                <td align="left">{$ip_source.INPUT}&nbsp;/&nbsp;{$mask_source.INPUT}</td>
+                <td align="left">{$ip_source.INPUT} <div class='frm-slash'>&nbsp;/&nbsp;</div> {$mask_source.INPUT}</td>
             </tr>
             <tr class="letra12" id="id_destin">
                 <td align="left"><b>{$ip_destin.LABEL}:</b></td>
-                <td align="left">{$ip_destin.INPUT}&nbsp;/&nbsp;{$mask_destin.INPUT}</td>
+                <td align="left">{$ip_destin.INPUT} <div class='frm-slash'>&nbsp;/&nbsp;</div> {$mask_destin.INPUT}</td>
             </tr>
         </table>
         </fieldset>
     </div>
-    <div style="display: inline; float: left;">
+    <div class='col-md-6'>
         <div id="protocol_detail">
             <fieldset class="fielform">
             <legend><strong>{$protocol_detail}</strong></legend>
-            <table style="font-size: 16px;" width="100%" cellspacing="0" cellpadding="8">
+            <table class='newrecordtable'>
                 <!--*****************************************-->
                 <tr class="letra12">
                     <td align="left" width="50%"><b>{$protocol_label}:</b></td>
@@ -79,6 +73,11 @@
             </table>
             </fieldset>
         </div>
+    </div>
+  </div>
+  <div class='row'> <hr/> </div>
+  <div class='row'>
+    <div class='col-md-12'>
         <div id="action_detail" >
             <fieldset class="fielform">
             <legend><strong>{$action_detail}</strong></legend>
@@ -104,5 +103,16 @@
             </fieldset>
         </div>
     </div>
- </div>
-<div style='height:500px;'>&nbsp;</div>
+  </div>
+  <div class='row'> <hr/> </div>
+  <div class='row'>
+    <div class='col-md-6'>
+    </div>
+    <div class='col-md-6' style='text-align:right;'>
+      <input class="button" type="submit" name="save" value="{$SAVE}">&nbsp; <input class="button" type="submit" name="cancel" value="{$CANCEL}">
+    </div>
+  </div>
+
+
+<!--div style='height:500px;'>&nbsp;</div-->
+</div>

@@ -39,7 +39,7 @@ $arrLangModule=array(
 "ID" => "ID",
 "New Rule" => "New Rule",
 "Delete" => "Delete",
-"Are you sure you wish to delete the Rule" => "Are you sure you wish to delete the Rule",
+"Are you sure you wish to delete the Rule?" => "Are you sure you wish to delete the Rule?",
 "Orden" => "Orden",
 "Filter Example" => "Filter Example",
 "Rule" => "Rule",
@@ -97,6 +97,8 @@ $arrLangModule=array(
 "MESSAGE"=>"MESSAGE",
 "IP DETAILS"=>"IP DETAILS",
 "PROTOCOL DETAILS"=>"PROTOCOL DETAILS",
-"ACTION DETAIL"=>"ACTION DETAIL"
+"ACTION DETAIL"=>"ACTION DETAIL",
+"No rules were selected" => "No rules were selected",
+"%d rules were deleted" => "%d rules were deleted"
 );
 ?>

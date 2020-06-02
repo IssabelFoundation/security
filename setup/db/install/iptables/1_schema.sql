@@ -28,6 +28,11 @@ CREATE TABLE tmp_execute(
     first_time          integer       not null
 );
 
+CREATE TABLE whitelist {
+    ip_address TEXT NOT NULL UNIQUE, 
+    note TEXT
+}
+
 INSERT INTO port(name,protocol,details,comment) VALUES ('HTTP','TCP','80','80');
 INSERT INTO port(name,protocol,details,comment) VALUES ('HTTPS','TCP','443','443');
 INSERT INTO port(name,protocol,details,comment) VALUES ('POP3','TCP','110','110');

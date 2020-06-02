@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoRules.class.php,v 1.2 2010-12-20 03:09:47 Alberto Santos asantos@palosanto.com Exp $ */
+  $Id: paloSantoRules.class.php, Thu 21 May 2020 08:22:55 PM EDT, nicolas@issabel.com
+*/
 
 require_once "libs/paloSantoNetwork.class.php";
 
@@ -85,7 +87,7 @@ class paloSantoRules {
      */
     function ObtainNumRules()
     {
-        $query = "SELECT COUNT(*) FROM Filter ";
+        $query = "SELECT COUNT(*) FROM filter WHERE protocol<>'GEOIP'";
         
         $result = $this->_DB->getFirstRowQuery($query);
         if($result == FALSE)
@@ -95,6 +97,20 @@ class paloSantoRules {
         }
         return $result[0];
     }
+
+    function ObtainNumRulesGEOIP()
+    {
+        $query = "SELECT COUNT(*) FROM filter WHERE protocol='GEOIP'";
+        
+        $result = $this->_DB->getFirstRowQuery($query);
+        if($result == FALSE)
+        {
+            $this->errMsg = $this->_DB->errMsg;
+            return 0;
+        }
+        return $result[0];
+    }
+
 
      /**
      * Function that returns all the rules in the database that are set as activated (1) order by the field rule_order
@@ -135,6 +151,7 @@ class paloSantoRules {
 
     /**
      * Function that returns all the rules in the database order by the field rule_order
+     * excluding GeoIP rules
      *
      * @param integer    $limit         Value to limit the result of the query
      * @param integer    $offset        Value for the offset of the query
@@ -143,7 +160,7 @@ class paloSantoRules {
      */
     function ObtainRules($limit,$offset)
     {
-        $query   = "SELECT * FROM  filter ORDER BY rule_order LIMIT ? OFFSET ?";
+        $query   = "SELECT * FROM  filter WHERE protocol<>'GEOIP' ORDER BY rule_order LIMIT ? OFFSET ?";
         $arrParam = array($limit,$offset);
         $result = $this->_DB->fetchTable($query, true, $arrParam);
         if($result == FALSE)
@@ -152,6 +169,54 @@ class paloSantoRules {
             return array();
         }
         return $result;
+    }
+
+    /**
+     * Same as above, but listing only GEOIP rules
+     */
+    function ObtainRulesGEOIP($limit,$offset)
+    {
+        $this->fixGEOIPOrder();
+
+        $query   = "SELECT * FROM  filter WHERE protocol='GEOIP' ORDER BY rule_order LIMIT ? OFFSET ?";
+        $arrParam = array($limit,$offset);
+        $result = $this->_DB->fetchTable($query, true, $arrParam);
+        if($result == FALSE)
+        {
+            $this->errMsg = $this->_DB->errMsg;
+            return array();
+        }
+        return $result;
+    }
+
+    /**
+     * Auxiliario function to migrate previous versions system with no distintciton on GEOIP rule order
+     * to update to the new scheme, where GEOIP rules start at position 100001 so we can show distinct
+     * GEOIP and normal RULES table, as iptables evaluation order for GeoIP always takes precedences 
+     */
+    function fixGEOIPOrder() {
+        $query = "SELECT * FROM  filter WHERE protocol='GEOIP' AND rule_order > 0 AND rule_order<100000 ORDER BY rule_order";
+        $result = $this->_DB->fetchTable($query, true);
+        if(is_array($result)) {
+            if(count($result)>0) {
+                $i=100000;
+                foreach($result as $key => $value) {
+                    $i++;
+                    $arrParam = array($i, $value['id']);
+                    $query = "UPDATE filter SET rule_order=? WHERE id=?";
+                    $result = $this->_DB->genQuery($query,$arrParam);
+                }
+                $i=0;
+                $query = "SELECT * FROM  filter WHERE protocol<>'GEOIP' AND rule_order > 0 AND rule_order<100000 ORDER BY rule_order";
+                $result = $this->_DB->fetchTable($query, true);
+                foreach($result as $key => $value) {
+                    $i++;
+                    $arrParam = array($i, $value['id']);
+                    $query = "UPDATE filter SET rule_order=? WHERE id=?";
+                    $result = $this->_DB->genQuery($query,$arrParam);
+                }
+            }
+        }
     }
 
     /**
@@ -204,8 +269,14 @@ class paloSantoRules {
         $geoipcountries  = ($arrValues['geoipcountries'] == null)      ? "" : implode(",",$arrValues['geoipcountries']);
         $geoipcontinents = ($arrValues['geoipcontinents'] == null)     ? "" : implode(",",$arrValues['geoipcontinents']);
 
-        $Max = $this->getMaxOrder();
-        $order = 1 + $Max['lastRule'];
+        if($protocol == 'GEOIP') {
+            $max = $this->getMaxOrderGEOIP();
+            //$max['lastRule'] = $max['lastRule'] + 100000;
+        } else {
+            $max = $this->getMaxOrder();
+        }
+
+        $order = 1 + $max['lastRule'];
 
         $query = "INSERT INTO filter(traffic, eth_in, eth_out, ip_source, ip_destiny, protocol, ".
                                     "sport, dport, icmp_type, number_ip, target, rule_order, activated, state, countries, continents) ".
@@ -291,13 +362,13 @@ class paloSantoRules {
     }
 
     /**
-     * Function that returns the maximum number of order of all the rules in the database
+     * Function that returns the maximum number of order of all non GeoIP rules in the database
      *  .
      * @return array     empty in case of an error or an array that contains the maximum order of all rules
      */
     private function getMaxOrder()
     {
-        $query = "SELECT MAX(rule_order) AS lastRule FROM filter";    
+        $query = "SELECT MAX(rule_order) AS lastRule FROM filter WHERE protocol<>'GEOIP'";
         $result = $this->_DB->fetchTable($query, true);
         if($result == FALSE)
         {
@@ -306,6 +377,24 @@ class paloSantoRules {
         }
         return $result[0];
     }
+
+    /**
+     * Function that returns the maximum number of order of all GeoIP rules in the database
+     *  .
+     * @return array     empty in case of an error or an array that contains the maximum order of all rules
+     */
+    private function getMaxOrderGEOIP()
+    {
+        $query = "SELECT MAX(rule_order) AS lastRule FROM filter WHERE protocol='GEOIP'";
+        $result = $this->_DB->fetchTable($query, true);
+        if($result == FALSE)
+        {
+            $this->errMsg = $this->_DB->errMsg;
+            return array();
+        }
+        return $result[0];
+    }
+
 
     /**
      * Function that deletes a rule of the database
@@ -340,6 +429,15 @@ class paloSantoRules {
                 if(!$this->updateOrder($value['id'],$key+1))
                     return false;
         }
+
+        $total = $this->ObtainNumRulesGEOIP();
+        $result = $this->ObtainRulesGEOIP($total,0);
+        foreach($result as $key => $value){
+            if($value['rule_order'] != $key + 1)
+                if(!$this->updateOrder($value['id'],$key+1))
+                    return false;
+        }
+ 
         return $this->updateNotExecutedInSystem();
     }
 
@@ -418,27 +516,12 @@ class paloSantoRules {
         }
         return $this->updateNotExecutedInSystem();
     }
-/*
-    function desactivateAll()
-    {
-        $query = "UPDATE filter SET activated = 0";
-               
-        $result = $this->_DB->genQuery($query);
 
-        if( $result == FALSE )
-        {
-            $this->errMsg = $this->_DB->errMsg;
-            return false;
-        }
-        return true;
-    }
-*/
-
-   /**
-    * Function to check if firewall rules are set
-    *
-    * @return bool     false if no firewall chains are loaded
-    */
+    /**
+     * Function to check if firewall rules are set
+     *
+     * @return bool     false if no firewall chains are loaded
+     */
     function isActive()
     {
         $this->errMsg = '';
@@ -451,9 +534,31 @@ class paloSantoRules {
         return TRUE;
     }
 
+    /**
+     *  Function that resorts all rules after dragging a rule on the table
+     *
+     * @return bool     false if no firewall chains are loaded
+     */
+    function resort($rules,$sum=0)
+    {
+        foreach($rules as $idx=>$data) {
+            $tmpNew = (intval($data['newPosition'])+1+$sum)*-1;
+            $old = intval($data['oldPosition'])+1+$sum;
+
+            $arrParam = array($tmpNew,$old);
+            $query = "UPDATE filter SET rule_order = ? WHERE rule_order = ?";
+            $result = $this->_DB->genQuery($query,$arrParam);
+        }
+
+        $query = "UPDATE filter SET rule_order = rule_order  * -1 WHERE rule_order < 0";
+        fputs($fp,"$query\n");
+        $result = $this->_DB->genQuery($query);
+
+        return $this->updateNotExecutedInSystem();
+    }
 
     /**
-     * Function that sets a new order for an especific rule 
+     * Function that sets a new order for an especific rule, called from method reorder
      *
      * @param string     $id         id of the rule
      * @param string     $order      New order to be set    

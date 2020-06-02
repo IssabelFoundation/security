@@ -36,5 +36,8 @@ $arrLangModule=array(
 "Error" => "Error",
 "The following fields contain errors" => "Los siguientes campos contienen errores",
 "Validation Error" => "Error de Validación",
+"Enable fail2ban" => "Activar fail2ban",
+"Disable fail2ban" => "Desactivar fail2ban",
+"Fail2ban has been activated" => "Fail2ban ha sido activado"
 );
 ?>

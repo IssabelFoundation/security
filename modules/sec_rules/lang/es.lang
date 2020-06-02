@@ -39,7 +39,7 @@ $arrLangModule=array(
 "ID" => "ID",
 "New Rule" => "Nueva Regla",
 "Delete" => "Borrar",
-"Are you sure you wish to delete the Rule" => "Está seguro que desea eliminar la Regla",
+"Are you sure you wish to delete the Rule?" => "Está seguro que desea eliminar la Regla?",
 "Orden" => "Orden",
 "Filter Example" => "Filtro Ejemplo",
 "Rule" => "Regla",
@@ -96,6 +96,12 @@ $arrLangModule=array(
 "MESSAGE"=>"MENSAJE",
 "IP DETAILS"=>"DETALLES DE LA IP",
 "PROTOCOL DETAILS"=>"DETALLES DEL PROTOCOLO",
-"ACTION DETAIL"=>"DETALLE DE LA ACCIÓN"
+"ACTION DETAIL"=>"DETALLE DE LA ACCIÓN",
+"No rules were selected" => "No se seleccionó ninguna regla",
+"%d rules were deleted" => "%d reglas fueron eliminadas",
+"Apply Changes" => "Aplicar Cambios",
+"Countries" => "Países",
+"Continents" => "Continentes",
+"The firewall does not have support for GeoIP Localization" => "El cortafuegos no tiene soporte para localización GeoIP"
 );
 ?>

@@ -3,7 +3,7 @@
 Summary: Issabel Security
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 7
+Release: 8
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
@@ -69,6 +69,10 @@ chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 cp setup/etc/fail2ban/filter.d/issabel-gui.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d
 chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/filter.d/issabel-gui.conf
 
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/action.d/
+cp setup/etc/fail2ban/action.d/iptables-multiport-issabel.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/action.d
+chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/action.d/iptables-multiport-issabel.conf
+
 # Startup service for portknock
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
 cp setup/etc/rc.d/init.d/issabel-portknock $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/
@@ -117,6 +121,27 @@ elif [ $1 -eq 2 ]; then #update
     $pathModule/setup/reloadIssabelconf upgrade
 fi
 
+
+# Create line in jail.local
+if [ -f /etc/fail2ban/jail.local ]; then
+grep "START issabel" /etc/fail2ban/jail.local &>/dev/null
+if [ $? -eq 1 ]; then
+cat >> /etc/fail2ban/jail.local <<'ISSABELJAILLOCAL'
+#START issabel
+[DEFAULT]
+chain=F2B_INPUT
+#END issabel
+ISSABELJAILLOCAL
+fi
+else
+cat >> /etc/fail2ban/jail.local <<'ISSABELJAILLOCAL'
+#START issabel
+[DEFAULT]
+chain=F2B_INPUT
+#END issabel
+ISSABELJAILLOCAL
+fi
+
 # The installer script expects to be in /tmp/new_module
 mkdir -p /tmp/new_module/%{modname}
 cp -r $pathModule/* /tmp/new_module/%{modname}/
@@ -136,6 +161,18 @@ chmod g+w /etc/fail2ban/jail.d
 chown asterisk.asterisk /etc/fail2ban/jail.d/issabel.conf
 systemctl enable fail2ban
 
+if [ $1 -eq 2 ]; then #upgrade
+    %{_datadir}/issabel/privileged/fwconfig --isactive >/dev/null
+    if [ $? -eq 0 ]; then
+        echo "Restarting Firewall"
+        /usr/share/issabel/privileged/fwconfig --flush
+        /usr/share/issabel/privileged/fwconfig --load
+    fi
+fi
+
+
+%postun
+sed -i '/#START issabel/,/#END issabel/d' /etc/fail2ban/jail.local
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -159,6 +196,7 @@ fi
 %{_sysconfdir}/cron.d/issabel-portknock.cron
 %{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 %{_sysconfdir}/fail2ban/filter.d/issabel-gui.conf
+%{_sysconfdir}/fail2ban/action.d/iptables-multiport-issabel.conf
 %defattr(0755, root, root)
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock
