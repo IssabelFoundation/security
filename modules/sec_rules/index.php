@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Fri 05 Jun 2020 11:29:03 AM EDT, nicolas@issabel.com
+  $Id: index.php, Fri 05 Jun 2020 12:38:07 PM EDT, nicolas@issabel.com
 */
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
@@ -720,7 +720,7 @@ function showDataTables($smarty, $module_name, $local_templates_dir, &$pDB, $arr
     $arrLangEscaped = array_map(escapeQuote, $arrLang);
 
     $smarty->assign("ID", $id);
-    $smarty->assign("LANG", $arrLang);
+    $smarty->assign("LANG", $arrLangEscaped);
 
     if($pRules->hasGeoip()==true) {
         $smarty->assign("HASGEOIP", "yes");
