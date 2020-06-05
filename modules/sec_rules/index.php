@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 21 May 2020 08:23:16 PM EDT, nicolas@issabel.com
+  $Id: index.php, Fri 05 Jun 2020 11:29:03 AM EDT, nicolas@issabel.com
 */
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
@@ -704,6 +704,11 @@ function desactivateFirewallJSON($smarty,$module_name,$local_templates_dir,$pDB,
     return $ret;
 }
 
+function escapeQuote($val) {
+   $val = addcslashes($val, '"');
+   return $val;
+}
+
 function showDataTables($smarty, $module_name, $local_templates_dir, &$pDB, $arrConf) {
 
     global $arrLang;
@@ -711,6 +716,8 @@ function showDataTables($smarty, $module_name, $local_templates_dir, &$pDB, $arr
     $pRules = new paloSantoRules($pDB);
     $action = getParameter("action");
     $id     = getParameter("id");
+
+    $arrLangEscaped = array_map(escapeQuote, $arrLang);
 
     $smarty->assign("ID", $id);
     $smarty->assign("LANG", $arrLang);
