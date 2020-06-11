@@ -1,0 +1,103 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 4.0                                             |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: paloSantoRules.class.php,v 1.2 2020-06-20 19:04:47 Rodrigo rodrigo@carmovoip.com.br Exp $ 
+*/
+global $arrLangModule;
+$arrLangModule=array(
+"Rules" => "Regras",
+"New" => "Novo",
+"Traffic" => "Tráfego",
+"Interface IN" => "Entrada",
+"Interface OUT" => "Saida",
+"IP Source" => "Endereço de Origem",
+"IP Destiny" => "Endereço de Destino",
+"ALL" => "Todos",
+"Protocol" => "Protocolo",
+"Target" => "Target",
+"Action" => "Ação",
+"Port Source" => "Porta de Origem",
+"Port Destine" => "Porta de Destino",
+"Type" => "Tipo",
+"ID" => "ID",
+"New Rule" => "Nova Regra",
+"Delete" => "Apagar",
+"Are you sure you wish to delete the Rule" => "Tem certeza de que deseja excluir a Regra",
+"Orden" => "Ordem",
+"Filter Example" => "Exemplo de Filtro",
+"Rule" => "Regra",
+"Activate" => "Ativar",
+"Desactivate" => "Desativar",
+"Rule List" => "Lista de Regra",
+"Source Port" => "Origem da Porta",
+"Destiny Port" => "Destino da Porta",
+"Protocol ICMP Type" => "Protocol ICMP Type",
+"Number Protocol IP" => "Numero de Protocolo IP",
+"Order" => "Ordem",
+"Order/Activated" => "Pedido / Ativado",
+"INPUT" => "ENTRADA",
+"OUTPUT" => "SAIDA",
+"FORWARD" => "FORWARD",
+"ACCEPT" => "ACEITO",
+"DROP" => "BLOQUEAR",
+"REJECT" => "REIJETAR",
+"ANY" => "QUALQUER",
+"The bit masks must be values less than 33" => "As máscaras de bits devem ter valores menores que 33",
+"Error" => "Erro",
+"Validation Error" => "Erro de Validação",
+"The following fields contain errors" => "Os seguintes Campos contêm erros",
+"Edit Rule" => "Editar Regra",
+"Wrong Mask" => "Máscara Incorreta",
+"Up" => "Subir",
+"Down" => "Descer",
+"Successful Change" => "Alteração Feita com Sucesso",
+"Invalid Action" => "Ação Inválida",
+"Execute Rules" => "Execute Regras",
+"Successful Save" => "Salvo com Sucesso",
+"Successful Update" => "Atualizado com Sucesso",
+"Error during execution of rules" => "Erro durante a execução de Regras",
+"Interface" => "Interface",
+"IN" => "ENTRADA",
+"OUT" => "SAÍDA",
+"The rules have been executed in the system" => "As regras foram executadas no sistema",
+"There have been changes and have not been executed in the system" => "Houve alterações e não foram executadas no sistema",
+"Cancel" => "Cancelar",
+"Wrong value for ip" => "Valor incorreto para IP",
+"Save Changes" => "Alterações Salvas",
+"FireWall Rules" => "Regras de Segurança",
+"You have made changes to the definition of firewall rules, for this to take effect in the system press the next button" => "Você fez alterações na definição de regras de firewall. Para que isso entre em vigor no sistema, pressione o botão Avançar.",
+"The firewall is totally desactivated. It is recommended to activate the firewall rules" => "O firewall está desativado no momento. É recomendável sempre ativá-lo",
+"Activate FireWall" => "Ativar Segurança",
+"Desactivate FireWall" => "Desativar Segurança",
+"The firewall has been activated" => "A Segurança foi ativada com Sucesso",
+"The firewall has been desactivated" => "A Segurança foi desativada",
+"The firewall could not be desactivated" => "The firewall could not be deactivated",
+"STATE" => "Situação",
+"Established" => "Estabilizado",
+"Related" => "Ligado",
+"You have to select at least one state" => "Você precisa selecionar pelo menos uma Situação",
+"Details" => "Detalhes",
+"MESSAGE"=>"MESSAGEM",
+"IP DETAILS"=>"DETALHES DO IP",
+"PROTOCOL DETAILS"=>"DETALHES DO PROTOCOLO",
+"ACTION DETAIL"=>"DETALHES DA AÇÃO"
+);
+?>
