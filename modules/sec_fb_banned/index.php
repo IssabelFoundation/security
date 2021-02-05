@@ -59,7 +59,7 @@ function _moduleContent(&$smarty, $module_name)
 function fail2ban_rejected()
 {
 
-    $jails  = array('sshd','asterisk','apache-auth');
+    $jails  = array('sshd','asterisk','apache-auth','issabel-gui');
     $allban = array();
     foreach($jails as $jail) {
         $respuesta = array();
