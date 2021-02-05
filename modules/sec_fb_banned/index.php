@@ -59,34 +59,24 @@ function _moduleContent(&$smarty, $module_name)
 function fail2ban_rejected()
 {
 
-    $respuesta = array();
-    exec('/usr/bin/issabel-helper fb_client status sshd', $respuesta, $retorno);
-    $output = implode(" ",$respuesta);
-    $sshban      = trim($output);
-    //  $sshban = "192.168.1.3 192.168.1.178 192.168.6.28 192.168.216.223 192.168.6.162 192.168.23.41 192.168.9.2";
+    $jails  = array('sshd','asterisk','apache-auth');
+    $allban = array();
+    foreach($jails as $jail) {
+        $respuesta = array();
+        exec('/usr/bin/issabel-helper fb_client status '.$jail, $respuesta, $retorno);
+        $output = implode(" ",$respuesta);
+        $allban[$jail] = trim($output);
+    }
 
-    $respuesta = array();
-    exec('/usr/bin/issabel-helper fb_client status asterisk', $respuesta, $retorno);
-    $output = implode(" ",$respuesta);
-    $asteriskban = trim($output);
-    //  $asteriskban = "192.168.1.3 192.168.1.178 192.168.6.28 192.168.216.223 192.168.6.162 192.168.23.41 192.168.9.2";
-    
     $id=0;    
     $rejected=array();
-    if(strlen($sshban)){
-        $sshbanarr= explode(" ",$sshban);
-        foreach ($sshbanarr as $v)
-        {
-            $rejected[]=array("id"=>$id,"jail"=>"sshd","ip"=>$v);
-            $id++;
-        }
-    }
-    if(strlen($asteriskban)){
-        $asteriskbanarr= explode(" ",$asteriskban);
-        foreach ($asteriskbanarr as $v)
-        {
-            $rejected[]=array("id"=>$id,"jail"=>"asterisk","ip"=>$v);
-            $id++;
+    foreach($allban as $jail=>$content) {
+        if(strlen($content)){
+            $allbanarr = explode(" ",$content);
+            foreach ($allbanarr as $v) {
+                $rejected[]=array("id"=>$id,"jail"=>$jail,"ip"=>$v);
+                $id++;
+            }
         }
     }
     
