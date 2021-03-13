@@ -30,6 +30,7 @@ $opt = Console_Getopt::getopt($argv, '', array(
     'flush',  // Remove all firewall rules from iptables
     'load',   // Load all firewall rules from database
     'isactive',
+    'save_wl',
     'isactivegeoip',
     'add_wl=',
     'remove_wl='
@@ -49,6 +50,8 @@ case '--add_wl':
     exit(add_whitelist($option[1]) ? 0 : 1);
 case '--remove_wl':
     exit(remove_whitelist($option[1]) ? 0 : 1);
+case '--save_wl':
+    exit(generate_save_file() ? 0 : 1);
 }
 error_exit("No action specified (--flush, --load, --geoip or --isactive)\n");
 
@@ -533,7 +536,6 @@ function isactivegeoip() {
 }
 
 function action_isactive() {
-
     exec("/sbin/iptables -nL ISSABEL_INPUT", $output, $return);
     if ($return != 0) {
         echo "ISSABEL FIREWALL disabled\n";
@@ -542,17 +544,40 @@ function action_isactive() {
         echo "ISSABEL FIREWALL enabled\n";
         return TRUE;
     }
- 
 }
 
 function add_whitelist($ip_address) {
    exec("ipset add issabel_whitelist $ip_address", $output, $return);
-   if($output!="") { return 1; } else { return 0; }
+   if($return==1) { 
+       return FALSE; 
+   } else { 
+       generate_save_file();
+       return TRUE; 
+   }
 }
 
 function remove_whitelist($ip_address) {
    exec("ipset del issabel_whitelist $ip_address", $output, $return);
-   if($output!="") { return 1; } else { return 0; }
+   if($return==1) { 
+       return FALSE; 
+   } else { 
+       generate_save_file();
+       return TRUE; 
+   }
+}
+
+function generate_save_file() {
+    file_put_contents("/tmp/nicolito.log","hola\n",FILE_APPEND);
+    $content = "create issabel_whitelist hash:ip family inet hashsize 1024 maxelem 65536\n";
+
+    $ips=`/usr/bin/sqlite3 /var/www/db/iptables.db "select ip_address from whitelist"`;
+    $lineas = preg_split("/\n/",$ips);
+    foreach($lineas as $ip) {
+        if(trim($ip)=="") continue;
+        $content.="add issabel_whitelist $ip\n";
+    }
+    file_put_contents("/etc/sysconfig/ipset.d/issabel_whitelist.set",$content);
+    return 0;
 }
 
 ?>

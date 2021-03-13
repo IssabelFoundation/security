@@ -3,7 +3,7 @@
 Summary: Issabel Security
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 10
+Release: 11
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
@@ -20,6 +20,7 @@ Requires: issabel-portknock
 Requires: net-tools
 Requires: fail2ban-server
 Requires: fail2ban-sendmail
+Requires: ipset-service
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
@@ -160,6 +161,13 @@ chgrp asterisk /etc/fail2ban/jail.d
 chmod g+w /etc/fail2ban/jail.d
 chown asterisk.asterisk /etc/fail2ban/jail.d/issabel.conf
 systemctl enable fail2ban
+systemctl enable ipset
+
+mkdir /etc/sysconfig/ipset.d
+echo "create issabel_whitelist hash:ip family inet hashsize 1024 maxelem 65536" >/etc/sysconfig/ipset.d/issabel_whitelist.set
+touch /etc/sysconfig/ipset.d/.saved
+
+/usr/share/issabel/privileged/fwconfig --save_wl
 
 if [ $1 -eq 2 ]; then #upgrade
     %{_datadir}/issabel/privileged/fwconfig --isactive >/dev/null
