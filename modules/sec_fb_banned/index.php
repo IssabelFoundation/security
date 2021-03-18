@@ -134,7 +134,8 @@ function reportBloqueados($smarty, $module_name, $local_templates_dir, &$pDB, $a
         $contenidoModulo = "<form  method='POST' style='margin-bottom:0;' action=$url>$contenidoModulo</form>";
     //end grid parameters
 
-    return $contenidoModulo;
+    $attribution="<div style='font-size:8px;'>Geolocation data provided either by <a href='https://db-ip.com'>DB-IP</a> or <a href='https://www.maxmind.com'>MaxMind</a></div>";
+    return $contenidoModulo.$attribution;
 }
 
 function deleteBloqueados($smarty, $module_name, $local_templates_dir, &$pDB, $arrConf)
