@@ -21,6 +21,7 @@ Requires: net-tools
 Requires: fail2ban-server
 Requires: fail2ban-sendmail
 Requires: ipset-service
+Requires: php-pecl-geoip
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
