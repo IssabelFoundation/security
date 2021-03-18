@@ -115,13 +115,15 @@ function reportBloqueados($smarty, $module_name, $local_templates_dir, &$pDB, $a
     
     $arrResult = array_slice($rejected, $offset, ($totalBloqueados-$offset) < $limit ? ($totalBloqueados-$offset) : $limit);    
     $button_eliminar = "";
-    $arrColumns = array($button_eliminar,_tr("Jail"),_tr("IP"));
+    $arrColumns = array($button_eliminar,_tr("Jail"),_tr("IP"),_tr("Country"));
     $oGrid->setColumns($arrColumns);
     if( is_array($arrResult) && $total>0 ){
         foreach($arrResult as $key => $value){
+            $country = geoip_country_name_by_name($value['ip']);
             $arrTmp[0] = "<input type='checkbox' name='".$value['id']."' id='".$value['id']."'>";
             $arrTmp[1] = $value['jail'];
             $arrTmp[2] = $value['ip'];
+            $arrTmp[3] = $country;
             $arrData[] = $arrTmp;
         }
     }

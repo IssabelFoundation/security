@@ -33,6 +33,7 @@ $arrLangModule=array(
 "Unban" => "آزاد شود",
 "Error" => "خطا",
 "Name" => "نام",
+"Country" => "کشور",
 "The following fields contain errors" => "فیلد های زیر دارای خطا هستند",
 "Validation Error" => "خطا در اعتبار سنجی",
 );
