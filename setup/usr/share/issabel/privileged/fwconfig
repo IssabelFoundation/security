@@ -6,7 +6,7 @@
   | Issabel version 4.0.0                                                |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
-  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -32,6 +32,13 @@ $opt = Console_Getopt::getopt($argv, '', array(
     'isactive',
     'save_wl',
     'isactivegeoip',
+    'listgeoblocked',
+    'listgeopass',
+    'listfail2banblocked',
+    'homecountry',
+    'block_country=',
+    'whitelist_country=',
+    'none_country=',
     'add_wl=',
     'remove_wl='
 ));
@@ -46,12 +53,26 @@ case '--isactive':
     exit(action_isactive() ? 0 : 1);
 case '--isactivegeoip':
     exit(isactivegeoip() ? 0 : 1);
+case '--listgeoblocked':
+    exit(listgeoblocked() ? 0 : 1);
+case '--listfail2banblocked':
+    exit(fail2banblocked() ? 0 : 1);
+case '--homecountry':
+    exit(homecountry() ? 0 : 1);
+case '--listgeopass':
+    exit(listgeopass() ? 0 : 1);
 case '--add_wl':
     exit(add_whitelist($option[1]) ? 0 : 1);
 case '--remove_wl':
     exit(remove_whitelist($option[1]) ? 0 : 1);
 case '--save_wl':
     exit(generate_save_file() ? 0 : 1);
+case '--block_country':
+    exit(block_country($option[1]) ? 0 : 1);
+case '--whitelist_country':
+    exit(whitelist_country($option[1]) ? 0 : 1);
+case '--none_country':
+    exit(none_country($option[1]) ? 0 : 1);
 }
 error_exit("No action specified (--flush, --load, --geoip or --isactive)\n");
 
@@ -535,7 +556,68 @@ function isactivegeoip() {
     return TRUE;
 }
 
+function listgeopass() {
+
+    exec("iptables -nL ISSABEL_INPUT_GEOIP | grep RETURN | awk '{print $9}'", $output, $return);
+    if ($return == 0) {
+        foreach($output as $line) {
+            $final[]=$line;
+        }
+        echo implode(",",$final);
+        return FALSE;
+    }
+    return TRUE;
+}
+
+
+function listgeoblocked() {
+    $final=array();
+    exec("iptables -nL ISSABEL_INPUT_GEOIP | grep 'DROP\|REJECT' | awk '{print $9}'", $output, $return);
+    if ($return == 0) {
+        foreach($output as $line) {
+            $final[]=$line;
+        }
+        if(count($final)>0) {
+            echo implode(",",$final);
+        }
+        return FALSE;
+    }
+    return TRUE;
+}
+
+function fail2banblocked() {
+    $blocked=array();
+    exec("iptables -vnL | grep f2b | grep Chain | awk '{ print \$2 }'", $output, $return);
+    foreach($output as $line) {
+        exec("iptables -nL $line | grep 'DROP\|REJECT' | awk '{ print \$4 }'", $output2, $return2);
+        if(count($output2)>0) {
+            foreach($output2 as $ip) {
+                $country = geoip_country_code_by_name($ip);
+                if(!isset($blocked[$country])) { $blockd[$country]=0; }
+                $blocked[$country]++;
+            }
+        }
+    }
+    echo json_encode($blocked,1);
+}
+
+function homecountry() {
+   $ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, 'http://myip.issabel.org:5060/whatismyip.php'); 
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+   curl_setopt($ch, CURLOPT_HEADER, 0); 
+   $publicIP = curl_exec($ch); 
+   curl_close($ch); 
+   if ($publicIP=='') {
+       echo 'ZZ';
+   } else {
+      $country = geoip_country_code_by_name($publicIP);
+      echo $country;
+   }
+}
+
 function action_isactive() {
+
     exec("/sbin/iptables -nL ISSABEL_INPUT", $output, $return);
     if ($return != 0) {
         echo "ISSABEL FIREWALL disabled\n";
@@ -544,6 +626,7 @@ function action_isactive() {
         echo "ISSABEL FIREWALL enabled\n";
         return TRUE;
     }
+ 
 }
 
 function add_whitelist($ip_address) {
@@ -567,17 +650,107 @@ function remove_whitelist($ip_address) {
 }
 
 function generate_save_file() {
-    file_put_contents("/tmp/nicolito.log","hola\n",FILE_APPEND);
     $content = "create issabel_whitelist hash:ip family inet hashsize 1024 maxelem 65536\n";
-
-    $ips=`/usr/bin/sqlite3 /var/www/db/iptables.db "select ip_address from whitelist"`;
-    $lineas = preg_split("/\n/",$ips);
-    foreach($lineas as $ip) {
-        if(trim($ip)=="") continue;
-        $content.="add issabel_whitelist $ip\n";
+    $db = new SQLite3('/var/www/db/iptables.db');
+    $res = $db->query("select ip_address from whitelist");
+    while($row = $res->fetchArray()) {
+        $content.="add issabel_whitelist ".$row['ip_address']."\n";
     }
     file_put_contents("/etc/sysconfig/ipset.d/issabel_whitelist.set",$content);
     return 0;
 }
+
+function block_country($country) {
+
+    $db = new SQLite3('/var/www/db/iptables.db');
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND (target='DROP' OR target='REJECT')";
+    $db->exec($query);
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
+    $db->exec($query);
+        
+    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny) VALUES ('GEOIP','$country','DROP',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0')";
+    $db->exec($query);
+
+    reorder_geoip($db);
+
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+    exec("iptables -I ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+
+    if($return==1) { 
+        return FALSE; 
+    } else { 
+        return TRUE; 
+    }
+}
+
+function reorder_geoip($db) {
+
+    $query="SELECT rowid,rule_order FROM filter WHERE protocol='GEOIP' ORDER BY rule_order";
+    $res = $db->query($query);
+    $neworder=100000;
+    while($row = $res->fetchArray()) {
+        $neworder++;
+        $query = "UPDATE filter SET rule_order=$neworder WHERE rowid=".$row['id'];
+        $db->exec($query);
+    }
+
+    $query="SELECT rowid,rule_order FROM filter WHERE protocol='GEOIP' ORDER BY rule_order";
+    $res = $db->query($query);
+    $neworder=100000;
+    while($row = $res->fetchArray()) {
+        print_r($row);
+    }
+}
+
+function whitelist_country($country) {
+    $db = new SQLite3('/var/www/db/iptables.db');
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND (target='DROP' OR target='REJECT')";
+    $db->exec($query);
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
+    $db->exec($query);
+        
+    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny) VALUES ('GEOIP','$country','ACCEPT',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0')";
+    $db->exec($query);
+
+    reorder_geoip($db);
+
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
+    exec("iptables -I ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
+
+    if($return==1) { 
+        return FALSE; 
+    } else { 
+        return TRUE; 
+    }
+}
+
+function none_country($country) {
+
+    $db = new SQLite3('/var/www/db/iptables.db');
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND (target='DROP' OR target='REJECT')";
+    $db->exec($query);
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
+    $db->exec($query);
+
+    reorder_geoip($db);
+ 
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
+
+    if($return==1) { 
+        return FALSE; 
+    } else { 
+        return TRUE; 
+    }
+}
+
 
 ?>
