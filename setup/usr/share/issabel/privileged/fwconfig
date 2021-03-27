@@ -660,32 +660,6 @@ function generate_save_file() {
     return 0;
 }
 
-function block_country($country) {
-
-    $db = new SQLite3('/var/www/db/iptables.db');
-
-    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND (target='DROP' OR target='REJECT')";
-    $db->exec($query);
-
-    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
-    $db->exec($query);
-        
-    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny) VALUES ('GEOIP','$country','DROP',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0')";
-    $db->exec($query);
-
-    reorder_geoip($db);
-
-    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
-    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
-    exec("iptables -I ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
-
-    if($return==1) { 
-        return FALSE; 
-    } else { 
-        return TRUE; 
-    }
-}
-
 function reorder_geoip($db) {
 
     $query="SELECT rowid,rule_order FROM filter WHERE protocol='GEOIP' ORDER BY rule_order";
@@ -705,6 +679,32 @@ function reorder_geoip($db) {
     }
 }
 
+function block_country($country) {
+
+    $db = new SQLite3('/var/www/db/iptables.db');
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND (target='DROP' OR target='REJECT')";
+    $db->exec($query);
+
+    $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
+    $db->exec($query);
+        
+    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny,continents) VALUES ('GEOIP','$country','DROP',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0','')";
+    $db->exec($query);
+
+    reorder_geoip($db);
+
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -j RETURN", $output, $return);
+    exec("iptables -D ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+    exec("iptables -I ISSABEL_INPUT_GEOIP -m geoip --src-cc $country -m state --state NEW -j DROP", $output, $return);
+
+    if($return==1) { 
+        return FALSE; 
+    } else { 
+        return TRUE; 
+    }
+}
+
 function whitelist_country($country) {
     $db = new SQLite3('/var/www/db/iptables.db');
 
@@ -714,7 +714,7 @@ function whitelist_country($country) {
     $query = "DELETE FROM filter WHERE protocol='GEOIP' AND countries='$country' AND target='ACCEPT'";
     $db->exec($query);
         
-    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny) VALUES ('GEOIP','$country','ACCEPT',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0')";
+    $query = "INSERT INTO filter (protocol,countries,target,rule_order,traffic,eth_in,eth_out,ip_source,ip_destiny,continents) VALUES ('GEOIP','$country','ACCEPT',100000,'INPUT','ANY','','0.0.0.0/0','0.0.0.0/0','')";
     $db->exec($query);
 
     reorder_geoip($db);
