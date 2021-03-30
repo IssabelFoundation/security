@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/sqlite3 /var/www/db/attacks.db "delete from attacks where datetime < date('now','-1 days')"

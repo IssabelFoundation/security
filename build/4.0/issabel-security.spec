@@ -3,7 +3,7 @@
 Summary: Issabel Security
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 11
+Release: 12
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
@@ -22,6 +22,7 @@ Requires: fail2ban-server
 Requires: fail2ban-sendmail
 Requires: ipset-service
 Requires: php-pecl-geoip
+Requires: sqlite
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
@@ -60,6 +61,7 @@ cp setup/etc/cron.d/issabel-portknock.cron $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/
 chmod 644 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/issabel-portknock.cron
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/
 cp setup/etc/cron.daily/renewssl $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/
+cp setup/etc/cron.daily/purgeattacks $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d/
 cp setup/etc/fail2ban/jail.d/issabel.conf $RPM_BUILD_ROOT%{_sysconfdir}/fail2ban/jail.d
@@ -179,6 +181,8 @@ if [ $1 -eq 2 ]; then #upgrade
     fi
 fi
 
+/usr/bin/sqlite3 /var/www/db/attacks.db "CREATE TABLE IF NOT EXISTS attacks (source text not null, datetime datetime, done int default 0, ip text)"
+chown asterisk.asterisk /var/www/db/attacks.db
 
 %postun
 sed -i '/#START issabel/,/#END issabel/d' /etc/fail2ban/jail.local
@@ -210,6 +214,7 @@ fi
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock
 %{_sysconfdir}/cron.daily/renewssl
+%{_sysconfdir}/cron.daily/purgeattacks
 %{_bindir}/issabel-portknock-cleanup
 %{_bindir}/issabel-portknock-validate
 

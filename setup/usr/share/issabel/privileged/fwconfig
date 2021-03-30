@@ -612,7 +612,7 @@ function homecountry() {
        echo 'ZZ';
    } else {
       $country = geoip_country_code_by_name($publicIP);
-      echo $country;
+      echo "$country,$publicIP";
    }
 }
 
