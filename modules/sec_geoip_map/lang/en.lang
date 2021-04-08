@@ -25,6 +25,6 @@ $arrLangModule=array(
 "attackLegend"=>"Real Time Attack Avoided",
 "blockedLegend"=>"Attackers blocked by Fail2ban",
 "{0}: Stopped attack from {1}" => "{0}: Stoped attack from {1}",
-"My Issabel=>"My Issabel"
+"My Issabel"=>"My Issabel"
 );
 ?>
