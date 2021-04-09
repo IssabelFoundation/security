@@ -120,10 +120,15 @@ function reportBloqueados($smarty, $module_name, $local_templates_dir, &$pDB, $a
     if( is_array($arrResult) && $total>0 ){
         foreach($arrResult as $key => $value){
             $country = geoip_country_name_by_name($value['ip']);
+            $code    = geoip_country_code_by_name($value['ip']);
             $arrTmp[0] = "<input type='checkbox' name='".$value['id']."' id='".$value['id']."'>";
             $arrTmp[1] = $value['jail'];
             $arrTmp[2] = $value['ip'];
-            $arrTmp[3] = $country;
+            $bandera = "<div class='flag ".strtolower($code)."'></div>";
+            $arrTmp[3] = $country." ".$bandera;
+
+
+
             $arrData[] = $arrTmp;
         }
     }
