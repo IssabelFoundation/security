@@ -35,6 +35,7 @@ Requires: coreutils
 # Requires: asterisk
 
 Obsoletes: elastix-security
+Obsoletes: issabel-geoip_key
 
 %description
 Issabel Security
