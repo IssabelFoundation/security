@@ -36,6 +36,7 @@ Requires: coreutils
 
 Obsoletes: elastix-security
 Obsoletes: issabel-geoip_key
+Provides: issabel-geoip_key
 
 %description
 Issabel Security
