@@ -593,7 +593,7 @@ function fail2banblocked() {
         if(count($output2)>0) {
             foreach($output2 as $ip) {
                 $country = geoip_country_code_by_name($ip);
-                if(!isset($blocked[$country])) { $blockd[$country]=0; }
+                if(!isset($blocked[$country])) { $blocked[$country]=0; }
                 $blocked[$country]++;
             }
         }
