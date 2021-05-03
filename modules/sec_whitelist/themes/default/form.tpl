@@ -6,7 +6,7 @@
         </td>
     </tr>
 </table>
-<table class="tabForm" style="font-size: 16px;" width="100%" >
+<table class="tabForm" style="font-size: 16px;" width="99%" >
     <tr class="letra12" id="ip_address">
         <td align="left" width="150px"><b>{$ip_address.LABEL}: {if $MODE ne "view"}<span  class="required">*</span>{/if}</b></td>
         <td align="left">{$ip_address.INPUT}</td>

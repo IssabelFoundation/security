@@ -19,7 +19,7 @@
 </table>
 
 
-<table class="tabForm" style="font-size: 16px;" width="100%" >
+<table class="tabForm" style="font-size: 16px;" width="99%" >
 <!--
     <tr class="letra12" id="name">
         <td align="left" width="10%"><b>{$protocol.LABEL}: {if $MODE ne "view"}<span  class="required">*</span>{/if}</b></td>
