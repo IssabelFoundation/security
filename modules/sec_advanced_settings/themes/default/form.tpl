@@ -12,7 +12,7 @@
 	<td  width="50%" valign='top'>
 	    <table>
 		<tr class="letra12">
-		    <td align="left"><b class='form-label-style'>{$subtittle1}</b></td>
+		    <td align="left" colspan=2><legend>{$subtittle1}</legend></td>
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
@@ -29,7 +29,7 @@
 	<td width="50%" valign='top'>
 	    <table>
 		<tr class="letra12">
-		    <td align="left"><b class='form-label-style'>{$subtittle2}</b></td>
+		    <td align="left" colspan=2><legend>{$subtittle2}</legend></td>
 		</tr>
 		<tr class="letra12">
 		    <td align="left" >
