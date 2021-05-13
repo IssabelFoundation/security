@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is Issabel Foundation     |
   +----------------------------------------------------------------------+
-  $Id: index.php, Fri 26 Mar 2021 07:03:26 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 06:31:37 PM EDT, nicolas@issabel.com
   */
 
 function _moduleContent(&$smarty, $module_name) {
@@ -77,25 +77,25 @@ function _moduleContent(&$smarty, $module_name) {
                 $sComando = '/usr/bin/issabel-helper fwconfig --listfail2banblocked';
                 $output = $ret = NULL;
                 exec($sComando, $output, $ret);
-                $return = $output[0];
+                $return = isset($output[0])?$output[0]:'';
                 break;
             case 'homecountry':
                 $sComando = '/usr/bin/issabel-helper fwconfig --homecountry';
                 $output = $ret = NULL;
                 exec($sComando, $output, $ret);
-                $return = $output[0];
+                $return = isset($output[0])?$output[0]:'';
                 break;
             case 'pass':
                 $sComando = '/usr/bin/issabel-helper fwconfig --listgeopass';
                 $output = $ret = NULL;
                 exec($sComando, $output, $ret);
-                $return = $output[0];
+                $return = isset($output[0])?$output[0]:'';
                 break;
              case 'blocked':
                 $sComando = '/usr/bin/issabel-helper fwconfig --listgeoblocked';
                 $output = $ret = NULL;
                 exec($sComando, $output, $ret);
-                $return = $output[0];
+                $return = isset($output[0])?$output[0]:'';
                 break;
              case 'getattacks':
                  $result = $pAttack->getAttacks();

@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: Issabelwhitelist.class.php, Sun 17 May 2020 01:06:25 PM EDT, nicolas@issabel.com
+  $Id: Issabelwhitelist.class.php, Thu 13 May 2021 06:27:28 PM EDT, nicolas@issabel.com
 */
 class Issabelwhitelist{
     var $_DB;
@@ -49,16 +49,10 @@ class Issabelwhitelist{
 
     function getNumwhitelist()
     {
-        $where    = "";
-        $arrParam = null;
-        if(isset($filter_field) & $filter_field !=""){
-            $where    = "where $filter_field like ?";
-            $arrParam = array("$filter_value%");
-        }
 
-        $query   = "SELECT COUNT(*) FROM whitelist $where";
+        $query   = "SELECT COUNT(*) FROM whitelist";
 
-        $result=$this->_DB->getFirstRowQuery($query, false, $arrParam);
+        $result=$this->_DB->getFirstRowQuery($query, false );
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;
@@ -70,15 +64,10 @@ class Issabelwhitelist{
     function getwhitelist($limit, $offset)
     {
         $where    = "";
-        $arrParam = null;
-        if(isset($filter_field) & $filter_field !=""){
-            $where    = "where $filter_field like ?";
-            $arrParam = array("$filter_value%");
-        }
 
         $query   = "SELECT * FROM whitelist $where LIMIT $limit OFFSET $offset";
 
-        $result=$this->_DB->fetchTable($query, true, $arrParam);
+        $result=$this->_DB->fetchTable($query, true );
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;

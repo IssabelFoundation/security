@@ -17,7 +17,7 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  $Id: index.php, Sun 17 May 2020 01:06:09 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 06:29:18 PM EDT, nicolas@issabel.com
 */
 //include issabel framework
 include_once "libs/paloSantoGrid.class.php";
@@ -116,7 +116,7 @@ function reportwhitelist($smarty, $module_name, $local_templates_dir, &$pDB, $ar
         $offset = $oGrid->calculateOffset();
     }
 
-    $arrResult =$pwhitelist->getwhitelist($limit, $offset, $filter_field, $filter_value);
+    $arrResult =$pwhitelist->getwhitelist($limit, $offset);
 
     if(is_array($arrResult) && $total>0){
         foreach($arrResult as $key => $value){ 
@@ -226,7 +226,7 @@ function createFieldForm(){
         "ip_address" => array("LABEL"                  => _tr("IP Address"),
                               "REQUIRED"               => "no",
                               "INPUT_TYPE"             => "TEXT",
-                              "INPUT_EXTRA_PARAM"      => $arrFilter,
+                              "INPUT_EXTRA_PARAM"      => "",
                               "VALIDATION_TYPE"        => "ip/mask",
                               "VALIDATION_EXTRA_PARAM" => ""),
             "note" => array(  "LABEL"                  => _tr("Note"),
