@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Fri 05 Jun 2020 12:38:07 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 06:19:04 PM EDT, nicolas@issabel.com
 */
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
@@ -717,7 +717,7 @@ function showDataTables($smarty, $module_name, $local_templates_dir, &$pDB, $arr
     $action = getParameter("action");
     $id     = getParameter("id");
 
-    $arrLangEscaped = array_map(escapeQuote, $arrLang);
+    $arrLangEscaped = array_map('escapeQuote', $arrLang);
 
     $smarty->assign("ID", $id);
     $smarty->assign("LANG", $arrLangEscaped);
