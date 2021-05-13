@@ -19,10 +19,9 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is Issabel Foundation     |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2020-02-28 11:02:09 German Venturino german@issabel.com Exp $ i
+  $Id: index.php, Thu 13 May 2021 06:21:48 PM EDT, German Venturino german@issabel.com
 */
 //include issabel framework
-include_once "libs/issabelGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 
 function _moduleContent(&$smarty, $module_name)
