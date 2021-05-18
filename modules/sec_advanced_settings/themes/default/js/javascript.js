@@ -31,7 +31,7 @@ function prepararBoton(s)
 					if (document.getElementById("neo-contentbox-maincolumn")) {
 						var message= "<div class='div_msg_errors' id='message_error'>" +
 							    "<div style='float:left;'>" +
-								"<b style='color:red;'>&nbsp;&nbsp;"+arrData['message_title']+"</b>" +
+								"<b style='color:red;'>"+arrData['message_title']+"</b>" +
 							    "</div>" +
 							    "<div style='text-align:right; padding:5px'>" +
 								"<input type='button' onclick='hide_message_error();' value='"+arrData['button_title']+"'/>" +
