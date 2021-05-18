@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0.4-5                                               |
+  | Issabel version 4.0.4-5                                              |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -51,6 +52,7 @@ $arrLangModule=array(
 'Anonymous SIP calls are now disabled.' => 'Las llamadas SIP anónimas han sido desactivadas',
 'Anonymous SIP calls cannot be enabled.' => 'No se puede activar llamadas SIP anónimas.',
 'Anonymous SIP calls cannot be disabled.' => 'No se puede desactivar llamadas SIP anónimas.',
+'Dismiss' => 'Descartar'
 );
 
 ?>
