@@ -493,7 +493,7 @@ PETICION_PK;
     if ($bExito) {
         $ret = NULL;
         system('/usr/bin/systemctl enable iptables.service', $ret);
-        if ($ret) { $bExito = FALSE; break; }
+        if ($ret) { $bExito = FALSE; }
     }
 
     manageF2B('same');
