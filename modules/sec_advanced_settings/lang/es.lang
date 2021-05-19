@@ -52,7 +52,8 @@ $arrLangModule=array(
 'Anonymous SIP calls are now disabled.' => 'Las llamadas SIP anónimas han sido desactivadas',
 'Anonymous SIP calls cannot be enabled.' => 'No se puede activar llamadas SIP anónimas.',
 'Anonymous SIP calls cannot be disabled.' => 'No se puede desactivar llamadas SIP anónimas.',
-'Dismiss' => 'Descartar'
+'Dismiss' => 'Descartar',
+'is licensed under' => 'está publicado bajo la licencia' 
 );
 
 ?>
