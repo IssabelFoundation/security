@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0.4-5                                               |
+  | Issabel version 4.0.4-5                                              |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoChangePassword.class.php, Wed 12 Sep 2018 07:34:42 PM EDT, nicolas@issabel.com
+  $Id: paloSantoChangePassword.class.php, Thu 20 May 2021 09:01:03 AM EDT, nicolas@issabel.com
   */  
   
 class paloSantoAdvancedSecuritySettings{
@@ -27,7 +28,7 @@ class paloSantoAdvancedSecuritySettings{
     var $errMsg;
     var $arrConf;
 
-    function paloSantoAdvancedSecuritySettings($arrConf, &$pDB=null)
+    function __construct($arrConf, &$pDB=null)
     {
 	$this->arrConf = $arrConf;
         // Se recibe como parámetro una referencia a una conexión paloDB

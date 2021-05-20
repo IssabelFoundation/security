@@ -5,6 +5,7 @@
   | Issabel version 4.0.3                                                |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoAccessaudit.class.php,v 1.1 2010-12-18 03:12:50 Bruno Macias bmacias@palosanto.com Exp $ */
+  $Id: paloSantoAccessAudit.class.php, Thu 20 May 2021 08:53:16 AM EDT, nicolas@issabel.com
+*/
 
 include_once "modules/asterisk_log/libs/LogParser_Full.class.php";
 
@@ -28,7 +30,7 @@ class paloSantoAccessaudit{
     var $errMsg;
     var $astLog;
 
-    function paloSantoAccessaudit()
+    function __construct()
     {
         $this->astLog = new LogParser_Full("/var/log/issabel","audit");
     }

@@ -5,7 +5,7 @@
   | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
-  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoRules.class.php, Thu 21 May 2020 08:22:55 PM EDT, nicolas@issabel.com
+  $Id: paloSantoRules.class.php, Thu 20 May 2021 08:54:40 AM EDT, nicolas@issabel.com
 */
 
 require_once "libs/paloSantoNetwork.class.php";
@@ -34,7 +34,7 @@ class paloSantoRules {
      *  .
      * @param string    $pDB     object of the class paloDB    
      */
-    function paloSantoRules(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {

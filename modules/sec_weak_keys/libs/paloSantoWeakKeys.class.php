@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0.0-31                                               |
+  | Issabel version 4.0.0-31                                             |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoWeakKeysChecker.class.php,v 1.1 2010-12-21 09:08:11 Alberto Santos asantos@palosanto.com Exp $ */
+  $Id: paloSantoWeakKeys.class.php, Thu 20 May 2021 09:00:36 AM EDT, nicolas@issabel.com
+*/
 class paloSantoWeakKeys {
     var $_DB;      // Reference to the active DB
     var $errMsg;   // Variable where the errors are stored
@@ -30,7 +32,7 @@ class paloSantoWeakKeys {
      *  .
      * @param string    $pDB     object of the class paloDB    
      */
-    function paloSantoWeakKeys(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {
