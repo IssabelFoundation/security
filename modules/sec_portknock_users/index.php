@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.4-2                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2008-09-11 03:09:47 Alex Villacis Lasso <a_villacis@palosanto.com> Exp $ */
+  $Id: index.php, Thu 20 May 2021 03:49:26 PM EDT, nicolas@issabel.com
+*/
 
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
@@ -166,7 +168,7 @@ function addRemovePortsUser($smarty, $module_name, $local_templates_dir, $pDB, $
         		}
         	}
         }
-        if (!$bExito) break;
+        if (!$bExito) { return $bExito; }
         
         // Ingresar la autorización de los puertos nuevos
         foreach ($listaNuevosPuertos as $id_port) {

@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoAccessAudit.class.php, Thu 20 May 2021 08:53:16 AM EDT, nicolas@issabel.com
+  $Id: paloSantoAccessAudit.class.php, Thu 20 May 2021 03:45:02 PM EDT, nicolas@issabel.com
 */
 
 include_once "modules/asterisk_log/libs/LogParser_Full.class.php";
@@ -51,7 +51,7 @@ class paloSantoAccessaudit{
             $pos = $this->astLog->obtenerPosicionMensaje();
             $s = $this->astLog->siguienteMensaje();
             // Se desactiva la condición porque ya no todas las líneas empiezan con corchete
-            if (!(count($lineas) == 0 && !is_null($s) && $s{0} != '[')) {
+            if (!(count($lineas) == 0 && !is_null($s) && $s[0] != '[')) {
                 $regs = NULL;
                 if (preg_match('/^\[([[:alnum:][:space:]\:]+)\][[:space:]]+([[:alpha:]]+)[[:space:]]+([^[:space:]]+):[[:space:]]+(.*)$/', $s, $regs)) {
                     $l = array(
