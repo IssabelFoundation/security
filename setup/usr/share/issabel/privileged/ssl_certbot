@@ -100,6 +100,9 @@ switch($argv[1]){
             fclose($fp);
         }
         break;
+    case "writeasteriskcert":
+        generateAsteriskCert();
+        break;
     default:
         exit(1);
         break;
@@ -132,6 +135,12 @@ function editServerName($sHostname) {
         }
     }
     file_put_contents($sslfile, $contenidoNuevo);
+}
+
+function generateAsteriskCert() {
+    if (!file_exists('/etc/asterisk/keys/asterisk.pem')) {
+        writeAsteriskPEMfile();
+    }
 }
 
 function writeAsteriskPEMfile() {
