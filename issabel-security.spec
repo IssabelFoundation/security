@@ -186,6 +186,9 @@ fi
 /usr/bin/sqlite3 /var/www/db/attacks.db "CREATE TABLE IF NOT EXISTS attacks (source text not null, datetime datetime, done int default 0, ip text)"
 chown asterisk.asterisk /var/www/db/attacks.db
 
+/usr/share/issabel/privileged/ssl_certbot writeasteriskcert
+chown asterisk.asterisk /etc/asterisk/keys -R
+
 %postun
 sed -i '/#START issabel/,/#END issabel/d' /etc/fail2ban/jail.local
 

@@ -62,7 +62,7 @@ switch($argv[1]){
             } else {
                 //exec("/sbin/service httpd restart 2>&1", $output, $ret);
 
-                writeAsteriskPEMfile();
+                writeAsteriskPEMfile(1);
 
                 echo implode("\n",$output);
                 exit(0);
@@ -81,7 +81,7 @@ switch($argv[1]){
             exit(1);
         } else {
 
-            writeAsteriskPEMfile();
+            writeAsteriskPEMfile(1);
 
             echo implode("\n",$output);
             exit(0);
@@ -139,11 +139,11 @@ function editServerName($sHostname) {
 
 function generateAsteriskCert() {
     if (!file_exists('/etc/asterisk/keys/asterisk.pem')) {
-        writeAsteriskPEMfile();
+        writeAsteriskPEMfile(0);
     }
 }
 
-function writeAsteriskPEMfile() {
+function writeAsteriskPEMfile($reload=1) {
 
     if (!file_exists('/etc/asterisk/keys')) {
         mkdir('/etc/asterisk/keys', 0751, true);
@@ -151,6 +151,8 @@ function writeAsteriskPEMfile() {
 
     exec(">/etc/asterisk/keys/asterisk.pem", $output, $ret);
     exec("for A in `grep '^SSLCert' /etc/httpd/conf.d/ssl.conf | grep -v chain | awk '{print $2}'`; do cat \$A >>/etc/asterisk/keys/asterisk.pem; done", $output, $ret);
-    system('/usr/sbin/amportal a r');
+    if($reload==1) {
+       system('/usr/sbin/amportal a r');
+    }
 
 }
