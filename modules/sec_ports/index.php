@@ -106,17 +106,17 @@ function reportPuertos($smarty, $module_name, $local_templates_dir, &$pDB, $arrC
     if( is_array($arrResult) && $total>0 ){
         foreach($arrResult as $key => $value){
             $arrTmp[0] = "<input type='checkbox' name='".$value['id']."' id='".$value['id']."'>";
-            $arrTmp[1] = $value['name'];
-            $arrTmp[2] = $value['protocol'];
+            $arrTmp[1] = htmlspecialchars($value['name']);
+            $arrTmp[2] = htmlspecialchars($value['protocol']);
             if($value['protocol'] == "TCP" || $value['protocol'] == "UDP"){
                 $port = $value['details'];
-                $arrTmp[3] = ( stripos($port,":") === false ) ? _tr('Port')."  ".$value['details'] : _tr('Ports')."  ".$value['details'];
+                $arrTmp[3] = ( stripos($port,":") === false ) ? _tr('Port')."  ".htmlspecialchars($value['details']) : _tr('Ports')."  ".htmlspecialchars($value['details']);
             }elseif($value['protocol'] == "ICMP"){
                 $arr = explode(":",$value['details']);
                 if(isset($arr[1]))
                     $arrTmp[3] = "Type: ".$arr[0]." Code: ".$arr[1];
             }else
-                $arrTmp[3] = "Protocol Number: ".$value['details'];
+                $arrTmp[3] = "Protocol Number: ".htmlspecialchars($value['details']);
             $arrTmp[4] = "&nbsp;<a href='?menu=$module_name&action=view&id=".$value['id']."'>"._tr('View')."</a>";
             $arrData[] = $arrTmp;
         }
