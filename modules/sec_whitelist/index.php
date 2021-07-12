@@ -17,7 +17,7 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 13 May 2021 06:29:18 PM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 12 Jul 2021 04:54:16 PM EDT, nicolas@issabel.com
 */
 //include issabel framework
 include_once "libs/paloSantoGrid.class.php";
@@ -121,8 +121,8 @@ function reportwhitelist($smarty, $module_name, $local_templates_dir, &$pDB, $ar
     if(is_array($arrResult) && $total>0){
         foreach($arrResult as $key => $value){ 
             $arrTmp[0] = "<input type='checkbox' name='ips[]' value='".$value['ip_address']."'>";
-            $arrTmp[1] = $value['ip_address'];
-            $arrTmp[2] = $value['note'];
+            $arrTmp[1] = htmlspecialchars($value['ip_address']);
+            $arrTmp[2] = htmlspecialchars($value['note']);
             $arrData[] = $arrTmp;
         }
     }
