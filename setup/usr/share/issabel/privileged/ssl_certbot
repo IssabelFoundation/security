@@ -150,7 +150,7 @@ function writeAsteriskPEMfile($reload=1) {
     }
 
     exec(">/etc/asterisk/keys/asterisk.pem", $output, $ret);
-    exec("for A in `grep '^SSLCert' /etc/httpd/conf.d/ssl.conf | grep -v chain | awk '{print $2}'`; do cat \$A >>/etc/asterisk/keys/asterisk.pem; done", $output, $ret);
+    exec("for A in `grep '^SSLCert' /etc/httpd/conf.d/ssl.conf | grep -v chain | awk '{print $2}' | sed 's/cert.pem/fullchain.pem/g`; do cat \$A >>/etc/asterisk/keys/asterisk.pem; done", $output, $ret);
     if($reload==1) {
        system('/usr/sbin/amportal a r');
     }
