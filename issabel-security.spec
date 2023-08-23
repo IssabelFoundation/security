@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 # Files provided by all Issabel modules
 mkdir -p    $RPM_BUILD_ROOT%{_localstatedir}/www/html/
 mkdir -p    $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
-mkdir -p    $RPM_BUILD_ROOT/usr/src/portknock-client-samle
+mkdir -p    $RPM_BUILD_ROOT/usr/src/portknock-client-sample
 cp setup/usr/src/portknock-client-sample/portknock-client.go $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
 cp setup/usr/src/portknock-client-sample/portknock-client $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
 mv modules/ $RPM_BUILD_ROOT%{_localstatedir}/www/html/
