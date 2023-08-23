@@ -50,8 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p    $RPM_BUILD_ROOT%{_localstatedir}/www/html/
 mkdir -p    $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
 mkdir -p    $RPM_BUILD_ROOT/usr/src/portknock-client-sample
-cp setup/usr/src/portknock-client-sample/portknock-client.go $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
-cp setup/usr/src/portknock-client-sample/portknock-client $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
+mv setup/usr/src/portknock-client-sample/* $RPM_BUILD_ROOT/usr/src/portknock-client-sample
+rmdir setup/usr/src/portknock-client-sample
+rmdir setup/usr/src
+
 mv modules/ $RPM_BUILD_ROOT%{_localstatedir}/www/html/
 mv setup/usr/share/issabel/privileged/*  $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
 rmdir setup/usr/share/issabel/privileged
