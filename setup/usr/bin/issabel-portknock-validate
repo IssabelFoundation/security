@@ -81,13 +81,26 @@ try {
 if (is_null($md5_password)) exit(5);
 
 // Desencriptación y validación de payload
-$sPlaintext = trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $md5_password, $sPayload,
-    MCRYPT_MODE_CBC, md5($md5_password)), "\0");
+$sPlaintext = my_decrypt($argv[4],$md5_password);
+
 $params = explode(':', $sPlaintext);
 if (count($params) != 3 || !ctype_digit($params[0]) || $ipFuente != $params[1]) exit(6);
 $ports = explode(',', $params[2]);
 
 exit(validar_acceso_puertos($id_user, $eth_in, $params[1], $ports) ? 0 : 1);
+
+function my_decrypt($encrypted,$md5_password) {
+    list ($key,$iv) = generateKeyAndIV($md5_password);
+    $decrypted = openssl_decrypt( $encrypted, 'AES-256-CBC', $key, 0, $iv);
+    return $decrypted;
+}
+
+function generateKeyAndIV($text) {
+    $hash = hash('sha256', $text, false);
+    $key = substr($hash, 0, 32);
+    $iv = substr($hash, 32, 16);
+    return array($key, $iv);
+}
 
 function load_default_timezone()
 {
