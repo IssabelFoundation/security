@@ -227,7 +227,6 @@ fi
 %{_sysconfdir}/cron.daily/purgeattacks
 %{_bindir}/issabel-portknock-cleanup
 %{_bindir}/issabel-portknock-validate
-/usr/src/portknock-client-sample/portknock-client
 
 %config
 %{_sysconfdir}/fail2ban/jail.d/issabel.conf
