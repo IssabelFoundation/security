@@ -49,9 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 # Files provided by all Issabel modules
 mkdir -p    $RPM_BUILD_ROOT%{_localstatedir}/www/html/
 mkdir -p    $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
-mkdir -p    $RPM_BUILD_ROOT/usr/src/portknock-client
-cp setup/usr/src/portknock-client/portknock-client.go $RPM_BUILD_ROOT/usr/src/portknock-client/
-cp setup/usr/src/portknock-client/portknock-client $RPM_BUILD_ROOT/usr/src/portknock-client/
+mkdir -p    $RPM_BUILD_ROOT/usr/src/portknock-client-samle
+cp setup/usr/src/portknock-client-sample/portknock-client.go $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
+cp setup/usr/src/portknock-client-sample/portknock-client $RPM_BUILD_ROOT/usr/src/portknock-client-sample/
 mv modules/ $RPM_BUILD_ROOT%{_localstatedir}/www/html/
 mv setup/usr/share/issabel/privileged/*  $RPM_BUILD_ROOT%{_datadir}/issabel/privileged
 rmdir setup/usr/share/issabel/privileged
@@ -217,7 +217,7 @@ fi
 %{_sysconfdir}/fail2ban/filter.d/asterisk-ami.conf
 %{_sysconfdir}/fail2ban/filter.d/issabel-gui.conf
 %{_sysconfdir}/fail2ban/action.d/iptables-multiport-issabel.conf
-/usr/src/portknock-client/portknock-client.go
+/usr/src/portknock-client-sample/portknock-client.go
 %defattr(0755, root, root)
 %{_datadir}/issabel/privileged/*
 %{_sysconfdir}/rc.d/init.d/issabel-portknock
@@ -225,7 +225,7 @@ fi
 %{_sysconfdir}/cron.daily/purgeattacks
 %{_bindir}/issabel-portknock-cleanup
 %{_bindir}/issabel-portknock-validate
-/usr/src/portknock-client/portknock-client
+/usr/src/portknock-client-sample/portknock-client
 
 %config
 %{_sysconfdir}/fail2ban/jail.d/issabel.conf
