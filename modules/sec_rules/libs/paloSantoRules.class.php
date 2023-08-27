@@ -264,7 +264,7 @@ class paloSantoRules {
         $port_out  = ($arrValues['port_out'] == null)      ? "" : $arrValues['port_out'];
         $type_icmp = ($arrValues['type_icmp'] == null)     ? "" : $arrValues['type_icmp'];
         $id_ip     = ($arrValues['id_ip'] == null)         ? "" : $arrValues['id_ip'];
-        $state     =  $arrValues['state'];
+        $state     = isset($arrValues['state'])            ? $arrValues['state'] : '';
         $target    = ($arrValues['target'] == null)        ? "" : $arrValues['target'];
         $geoipcountries  = ($arrValues['geoipcountries'] == null)      ? "" : implode(",",$arrValues['geoipcountries']);
         $geoipcontinents = ($arrValues['geoipcontinents'] == null)     ? "" : implode(",",$arrValues['geoipcontinents']);
