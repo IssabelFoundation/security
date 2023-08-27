@@ -1,0 +1,59 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 4.0.4-5                                               |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.1 2011-05-13 11:05:31 Estefanía Morán Meza emoran@palosanto.com Exp $ 
+  $Id: br.lang,v 1.2 2021-25-10 12:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $ */
+
+global $arrLangModule;
+$arrLangModule=array(
+"Advanced Security Settings"                       => "Configurações avançadas",
+"Enable direct access (Non-embedded) to IssabelPBX"   => "Habilite o acesso direto (não incorporado) ao IssabelPBX",
+"Change Password"                                  => "Mudar Senha",
+"Enable access"                                    => "Enable access",
+"Database and Web Administration IssabelPBX Password" => "Senha IssabelPBX de administração de banco de dados e Web",
+"Password Confirmation"                            => "ConfirmaÇão Da Senha",
+"Password and confirmation do not match!"          => "A senha e a confirmação não coincidem!",
+"The following fields are required"                => "Os seguintes campos são obrigatórios",
+"The following field contain errors"               => "Os campos a seguir contêm erros",
+"Information"                                      => "Informação",
+"Password has been updated."                       => "A senha foi atualizada.",
+"Password has not been updated."                   => "A senha não foi atualizada.",
+"Access direct to IssabelPBX has been enabled."       => "O acesso direto ao IssabelPBX foi habilitado.",
+"Access direct to IssabelPBX has not been enabled."   => "O acesso direto ao IssabelPBX não foi habilitado",
+"Access direct to IssabelPBX has been disabled."      => "O acesso direto ao IssabelPBX foi desativado.",
+"Access direct to IssabelPBX has not been disabled."  => "O acesso direto ao IssabelPBX não foi desabilitado.",
+" But the following files have been modified: "    => " Mas os seguintes arquivos foram modificados: ",
+"Password may only contain alphanumeric characters, spaces, or the following: .&-@=_!<>." => ""A senha pode conter apenas caracteres alfanuméricos, espaços ou o seguinte:. & - @ = _! <>.;
+"Password may only contain alphanumeric characters, spaces, or the following: .&-@=_!<>.",=> ""A senha pode conter apenas caracteres alfanuméricos, espaços ou o seguinte:. & - @ = _! <>.;
+"Advice"                                           => "Adendo",
+"Unauthorized"                                     => "Não autorizado",
+"You are not authorized to access this page."      => "Você não está autorizado à acessar essa página.",
+"Enable direct access (Non-embedded) to IssabelPBX in \"Security >> Advanced Security Settings\" menu." 
+						   => "Habilite o acesso direto (não incorporado) ao IssabelPBX em \ "Segurança >> Configurações de segurança avançadas \" menu ",
+'Enable anonymous SIP calls' => 'Habilitar chamadas SIP anônimas',
+'Anonymous SIP calls are now enabled.' => 'Chamadas SIP anônimas agora estão habilitadas',
+'Anonymous SIP calls are now disabled.' => 'Chamadas SIP anônimas agora estão desabilitadas',
+'Anonymous SIP calls cannot be enabled.' => 'Chamadas SIP anônimas não podem ser habilitadas.',
+'Anonymous SIP calls cannot be disabled.' => 'Chamadas SIP anônimas não podem ser desativadas.',
+'Dismiss'=>'Liberar',
+'is licensed under' => 'está licenciado sob'
+);
+?>

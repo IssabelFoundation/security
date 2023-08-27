@@ -1,0 +1,44 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0.0                                                |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  $Id: br.lang,v 1.2 2021-25-10 12:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $
+*/
+global $arrLangModule;
+$arrLangModule=array(
+"This is your actual account and domain configuration"=>"Esta é sua conta real e configuração de domínio",
+"Install New Certificate from Let's Encrypt"=>"Instale o novo certificado do Let's Encrypt",
+"Domain"=>"Dominio,
+"Email"=>"Email",
+"Install"=>"Install",
+"Renew"=>"Renovar",
+"Usage"=>"Uso",
+"Renew Certificate"=>"Renovar Certificado",
+"Staging Certificate(Use this for testing)"=>"Certificado de teste (use para teste)",
+"1.- Create a Valid Domain by purchasing it with you preferred Vendor or get one from free DDNS service like No-Ip.org"=>"1.- Crie um domínio válido comprando-o com o fornecedor de sua preferência ou obtenha um do serviço DDNS gratuito como No-Ip.org",
+"2.- Be sure that you domain is redirected to your PBX Service."=>"2.- Certifique-se de que seu domínio seja redirecionado para seu serviço de PBX.",
+"3.- Open the 443 and 80 ports in your firewall and redirect to your PBX."=>"3.- Abra as portas TCP 443 e 80 em seu firewall e redirecione para seu PABX.",
+"4.- In the field DOMAIN enter your domain to obtain a valid certificate. You can add many domains comma separated"=>"4.- No campo DOMAIN, insira seu domínio para obter um certificado válido. Você pode adicionar muitos domínios separados por vírgulas.",
+"5.- In the field EMAIL enter your email to register your account."=>"5.- No campo EMAIL insira seu e-mail para cadastrar sua conta.",
+"6.- To renew your certificate press the Renew button."=>"6.- Para renovar o seu certificado, pressione o botão Renovar.",
+"7.- For test certificates enable the Staging checkbox."=>"7.- Para renovar o seu certificado, pressione o botão Renovar",
+"8.- After the process finish, reload your window with the Domain name(make sure the DNS is set internally too)."=>"8.- Depois de concluído o processo, recarregue a janela com o nome do domínio (certifique-se de que o DNS também está configurado internamente).",
+"9.- You can enable the firewall rules again for ports 443 and 80."=>"9.- Você pode habilitar as regras de firewall novamente para as portas 443 e 80.",
+" Enjoy. ;)"=>" Aproveite. ;) ",
+"<small>Visit <strong>https://letsencrypt.org</strong> to know more about free certification process their TOS and License Agreement, this is a basic GUI for the APACHE CERTBOT and is provided as is and without warranty.If you have any questions please provide it in the forum.Don't forget to Donate to the Let's Encrypt Project"=>"<small> Visite <strong> https://letsencrypt.org </strong> para saber mais sobre o processo de certificação gratuito, seus TOS e Contrato de licença, esta é uma GUI básica para o APACHE CERTBOT e é fornecida como está e sem garantia. Se você tiver alguma dúvida, informe no fórum. Não se esqueça de fazer uma doação para o projeto Let's Encrypt ",
+);
+?>

@@ -1,0 +1,41 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0.0                                                |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+   $Id: br.lang,v 1.2 2021-25-10 12:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $
+*/
+
+global $arrLangModule;
+$arrLangModule=array(
+"Fail2Ban Jails" => "Fail2Ban Jails",
+"Edit Jail" => "Editar Jail",
+"View Jail" => "Vizualizar Jail",
+"Name" => "Nome",
+"Whitelist" => "Lista Branca",
+"Enabled" => "Habilitar",
+"View" => "Vizualizar",
+"Edit" => "Editar",
+"Ban Time (hours)" => "Tempo banimento (horas)",
+"Count Failed Attempts" => "Contagem de tentativas falhadas",
+"Save correctly" => "Alterações salvas",
+"Update correctly" => "Atualizado corretamente",
+"Message" => "Mensagem",
+"Error" => "Error",
+"The following fields contain errors" => "Os campos a seguir contêm erros",
+"Validation Error" => "erro de validação",
+);
+?>

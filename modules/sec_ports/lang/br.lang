@@ -1,0 +1,66 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 4.0.2                                               |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.2 2010-12-10 03:09:33 Alberto Santos asantos@palosanto.com Exp $ 
+  $Id: br.lang,v 1.2 2021-25-10 12:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $
+  */
+
+global $arrLangModule;
+$arrLangModule=array(
+"Port- Service" => "Porta de Serviço",
+"Ports" => "Portas",
+"Port" => "Porta",
+"Option" => "Opção",
+"Name" => "Nome",
+"Protocol" => "Protocolo",
+"Port(s)" => "Portas(s)",
+"Delete" => "Delete",
+"View" => "Vizualizar",
+"Edit" => "Editar",
+"New Port" => "Nova porta",
+"Comment" => "Comentário",
+"Save correctly" => "Alterações salvas",
+"Delete correctly" => "Exclusão bem-sucedida",
+"Update correctly" => "Atualizado corretamente",
+"Details" => "Detalhes",
+"Message" => "Messagem",
+"Error" => "Error",
+"Are you sure you wish to delete the port(s)." => "Tem certeza de que deseja excluir a (s) porta (s).",
+"Filter by" => "Filtrar por",
+"Name" => "Nome",
+"Define Ports" => "Definir portas",
+"Define Port" => "Definir porta",
+"Edit Port" => "Editar porta",
+"View Port" => "Vizualizar Porta",
+"Protocol Number" => "Número do protocolo",
+"Type" => "Tipo",
+"Code" => "Código",
+"This port had already been defined" => "Esta porta já havia sido definida",
+"The name and the port can not be empty fields" => "O nome e a porta não podem ser campos vazios",
+"The name, type and code can not be empty fields" => "O nome, tipo e código não podem ser campos vazios",
+"The name and the protocol number can not be empty fields" => "O nome e o número do protocolo não podem ser campos vazios",
+"The following fields contain errors" => "Os campos a seguir contêm erros",
+"Validation Error" => "Erro de Validação",
+"Port used in a firewall rule" => "Porta usada em uma regra de firewall",
+"You have to delete the rule related in order to delete this port" => "Você tem que deletar a regra relacionada para deletar esta porta",
+"Some rules could be deactivated due to these changes, please check the firewall rules" => "Algumas regras podem ser desativadas devido a essas mudanças, verifique as regras de firewall"
+);
+?>

@@ -19,7 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoRules.class.php,v 1.2 2020-06-20 19:04:47 Rodrigo rodrigo@carmovoip.com.br Exp $ 
+  $Id: paloSantoRules.class.php,v 1.2 2020-06-20 19:04:47 Rodrigo rodrigo@carmovoip.com.br Exp $
+  $Id: br.lang,v 1.2 2021-25-10 12:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $
 */
 global $arrLangModule;
 $arrLangModule=array(
@@ -89,7 +90,7 @@ $arrLangModule=array(
 "Desactivate FireWall" => "Desativar Segurança",
 "The firewall has been activated" => "A Segurança foi ativada com Sucesso",
 "The firewall has been desactivated" => "A Segurança foi desativada",
-"The firewall could not be desactivated" => "The firewall could not be deactivated",
+"The firewall could not be desactivated" => "O firewall não pôde ser desativado ",
 "STATE" => "Situação",
 "Established" => "Estabilizado",
 "Related" => "Ligado",
