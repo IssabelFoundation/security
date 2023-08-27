@@ -206,7 +206,7 @@ class IssabelF2BService {
                 }
             }
         } else if($jail=='sshd') {
-            $dojails = array('sshd','sshd-ddos');
+            $dojails = array('sshd');
             foreach($dojails as $individualjail) {
                 if(file_exists("/etc/fail2ban/filter.d/${individualjail}.conf")) {
                     $finaldatos[$individualjail]=$conf;
