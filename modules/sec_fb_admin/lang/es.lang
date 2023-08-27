@@ -38,6 +38,7 @@ $arrLangModule=array(
 "Validation Error" => "Error de Validación",
 "Enable fail2ban" => "Activar fail2ban",
 "Disable fail2ban" => "Desactivar fail2ban",
-"Fail2ban has been activated" => "Fail2ban ha sido activado"
+"Fail2ban has been activated" => "Fail2ban ha sido activado",
+"Fail2ban has been deactivated" => "Fail2ban ha sido desactivado"
 );
 ?>
