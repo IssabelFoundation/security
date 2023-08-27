@@ -2,15 +2,15 @@
 
 Summary: Issabel Security
 Name: issabel-security
-Version: 4.0.0
-Release: 13
+Version: 5.0.0
+Release: 1
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): issabel-framework >= 2.3.0-5
-Requires(pre): issabelPBX >= 2.8.1-2
+Requires(pre): issabel-framework >= 5.0.0
+Requires(pre): issabelPBX >= 2.12.0
 Requires(pre): iptables
 # On CentOS 7 only, iptables does *not* install any service files
 Requires(pre): iptables-services
