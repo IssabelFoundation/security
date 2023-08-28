@@ -22,7 +22,7 @@ global $arrLangModule;
 $arrLangModule=array(
 "This is your actual account and domain configuration"=>"Esta é sua conta real e configuração de domínio",
 "Install New Certificate from Let's Encrypt"=>"Instale o novo certificado do Let's Encrypt",
-"Domain"=>"Dominio,
+"Domain"=>"Dominio",
 "Email"=>"Email",
 "Install"=>"Install",
 "Renew"=>"Renovar",
@@ -39,6 +39,6 @@ $arrLangModule=array(
 "8.- After the process finish, reload your window with the Domain name(make sure the DNS is set internally too)."=>"8.- Depois de concluído o processo, recarregue a janela com o nome do domínio (certifique-se de que o DNS também está configurado internamente).",
 "9.- You can enable the firewall rules again for ports 443 and 80."=>"9.- Você pode habilitar as regras de firewall novamente para as portas 443 e 80.",
 " Enjoy. ;)"=>" Aproveite. ;) ",
-"<small>Visit <strong>https://letsencrypt.org</strong> to know more about free certification process their TOS and License Agreement, this is a basic GUI for the APACHE CERTBOT and is provided as is and without warranty.If you have any questions please provide it in the forum.Don't forget to Donate to the Let's Encrypt Project"=>"<small> Visite <strong> https://letsencrypt.org </strong> para saber mais sobre o processo de certificação gratuito, seus TOS e Contrato de licença, esta é uma GUI básica para o APACHE CERTBOT e é fornecida como está e sem garantia. Se você tiver alguma dúvida, informe no fórum. Não se esqueça de fazer uma doação para o projeto Let's Encrypt ",
+"<small>Visit <strong>https://letsencrypt.org</strong> to know more about free certification process their TOS and License Agreement, this is a basic GUI for the APACHE CERTBOT and is provided as is and without warranty.If you have any questions please provide it in the forum.Don't forget to Donate to the Let's Encrypt Project</small>"=>"<small> Visite <strong> https://letsencrypt.org </strong> para saber mais sobre o processo de certificação gratuito, seus TOS e Contrato de licença, esta é uma GUI básica para o APACHE CERTBOT e é fornecida como está e sem garantia. Se você tiver alguma dúvida, informe no fórum. Não se esqueça de fazer uma doação para o projeto Let's Encrypt</small>",
 );
 ?>
