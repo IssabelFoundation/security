@@ -93,6 +93,13 @@ if($domain==''){
     if($retorno==0) {
         exec("/usr/bin/issabel-helper ssl_certbot writevars ".escapeshellarg($email)." ".escapeshellarg($domain), $out, $rtn);
         $pNet->escribir_configuracion_red_sistema($arrNetworkData);
+    } else {
+        $getvars = array();
+        $getvars['domain'] = "";
+        $getvars['email']  = "";
+        $getvars['result']  = $result;
+        echo __json_encode($getvars);
+        die();
     }
 
     $output = "<strong>Output log: </strong><br><pre>";

@@ -53,11 +53,15 @@ switch($argv[1]){
 
             $output = $ret = NULL;
 
+            if(!is_executable('/usr/bin/certbot')) {
+                echo "ERR: Could not find /usr/bin/certbot. Be sure to install the certbot package";
+                exit(1);
+            }
+        
             exec($comando, $output, $ret);
 
             if ($ret != 0) {
-                fputs(STDERR, "ERR: failed to run /usr/bin/certbot. Output follows:\n");
-                fputs(STDERR, implode('', $output));
+                echo "ERR: failed to run /usr/bin/certbot ($comando). Output follows:\n".implode('', $output);
                 exit(1);
             } else {
                 //exec("/sbin/service httpd restart 2>&1", $output, $ret);
