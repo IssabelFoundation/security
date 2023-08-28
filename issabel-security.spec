@@ -22,6 +22,8 @@ Requires: fail2ban-sendmail
 Requires: ipset-service
 Requires: php-pecl-geoip
 Requires: sqlite
+Requires: certbot
+Requires: python3-certbot-apache
 
 # sec_weak_keys pulls extensions_batch/libs/paloSantoExtensionsBatch.class.php
 # to perform asterisk reload
