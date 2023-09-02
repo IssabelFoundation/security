@@ -587,7 +587,7 @@ function saveRulesAjax($smarty, $module_name, $local_templates_dir, &$pDB, $arrC
     if($id == ""){
         if( $oPalo->saveRule( $arrValues ) == true )
         {
-            $mb_title   = _tr("MESSAGE");
+            $mb_title   = _tr("Message");
             $mb_message = _tr("Successful Save");
             return "{\"status\":\"success\", \"title\":\"$mb_title\", \"message\": \"$mb_message\"}";
         }
@@ -600,7 +600,7 @@ function saveRulesAjax($smarty, $module_name, $local_templates_dir, &$pDB, $arrC
     } else {
         if( $oPalo->updateRule($arrValues,$id) == true )
         {
-            $mb_title   =  _tr("MESSAGE");
+            $mb_title   = _tr("Message");
             $mb_message = _tr("Successful Update");
             return "{\"status\":\"success\", \"title\":\"$mb_title\", \"message\": \"$mb_message\"}";
         }

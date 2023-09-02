@@ -58,13 +58,13 @@ function _moduleContent(&$smarty, $module_name)
             break;
         case 'start':
             exec('/usr/bin/issabel-helper fb_client start', $respuesta, $retorno);
-            $smarty->assign("mb_title", "MESSAGE");
+            $smarty->assign("mb_title", "Message");
             $smarty->assign("mb_message", _tr("Fail2ban has been activated"));
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
         case 'stop':
             exec('/usr/bin/issabel-helper fb_client stop', $respuesta, $retorno);
-            $smarty->assign("mb_title", "MESSAGE");
+            $smarty->assign("mb_title", "Message");
             $smarty->assign("mb_message", _tr("Fail2ban has been deactivated"));
             $content = reportJails($smarty, $module_name, $local_templates_dir, $pDB, $arrConf);
             break;
