@@ -266,8 +266,8 @@ class paloSantoRules {
         $id_ip     = ($arrValues['id_ip'] == null)         ? "" : $arrValues['id_ip'];
         $state     = isset($arrValues['state'])            ? $arrValues['state'] : '';
         $target    = ($arrValues['target'] == null)        ? "" : $arrValues['target'];
-        $geoipcountries  = ($arrValues['geoipcountries'] == null)      ? "" : implode(",",$arrValues['geoipcountries']);
-        $geoipcontinents = ($arrValues['geoipcontinents'] == null)     ? "" : implode(",",$arrValues['geoipcontinents']);
+        $geoipcountries  = (is_array($arrValues['geoipcountries'])) ? implode(",",$arrValues['geoipcountries']) : "";
+        $geoipcontinents  = (is_array($arrValues['geoipcontinents'])) ? implode(",",$arrValues['geoipcontinents']) : "";
 
         if($protocol == 'GEOIP') {
             $max = $this->getMaxOrderGEOIP();
