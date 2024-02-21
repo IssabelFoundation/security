@@ -1,0 +1,66 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-30 02:06:27 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Weak Keys" => "Слабкі Паролі",
+	"Extension" => "Внутрішній Номер",
+	"Description" => "Опис",
+	"Reason" => "Причина",
+	"Same Key" => "Пароль та внутрішній номери збігаються",
+	"Short Key" => "Пароль занадто короткий (менше 5 цифр)",
+	"Search" => "Пошук",
+	"Show" => "Показати",
+	"Change Key" => "Змінити Ключ",
+	"Old Key" => "Старий Ключ",
+	"New Key" => "Новий Ключ",
+	"Save" => "Зберегти",
+	"Confirm New Key" => "Підтвердити Новий Ключ",
+	"Required field" => "Обов'язкове поле",
+	"Key" => "Ключ",
+	"Validation Error" => "Помилка валідації",
+	"Error" => "Помилка",
+	"The following fields contain errors" => "Наступні поля містять помилки",
+	"The key does not match with the actual key" => "Ключ не відповідає дійсному ключу",
+	"The New Key does not match with the Confirmation Key" => "Новий Ключ не збігається з Ключем Підтвердження",
+	"Message" => "Повідомлення",
+	"Successful Key Update" => "Успішне Оновлення Ключа",
+	"Current Key" => "Поточний Ключ",
+	"The Current Key is invalid" => "Поточний Ключ недійсний",
+	"Cancel" => "Скасувати",
+	"You are not authorized to enter to that extension" => "Ви не маєте права доступу до цього внутрішнього номера",
+	"Weak Secrets" => "Слабкі Паролі",
+	"Current Secret" => "Поточний Пароль",
+	"New Secret" => "Новий Пароль",
+	"Confirm New Secret" => "Підтвердити Новий Пароль",
+	"The Current Secret is invalid" => "Поточний Пароль Недійсний",
+	"The New Secret does not match with the Confirmation Secret" => "Новий Пароль не збігається з Паролем Підтвердження",
+	"Successful Secret Update" => "Успішне Оновлення Паролю",
+	"Change Secret" => "Змінити Пароль",
+	"Weak Key" => "Слабкий Ключ",
+	"Status" => "Стан",
+);
+?>

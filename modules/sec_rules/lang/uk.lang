@@ -1,0 +1,109 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-30 01:52:58 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Rules" => "Правила",
+	"New" => "Нове",
+	"Traffic" => "Трафік",
+	"Interface IN" => "Інтерфейс ВХІД",
+	"Interface OUT" => "Інтерфейс ВИХІД",
+	"IP Source" => "Адреса Джерела",
+	"IP Destiny" => "Адреса Призначення",
+	"ALL" => "ВСЕ",
+	"Protocol" => "Протокол",
+	"Target" => "Ціль",
+	"Action" => "Дія",
+	"Port Source" => "Порт Джерела",
+	"Port Destine" => "Порт Призначення",
+	"Type" => "Тип",
+	"ID" => "ID",
+	"New Rule" => "Нове Правило",
+	"Delete" => "Видалити",
+	"Are you sure you wish to delete the Rule?" => "Ви впевнені що хочете видалити Правило?",
+	"Orden" => "Порядок",
+	"Filter Example" => "Приклад Фільтра",
+	"Rule" => "Правило",
+	"Activate" => "Активувати",
+	"Desactivate" => "Деактивувати",
+	"Rule List" => "Список Правил",
+	"Source Port" => "Порт Джерела",
+	"Destiny Port" => "Порт Призначення",
+	"Protocol ICMP Type" => "Тип Протоколу ICMP",
+	"Number Protocol IP" => "Номер Протокол IP",
+	"Order" => "Порядок",
+	"Order/Activated" => "Замовити/Активовано",
+	"INPUT" => "ВХІД",
+	"OUTPUT" => "ВИХІД",
+	"FORWARD" => "FORWARD",
+	"ACCEPT" => "ACCEPT",
+	"DROP" => "DROP",
+	"REJECT" => "REJECT",
+	"ANY" => "ANY",
+	"The bit masks must be values less than 33" => "Бітові маски повинні мати значення менше 33",
+	"Error" => "Помилка",
+	"Validation Error" => "Помилка Валідації",
+	"The following fields contain errors" => "Наступні поля містять помилки",
+	"Edit Rule" => "Редагувати Правило",
+	"Wrong Mask" => "Неправильна маска",
+	"Up" => "Вгору",
+	"Down" => "Вниз",
+	"Successful Change" => "Успішна Зміна",
+	"Invalid Action" => "Неправильна Дія",
+	"Execute Rules" => "Виконувати Правила",
+	"Successful Save" => "Успішно Збережено",
+	"Successful Update" => "Успішно Оновлено",
+	"Error during execution of rules" => "Помилка під час виконання правил",
+	"Interface" => "Інтерфейс",
+	"IN" => "ВХІД",
+	"OUT" => "ВИХІД",
+	"The rules have been executed in the system" => "Правила були виконані в системі",
+	"There have been changes and have not been executed in the system" => "В системі відбулися зміни, які не були виконані",
+	"Cancel" => "Скасувати",
+	"Wrong value for ip" => "Неправильне значення для ip",
+	"Save Changes" => "Зберегти Зміни",
+	"FireWall Rules" => "Правила Брандмауера",
+	"You have made changes to the definition of firewall rules, for this to take effect in the system press the next button" => "Ви внесли зміни до визначення правил брандмауера, щоб вони набули чинності в системі, натисніть наступну кнопку",
+	"The firewall is totally desactivated. It is recommended to activate the firewall rules" => "Брандмауер наразі вимкнено. Рекомендується завжди тримати його активованим",
+	"Activate FireWall" => "Активувати FireWall",
+	"Desactivate FireWall" => "Деактивувати FireWall",
+	"The firewall has been activated" => "Брандмауер активовано",
+	"The firewall has been desactivated" => "Брандмауер було деактивовано",
+	"The firewall could not be desactivated" => "Не вдалося деактивувати брандмауер",
+	"STATE" => "STATE",
+	"Established" => "Established",
+	"Related" => "Related",
+	"You have to select at least one state" => "Ви повинні вибрати принаймні одну область",
+	"Details" => "Подробиці",
+	"MESSAGE" => "ПОВІДОМЛЕННЯ",
+	"IP DETAILS" => "ДАНІ ПРО IP",
+	"PROTOCOL DETAILS" => "ДАНІ ПРОТОКОЛУ",
+	"ACTION DETAIL" => "ДЕТАЛІ ДІЇ",
+	"No rules were selected" => "Не було обрано жодного правила",
+	"%d rules were deleted" => "%d правил видалено",
+	"The firewall does not have support for GeoIP Localization" => "Брандмауер не підтримує локалізацію GeoIP",
+);
+?>

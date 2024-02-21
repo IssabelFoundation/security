@@ -1,0 +1,66 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-30 01:14:43 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Port- Service" => "Порт-Сервіс",
+	"Ports" => "Порти",
+	"Port" => "Порт",
+	"Option" => "Варіант",
+	"Name" => "Назва",
+	"Protocol" => "Протокол",
+	"Port(s)" => "Порт(и)",
+	"Delete" => "Видалити",
+	"View" => "Переглянути",
+	"Edit" => "Редагувати",
+	"New Port" => "Новий Порт",
+	"Comment" => "Коментар",
+	"Save correctly" => "Зміни збережено",
+	"Delete correctly" => "Видалення виконано успішно",
+	"Update correctly" => "Оновлено коректно",
+	"Details" => "Подробиці",
+	"Message" => "Повідомлення",
+	"Error" => "Помилка",
+	"Are you sure you wish to delete the port(s)." => "Ви впевнені що хочете видалити порт(и).",
+	"Filter by" => "Фільтрувати за",
+	"Define Ports" => "Визначення Портів",
+	"Define Port" => "Визначити Порт",
+	"Edit Port" => "Редагувати Порт",
+	"View Port" => "Переглянути Порт",
+	"Protocol Number" => "Номер Протоколу",
+	"Type" => "Тип",
+	"Code" => "Код",
+	"This port had already been defined" => "Цей порт вже був визначений",
+	"The name and the port can not be empty fields" => "Ім'я та порт не можуть бути порожніми полями",
+	"The name, type and code can not be empty fields" => "Назва, тип і код не можуть бути порожніми полями",
+	"The name and the protocol number can not be empty fields" => "Назва та номер протоколу не можуть бути порожніми полями",
+	"The following fields contain errors" => "Наступні поля містять помилки",
+	"Validation Error" => "Помилка Валідації",
+	"Port used in a firewall rule" => "Порт що використовується в правилі брандмауера",
+	"You have to delete the rule related in order to delete this port" => "Щоб видалити цей порт потрібно видалити пов'язане з ним правило",
+	"Some rules could be deactivated due to these changes, please check the firewall rules" => "Деякі правила можуть бути деактивовані через ці зміни, будь ласка, перевірте правила брандмауера",
+);
+?>

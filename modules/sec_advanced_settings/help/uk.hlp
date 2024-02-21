@@ -1,0 +1,21 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+        <!-- Form to add images -->
+        <!--<div><img src="../modules/{$node_id}/images/images.png" border="0"></div> -->
+	<p>Модуль "Розширені Налаштування" меню "Безпека" дозволяє змінити пароль до бази даних та веб-адміністрування IssabelPBX, а також увімкнути невбудований доступ до IssabelPBX та анонімні SIP-дзвінки.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_advanced_settings.png" border="0" />
+        <p>Зображення 1</p></div>
+        <br />
+	<p>У розділі "Увімкнути Доступ" встановіть значення ON/OFF, щоб увімкнути невбудований доступ до IssabelPBX та анонімні SIP-дзвінки.</p>
+	<p>У текстовому полі Пароль до бази даних та веб-адміністрування IssabelPBX необхідно ввести новий пароль. У текстовому полі Підтвердження пароля необхідно знову ввести новий пароль. Пам'ятайте, що новий пароль може містити тільки алфавітно-цифрові символи, пробіли або наступне: .&amp;-@=_!&lt;&gt;.</p>
+	<p>Після завершення натисніть кнопку "Зберегти", щоб застосувати зміни.</p>
+	<br />
+
+    </body>
+</html>

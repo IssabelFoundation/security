@@ -1,0 +1,14 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>Модуль "Заборонені IP" дозволяє переглянути поточні заборонені IP-адреси і, за бажанням, розблокувати їх</p>
+        <br />
+	<h2>Розблокувати IP</h2>
+	<p>Щоб зняти бан, просто виберіть їх, натиснувши на кожну галочку, і нарешті натисніть кнопку "Розблокувати" вгорі.</p>
+        <br />
+    </body>
+</html>

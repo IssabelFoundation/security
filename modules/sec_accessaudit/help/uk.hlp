@@ -1,0 +1,15 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>Модуль "Аудит" меню "Безпека" в Issabel показує список всіх користувачів, які входили в систему, із зазначенням дати, імені користувача, IP-адреси джерела та інших деталей. Результати можна відфільтрувати за датою та рядком. Збіги з рядком будуть підсвічені в результатах.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_audit.png" border="0" />
+        <p>Зображення 1</p></div>
+        <br />
+	<p>Результати пошуку можна завантажити в різних форматах, таких як PDF, XML і CSV, натиснувши на кнопку " Скачати".</p>
+        <br />
+    </body>
+</html>

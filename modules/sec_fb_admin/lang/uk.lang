@@ -1,0 +1,50 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-30 00:18:56 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Fail2Ban Jails" => "В'язниці Fail2Ban",
+	"Edit Jail" => "Редагувати В'язницю",
+	"View Jail" => "Переглянути В'язницю",
+	"Name" => "Назва",
+	"Whitelist" => "Білий Список",
+	"Enabled" => "Увімкнено",
+	"View" => "Переглянути",
+	"Edit" => "Редагувати",
+	"Ban Time (hours)" => "Час Бану (години)",
+	"Count Failed Attempts" => "Підрахувати Невдалі Спроби",
+	"Save correctly" => "Зміни Збережено",
+	"Update correctly" => "Оновлено коректно",
+	"Message" => "Повідомлення",
+	"Error" => "Помилка",
+	"The following fields contain errors" => "Наступні поля містять помилки",
+	"Validation Error" => "Помилка Валідації",
+	"Disable fail2ban" => "Вимкнути fail2ban",
+	"Enable fail2ban" => "Увімкнути fail2ban",
+	"Fail2ban has been activated" => "Fail2ban було активовано",
+	"Fail2ban has been deactivated" => "Fail2ban було деактивовано",
+);
+?>
