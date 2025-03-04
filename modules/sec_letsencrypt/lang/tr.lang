@@ -1,0 +1,49 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "This is your actual account and domain configuration"=>"Bu, mevcut hesap ve alan yapılandırmanızdır",
+    "Install New Certificate from Let's Encrypt"=>"Let's Encrypt'ten Yeni Sertifika Yükle",
+    "Domain"=>"Alan Adı",
+    "Email"=>"E-posta",
+    "Install"=>"Yükle",
+    "Renew"=>"Yenile",
+    "Usage"=>"Kullanım",
+    "Renew Certificate"=>"Sertifikayı Yenile",
+    "Staging Certificate(Use this for testing)"=>"Hazırlık Sertifikası (Test için kullanın)",
+    "1.- Create a Valid Domain by purchasing it with you preferred Vendor or get one from free DDNS service like No-Ip.org"=>"1.- Tercih ettiğiniz satıcıdan satın alarak veya No-Ip.org gibi ücretsiz DDNS hizmetinden bir tane alarak geçerli bir alan adı oluşturun",
+    "2.- Be sure that you domain is redirected to your PBX Service."=>"2.- Alan adınızın PBX Hizmetinize yönlendirildiğinden emin olun.",
+    "3.- Open the 443 and 80 ports in your firewall and redirect to your PBX."=>"3.- Güvenlik duvarınızda 443 ve 80 TCP portlarını açın ve PBX'inize yönlendirin.",
+    "4.- In the field DOMAIN enter your domain to obtain a valid certificate. You can add many domains comma separated"=>"4.- DOMAIN alanına geçerli bir sertifika almak için alan adınızı girin. Virgülle ayrılmış birden fazla alan adı ekleyebilirsiniz.",
+    "5.- In the field EMAIL enter your email to register your account."=>"5.- EMAIL alanına hesabınızı kaydetmek için e-postanızı girin.",
+    "6.- To renew your certificate press the Renew button."=>"6.- Sertifikanızı yenilemek için Yenile düğmesine basın.",
+    "7.- For test certificates enable the Staging checkbox."=>"7.- Test sertifikaları için Hazırlık onay kutusunu etkinleştirin.",
+    "8.- After the process finish, reload your window with the Domain name(make sure the DNS is set internally too)."=>"8.- İşlem tamamlandıktan sonra, pencerenizi alan adıyla yeniden yükleyin (DNS'in dahili olarak da ayarlandığından emin olun).",
+    "9.- You can enable the firewall rules again for ports 443 and 80."=>"9.- 443 ve 80 portları için güvenlik duvarı kurallarını tekrar etkinleştirebilirsiniz.",
+    " Enjoy. ;)"=>" Tadını çıkarın. ;) ",
+    "<small>Visit <strong>https://letsencrypt.org</strong> to know more about free certification process their TOS and License Agreement, this is a basic GUI for the APACHE CERTBOT and is provided as is and without warranty.If you have any questions please provide it in the forum.Don't forget to Donate to the Let's Encrypt Project</small>"=>"<small>Ücretsiz sertifika süreci, TOS ve Lisans Sözleşmeleri hakkında daha fazla bilgi edinmek için <strong>https://letsencrypt.org</strong> adresini ziyaret edin. Bu, APACHE CERTBOT için temel bir GUI'dir ve olduğu gibi ve garantisiz olarak sağlanır. Herhangi bir sorunuz varsa, lütfen forumda sorun. Let's Encrypt Projesine bağış yapmayı unutmayın</small>",
+);
+?>

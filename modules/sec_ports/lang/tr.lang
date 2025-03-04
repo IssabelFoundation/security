@@ -1,0 +1,66 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "Port- Service" => "Port- Hizmet",
+    "Ports" => "Portlar",
+    "Port" => "Port",
+    "Option" => "Seçenek",
+    "Name" => "Ad",
+    "Protocol" => "Protokol",
+    "Port(s)" => "Port(lar)",
+    "Delete" => "Sil",
+    "View" => "Görüntüle",
+    "Edit" => "Düzenle",
+    "New Port" => "Yeni Port",
+    "Comment" => "Yorum",
+    "Save correctly" => "Değişiklikler kaydedildi",
+    "Delete correctly" => "Silme başarılı",
+    "Update correctly" => "Başarıyla güncellendi",
+    "Details" => "Detaylar",
+    "Message" => "Mesaj",
+    "Error" => "Hata",
+    "Are you sure you wish to delete the port(s)." => "Port(ları) silmek istediğinizden emin misiniz?",
+    "Filter by" => "Şuna göre filtrele",
+    "Name" => "Ad",
+    "Define Ports" => "Portları Tanımla",
+    "Define Port" => "Port Tanımla",
+    "Edit Port" => "Portu Düzenle",
+    "View Port" => "Portu Görüntüle",
+    "Protocol Number" => "Protokol Numarası",
+    "Type" => "Tür",
+    "Code" => "Kod",
+    "This port had already been defined" => "Bu port zaten tanımlanmıştı",
+    "The name and the port can not be empty fields" => "Ad ve port boş alanlar olamaz",
+    "The name, type and code can not be empty fields" => "Ad, tür ve kod boş alanlar olamaz",
+    "The name and the protocol number can not be empty fields" => "Ad ve protokol numarası boş alanlar olamaz",
+    "The following fields contain errors" => "Aşağıdaki alanlar hata içeriyor",
+    "Validation Error" => "Doğrulama Hatası",
+    "Port used in a firewall rule" => "Port bir güvenlik duvarı kuralında kullanılıyor",
+    "You have to delete the rule related in order to delete this port" => "Bu portu silmek için ilgili kuralı silmeniz gerekiyor",
+    "Some rules could be deactivated due to these changes, please check the firewall rules" => "Bu değişiklikler nedeniyle bazı kurallar devre dışı bırakılabilir, lütfen güvenlik duvarı kurallarını kontrol edin"
+);
+?>

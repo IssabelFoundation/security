@@ -1,0 +1,48 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+
+global $arrLangModule;
+$arrLangModule = array(
+    'ERROR' => 'HATA',
+    'Message' => 'Mesaj',
+    'Revocation successful' => 'İptal başarılı',
+    'PortKnock Users' => 'PortKnock Kullanıcıları',
+    'User' => 'Kullanıcı',
+    'Authorized ports' => 'Yetkili portlar',
+    'Revoke authorizations' => 'Yetkilendirmeleri iptal et',
+    'Are you sure you wish to revoke the user authorizations?' => 'Kullanıcı yetkilendirmelerini iptal etmek istediğinizden emin misiniz?',
+    'Authorize new user' => 'Yeni kullanıcı yetkilendir',
+    'Add/Remove Ports' => 'Port Ekle/Kaldır',
+    'Port' => 'Port',
+    'Ports' => 'Portlar',
+    'Type' => 'Tür',
+    'Code' => 'Kod',
+    'Protocol Number' => 'Protokol Numarası',
+    'Add/remove ports for user' => 'Kullanıcı için port ekle/kaldır',
+    'Protocol' => 'Protokol',
+    'Details' => 'Detaylar'
+);
+?>

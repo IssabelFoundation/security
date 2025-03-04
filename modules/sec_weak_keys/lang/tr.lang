@@ -1,0 +1,65 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "Weak Keys" => "Zayıf Anahtarlar",
+    "Extension" => "Uzantı",
+    "Description" => "Açıklama",
+    "Reason" => "Neden",
+    "Same Key" => "Gizli anahtar ve uzantı numarası aynı",
+    "Short Key" => "Gizli anahtar çok kısa (5 haneden kısa)",
+    "Search" => "Ara",
+    "Show" => "Göster",
+    "Change Key" => "Anahtarı Değiştir",
+    "Old Key" => "Eski Anahtar",
+    "New Key" => "Yeni Anahtar",
+    "Save" => "Kaydet",
+    "Confirm New Key" => "Yeni Anahtarı Onayla",
+    "Required field" => "Gerekli alan",
+    "Key" => "Anahtar",
+    "Validation Error" => "Doğrulama Hatası",
+    "Error" => "Hata",
+    "The following fields contain errors" => "Aşağıdaki alanlar hata içeriyor",
+    "The key does not match with the actual key" => "Anahtar, mevcut anahtarla eşleşmiyor",
+    "The New Key does not match with the Confirmation Key" => "Yeni Anahtar, Onay Anahtarı ile eşleşmiyor",
+    "Message" => "Mesaj",
+    "Successful Key Update" => "Başarılı Anahtar Güncellemesi",
+    "Current Key" => "Mevcut Anahtar",
+    "The Current Key is invalid" => "Mevcut Anahtar geçersiz",
+    "Cancel" => "İptal",
+    "You are not authorized to enter to that extension" => "Bu uzantıya girmeye yetkiniz yok",
+    "Weak Secrets" => "Zayıf Gizli Anahtarlar",
+    "Current Secret" => "Mevcut Gizli Anahtar",
+    "New Secret" => "Yeni Gizli Anahtar",
+    "Confirm New Secret" => "Yeni Gizli Anahtarı Onayla",
+    "The Current Secret is invalid" => "Mevcut Gizli Anahtar geçersiz",
+    "The New Secret does not match with the Confirmation Secret" => "Yeni Gizli Anahtar, Onay Gizli Anahtarı ile eşleşmiyor",
+    "Successful Secret Update" => "Başarılı Gizli Anahtar Güncellemesi",
+    "Change Secret" => "Gizli Anahtarı Değiştir",
+    "Weak Key" => "Zayıf Anahtar",
+    "Status" => "Durum"
+);
+?>

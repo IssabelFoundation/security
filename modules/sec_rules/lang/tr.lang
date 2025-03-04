@@ -1,0 +1,107 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "Rules" => "Kurallar",
+    "New" => "Yeni",
+    "Traffic" => "Trafik",
+    "Interface IN" => "Giriş Arayüzü",
+    "Interface OUT" => "Çıkış Arayüzü",
+    "IP Source" => "Kaynak Adresi",
+    "IP Destiny" => "Hedef Adresi",
+    "ALL" => "TÜMÜ",
+    "Protocol" => "Protokol",
+    "Target" => "Hedef",
+    "Action" => "Eylem",
+    "Port Source" => "Kaynak Portu",
+    "Port Destine" => "Hedef Portu",
+    "Type" => "Tür",
+    "ID" => "ID",
+    "New Rule" => "Yeni Kural",
+    "Delete" => "Sil",
+    "Are you sure you wish to delete the Rule?" => "Kuralı silmek istediğinizden emin misiniz?",
+    "Orden" => "Sıra",
+    "Filter Example" => "Filtre Örneği",
+    "Rule" => "Kural",
+    "Activate" => "Etkinleştir",
+    "Desactivate" => "Devre Dışı Bırak",
+    "Rule List" => "Kural Listesi",
+    "Source Port" => "Kaynak Portu",
+    "Destiny Port" => "Hedef Portu",
+    "Protocol ICMP Type" => "Protokol ICMP Türü",
+    "Number Protocol IP" => "IP Protokol Numarası",
+    "Order" => "Sıra",
+    "Order/Activated" => "Sıra/Etkinleştirildi",
+    "INPUT" => "GİRİŞ",
+    "OUTPUT" => "ÇIKIŞ",
+    "FORWARD" => "İLET",
+    "ACCEPT" => "KABUL ET",
+    "DROP" => "DÜŞÜR",
+    "REJECT" => "REDDET",
+    "ANY" => "HERHANGİ BİRİ",
+    "The bit masks must be values less than 33" => "Bit maskeleri 33'ten küçük değerler olmalıdır",
+    "Error" => "Hata",
+    "Validation Error" => "Doğrulama Hatası",
+    "The following fields contain errors" => "Aşağıdaki alanlar hata içeriyor",
+    "Edit Rule" => "Kuralı Düzenle",
+    "Wrong Mask" => "Yanlış Maske",
+    "Up" => "Yukarı",
+    "Down" => "Aşağı",
+    "Successful Change" => "Başarılı Değişiklik",
+    "Invalid Action" => "Geçersiz Eylem",
+    "Execute Rules" => "Kuralları Uygula",
+    "Successful Save" => "Başarılı Kayıt",
+    "Successful Update" => "Başarılı Güncelleme",
+    "Error during execution of rules" => "Kuralların yürütülmesi sırasında hata",
+    "Interface" => "Arayüz",
+    "IN" => "GİRİŞ",
+    "OUT" => "ÇIKIŞ",
+    "The rules have been executed in the system" => "Kurallar sistemde uygulandı",
+    "There have been changes and have not been executed in the system" => "Değişiklikler yapıldı ve sistemde uygulanmadı",
+    "Cancel" => "İptal",
+    "Wrong value for ip" => "IP için yanlış değer",
+    "Save Changes" => "Değişiklikleri Kaydet",
+    "FireWall Rules" => "Güvenlik Duvarı Kuralları",
+    "You have made changes to the definition of firewall rules, for this to take effect in the system press the next button" => "Güvenlik duvarı kurallarının tanımında değişiklikler yaptınız, bunun sistemde etkili olması için sonraki düğmeye basın",
+    "The firewall is totally desactivated. It is recommended to activate the firewall rules" => "Güvenlik duvarı tamamen devre dışı bırakıldı. Güvenlik duvarı kurallarının etkinleştirilmesi önerilir",
+    "Activate FireWall" => "Güvenlik Duvarını Etkinleştir",
+    "Desactivate FireWall" => "Güvenlik Duvarını Devre Dışı Bırak",
+    "The firewall has been activated" => "Güvenlik duvarı etkinleştirildi",
+    "The firewall has been desactivated" => "Güvenlik duvarı devre dışı bırakıldı",
+    "The firewall could not be desactivated" => "Güvenlik duvarı devre dışı bırakılamadı",
+    "STATE" => "DURUM",
+    "Established" => "Kuruldu",
+    "Related" => "İlişkili",
+    "You have to select at least one state" => "En az bir durum seçmelisiniz",
+    "Details" => "Detaylar",
+    "MESSAGE"=>"MESAJ",
+    "IP DETAILS"=>"IP DETAYLARI",
+    "PROTOCOL DETAILS"=>"PROTOKOL DETAYLARI",
+    "ACTION DETAIL"=>"EYLEM DETAYI",
+    "No rules were selected" => "Hiç kural seçilmedi",
+    "%d rules were deleted" => "%d kural silindi"
+);
+?>

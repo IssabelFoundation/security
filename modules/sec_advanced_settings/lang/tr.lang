@@ -1,0 +1,58 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "Advanced Security Settings" => "Gelişmiş Güvenlik Ayarları",
+    "Enable direct access (Non-embedded) to IssabelPBX" => "IssabelPBX'e doğrudan erişimi (gömülü olmayan) etkinleştir",
+    "Change Password" => "Şifre Değiştir",
+    "Enable access" => "Erişimi etkinleştir",
+    "Database and Web Administration IssabelPBX Password" => "Veritabanı ve Web Yönetimi IssabelPBX Şifresi",
+    "Password Confirmation" => "Şifre Onayı",
+    "Password and confirmation do not match!" => "Şifre ve onay eşleşmiyor!",
+    "The following fields are required" => "Aşağıdaki alanlar gereklidir",
+    "The following field contain errors" => "Aşağıdaki alanlar hata içeriyor",
+    "Information" => "Bilgi",
+    "Password has been updated." => "Şifre güncellendi.",
+    "Password has not been updated." => "Şifre güncellenmedi.",
+    "Access direct to IssabelPBX has been enabled." => "IssabelPBX'e doğrudan erişim etkinleştirildi.",
+    "Access direct to IssabelPBX has not been enabled." => "IssabelPBX'e doğrudan erişim etkinleştirilmedi.",
+    "Access direct to IssabelPBX has been disabled." => "IssabelPBX'e doğrudan erişim devre dışı bırakıldı.",
+    "Access direct to IssabelPBX has not been disabled." => "IssabelPBX'e doğrudan erişim devre dışı bırakılmadı.",
+    " But the following files have been modified: " => " Ancak aşağıdaki dosyalar değiştirildi: ",
+    "Password may only contain alphanumeric characters, spaces, or the following: .&-@=_!<>." => "Şifre yalnızca alfanümerik karakterler, boşluklar veya şunları içerebilir: .&-@=_!<>.",
+    "Advice" => "Tavsiye",
+    "Unauthorized" => "Yetkisiz",
+    "You are not authorized to access this page." => "Bu sayfaya erişim yetkiniz yok.",
+    "Enable direct access (Non-embedded) to IssabelPBX in \"Security >> Advanced Security Settings\" menu." => "\"Güvenlik >> Gelişmiş Güvenlik Ayarları\" menüsünde IssabelPBX'e doğrudan erişimi (gömülü olmayan) etkinleştirin",
+    'Enable anonymous SIP calls' => 'Anonim SIP aramalarını etkinleştir',
+    'Anonymous SIP calls are now enabled.' => 'Anonim SIP aramaları etkinleştirildi.',
+    'Anonymous SIP calls are now disabled.' => 'Anonim SIP aramaları devre dışı bırakıldı.',
+    'Anonymous SIP calls cannot be enabled.' => 'Anonim SIP aramaları etkinleştirilemiyor.',
+    'Anonymous SIP calls cannot be disabled.' => 'Anonim SIP aramaları devre dışı bırakılamıyor.',
+    'Dismiss'=>'Kapat',
+    'is licensed under' => 'lisansı altında lisanslanmıştır'
+);
+?>
