@@ -27,51 +27,87 @@ switch($argv[1]){
         break;
     case "newcertificate":
 
-        // newcertificate test@email.com my.dominio.com staging
+        // newcertificate test@email.com my.dominio.com [staging]
 
-        if(isset($argv[2]) && isset($argv[3])) {
-            $params = array();
-            $params[]="-n";
-            $params[]="-i apache";
-            $params[]="-a webroot";
-            $params[]="-w /var/www/html";
-            $params[]="--agree-tos";
-
-            if(isset($argv[4])) {
-                $params[]="--test-cert";
-            }
-
-            $params[]="--email ".$argv[2];
-            $params[]="-d ".$argv[3];
-
-            $lcomandos = implode(" ",$params);
-            $comando = "/usr/bin/certbot $lcomandos";
-
-            //$fp=fopen("/tmp/certbot.log","a");
-            //fputs($fp,"$comando\n");
-            //fclose($fp);
-
-            $output = $ret = NULL;
-
-            if(!is_executable('/usr/bin/certbot')) {
-                echo "ERR: Could not find /usr/bin/certbot. Be sure to install the certbot package";
-                exit(1);
-            }
-        
-            exec($comando, $output, $ret);
-
-            if ($ret != 0) {
-                echo "ERR: failed to run /usr/bin/certbot ($comando). Output follows:\n".implode('', $output);
-                exit(1);
-            } else {
-                //exec("/sbin/service httpd restart 2>&1", $output, $ret);
-
-                writeAsteriskPEMfile(1);
-
-                echo implode("\n",$output);
-                exit(0);
-            }
+        if ($argc < 4 || $argc > 5) {
+            fputs(STDERR, "ERR: invalid number of arguments\n");
+            exit(1);
         }
+
+        $email = $argv[2];
+        $domain = strtolower($argv[3]);
+
+        if (strlen($email) > 254 ||
+            !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            fputs(STDERR, "ERR: invalid email\n");
+            exit(1);
+        }
+
+        // Un dominio DNS ASCII, sin comodines.
+        if (strlen($domain) > 253 ||
+            !preg_match(
+                '/\A(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+' .
+                '[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?\z/',
+                $domain
+            )) {
+            fputs(STDERR, "ERR: invalid domain\n");
+            exit(1);
+        }
+
+        if (isset($argv[4]) && $argv[4] !== 'staging') {
+            fputs(STDERR, "ERR: invalid staging argument\n");
+            exit(1);
+        }
+
+        if (!is_executable('/usr/bin/certbot')) {
+            fputs(
+                STDERR,
+                "ERR: Could not find executable /usr/bin/certbot. " .
+                "Be sure to install the certbot package.\n"
+            );
+            exit(1);
+        }
+
+        $params = array(
+            '/usr/bin/certbot',
+            '-n',
+            '-i', 'apache',
+            '-a', 'webroot',
+            '-w', '/var/www/html',
+            '--agree-tos',
+            '--email', $email,
+            '-d', $domain
+        );
+
+        if (isset($argv[4])) {
+            $params[] = '--test-cert';
+        }
+
+        // Escapar cada argumento individualmente.
+        $comando = implode(
+            ' ',
+            array_map('escapeshellarg', $params)
+        );
+
+        $output = array();
+        $ret = 1;
+
+        exec($comando, $output, $ret);
+
+        if ($ret != 0) {
+            fputs(
+                STDERR,
+                "ERR: failed to run /usr/bin/certbot. Output follows:\n"
+            );
+            fputs(STDERR, implode("\n", $output) . "\n");
+            exit(1);
+        }
+
+        writeAsteriskPEMfile(1);
+
+        echo implode("\n", $output);
+        exit(0);
+
         break;
     case "renewcertificate":
         $comando = "/usr/bin/certbot renew";
